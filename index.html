@@ -1786,8 +1786,15 @@ function renderFeedItems(containerId, items, emptyMessage) {
   }
 
   container.innerHTML = items.map(item => `
-    <div class="feed-item" onclick="window.open('${item.link}', '_blank')" style="cursor: pointer;">
-      <div class="feed-title">${escapeHtml(item.title)}</div>
+    <div class="feed-item" style="padding: 14px 20px; border-bottom: 1px solid var(--border-subtle);">
+      <div class="feed-title" style="margin-bottom: 6px;">
+        <a href="${item.link}" target="_blank" rel="noopener noreferrer" style="color: var(--text-primary); text-decoration: none; font-weight: 500; font-size: 13px; line-height: 1.4; display: block;"
+           onmouseover="this.style.color='var(--accent)';"
+           onmouseout="this.style.color='var(--text-primary)';"
+           onclick="event.stopPropagation();">
+          ${escapeHtml(item.title)}
+        </a>
+      </div>
       <div class="feed-meta">
         <span class="feed-source ${getSourceBadge(item.source)}">${item.source}</span>
         <span>${item.date || 'Recently'}</span>
