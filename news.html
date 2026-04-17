@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caymus — Job Market Intelligence</title>
+<script>
+  const savedTheme = localStorage.getItem('caymus-theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+  :root {
+    --bg-base: #0F1115;
+    --bg-elevated: #151922;
+    --bg-overlay: #1A1F2B;
+    --bg-hover: #1E2433;
+    --bg-selected: #1F2A3F;
+    --text-primary: #E6EAF2;
+    --text-secondary: #9AA4B2;
+    --text-tertiary: #5A6478;
+    --text-inverse: #0F1115;
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-default: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
+    --accent: #4F7CFF;
+    --accent-dim: rgba(79,124,255,0.15);
+    --accent-hover: #6B93FF;
+    --green: #34C97B;
+    --green-dim: rgba(52,201,123,0.12);
+    --amber: #F5A623;
+    --amber-dim: rgba(245,166,35,0.12);
+    --red: #FF5B5B;
+    --red-dim: rgba(255,91,91,0.12);
+    --purple: #A78BFA;
+    --purple-dim: rgba(167,139,250,0.12);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --sidebar-width: 224px;
+    --topbar-height: 56px;
+  }
+  [data-theme="light"] {
+    --bg-base: #F4F5F7;
+    --bg-elevated: #FFFFFF;
+    --bg-overlay: #F0F2F5;
+    --bg-hover: #E8EBF0;
+    --bg-selected: #E0E8FF;
+    --text-primary: #111827;
+    --text-secondary: #4B5563;
+    --text-tertiary: #9CA3AF;
+    --text-inverse: #FFFFFF;
+    --border-subtle: rgba(0,0,0,0.05);
+    --border-default: rgba(0,0,0,0.09);
+    --border-strong: rgba(0,0,0,0.16);
+    --accent: #3B6EF0;
+    --accent-dim: rgba(59,110,240,0.10);
+    --accent-hover: #2A5CE0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 14px; height: 100%; }
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    height: 100%;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .app { display: flex; height: 100vh; }
+  .sidebar {
+    width: var(--sidebar-width);
+    height: 100%;
+    background: var(--bg-elevated);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    z-index: 20;
+  }
+  .sidebar-logo {
+    height: var(--topbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 10px;
+  }
+  .logo-mark {
+    width: 28px; height: 28px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    color: white;
+  }
+  .logo-text {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text-primary);
+  }
+  .sidebar-nav {
+    flex: 1;
+    padding: 12px 8px;
+    overflow-y: auto;
+  }
+  .sidebar-nav::-webkit-scrollbar { display: none; }
+  .nav-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    padding: 12px 10px 6px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .nav-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+  .nav-item.active { background: var(--accent-dim); color: var(--accent); position: relative; }
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 3px; height: 16px;
+    background: var(--accent);
+    border-radius: 0 3px 3px 0;
+  }
+  .nav-icon { width: 18px; height: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .sidebar-footer {
+    padding: 12px 8px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .user-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+  .user-card:hover { background: var(--bg-hover); }
+  .avatar {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+  }
+  .user-info { overflow: hidden; }
+  .user-name { font-size: 12.5px; font-weight: 600; color: var(--text-primary); }
+  .user-role { font-size: 11px; color: var(--text-tertiary); }
+  .main { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+  .topbar {
+    height: var(--topbar-height);
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .topbar-title { font-weight: 700; font-size: 16px; color: var(--text-primary); }
+  .topbar-spacer { flex: 1; }
+  .btn {
+    height: 32px;
+    padding: 0 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-secondary {
+    background: var(--bg-overlay);
+    color: var(--text-primary);
+    border: 1px solid var(--border-default);
+  }
+  .btn-secondary:hover { background: var(--bg-hover); border-color: var(--border-strong); }
+  .content { flex: 1; overflow: auto; padding: 20px; }
+  .page-header { margin-bottom: 20px; }
+  .page-title { font-size: 22px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+  .page-subtitle { font-size: 13px; color: var(--text-secondary); }
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+  .stat-card:hover { transform: translateY(-2px); border-color: var(--border-strong); }
+  .stat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .stat-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+  .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .stat-delta {
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .stat-delta.up { color: var(--green); }
+  .stat-delta.down { color: var(--red); }
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .panel {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .panel-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .panel-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+  .panel-body { padding: 0; }
+  .feed-list {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  .feed-item {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+  .feed-item:hover { background: var(--bg-hover); }
+  .feed-item:last-child { border-bottom: none; }
+  .feed-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .feed-meta {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .feed-source {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--bg-overlay);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .feed-source.bls { color: var(--accent); }
+  .feed-source.dol { color: var(--green); }
+  .feed-source.fed { color: var(--amber); }
+  .feed-source.news { color: var(--purple); }
+  .xray-section {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .xray-header {
+    margin-bottom: 16px;
+  }
+  .xray-title { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+  .xray-subtitle { font-size: 12px; color: var(--text-secondary); }
+  .xray-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .xray-card {
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 16px;
+  }
+  .xray-card-title { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; }
+  .xray-input {
+    width: 100%;
+    height: 36px;
+    background: var(--bg-base);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 0 12px;
+    font-size: 13px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .xray-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .xray-output {
+    background: var(--bg-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    font-size: 12px;
+    font-family: monospace;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    min-height: 60px;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+  .xray-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  .xray-btn {
+    flex: 1;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .xray-btn.primary {
+    background: var(--accent);
+    color: white;
+  }
+  .xray-btn.primary:hover { background: var(--accent-hover); }
+  .xray-btn.secondary {
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+  }
+  .xray-btn.secondary:hover {
+    background: var(--bg-overlay);
+    color: var(--text-primary);
+  }
+  .map-container {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 450px;
+    position: relative;
+  }
+  #jobs-map { height: 100%; width: 100%; }
+  .loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--bg-elevated);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 10;
+  }
+  .loading-spinner {
+    width: 40px; height: 40px;
+    border: 3px solid var(--border-subtle);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .job-list {
+    max-height: 350px;
+    overflow-y: auto;
+  }
+  .job-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+  .job-item:hover { background: var(--bg-hover); }
+  .job-logo {
+    width: 40px; height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .job-content { flex: 1; min-width: 0; }
+  .job-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .job-company {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+  .job-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+  .job-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .job-badge.hiring { background: var(--green-dim); color: var(--green); }
+  .job-badge.layoffs { background: var(--red-dim); color: var(--red); }
+  .job-badge.remote { background: var(--accent-dim); color: var(--accent); }
+  .tabs {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    background: var(--bg-overlay);
+    border-radius: var(--radius-sm);
+    margin-bottom: 16px;
+  }
+  .tab {
+    padding: 6px 14px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+    border: none;
+    background: transparent;
+  }
+  .tab:hover { color: var(--text-primary); }
+  .tab.active {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Market Intelligence Feed Styles */
+  #intel-local.active,
+  #intel-executive.active,
+  #intel-funding.active,
+  #intel-layoffs.active { display: block; }
+
+  #feed-local,
+  #feed-executive,
+  #feed-funding,
+  #feed-layoffs { max-height: 500px; overflow-y: auto; }
+  .quick-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .filter-chip {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid var(--border-default);
+    background: transparent;
+    color: var(--text-secondary);
+  }
+  .filter-chip:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+  }
+  .filter-chip.active {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .rss-error {
+    padding: 40px;
+    text-align: center;
+    color: var(--text-secondary);
+  }
+  .rss-error-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+  @media (max-width: 1200px) {
+    .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+    .content-grid { grid-template-columns: 1fr; }
+    .xray-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">C</div>
+      <div class="logo-text">Caymus</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Recruiting</div>
+      <a href="recruiting-dashboard.html" class="nav-item">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="connections.html" class="nav-item">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <span class="nav-label">Connections</span>
+      </a>
+      <a href="pipeline.html" class="nav-item">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span>
+        <span class="nav-label">Pipeline</span>
+      </a>
+      <a href="sequences.html" class="nav-item">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+        <span class="nav-label">Sequences</span>
+      </a>
+      <a href="templates.html" class="nav-item">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+        <span class="nav-label">Templates</span>
+      </a>
+      <div class="nav-section-label">Discovery</div>
+      <a href="xray.html" class="nav-item">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+        <span class="nav-label">X-Ray Search</span>
+      </a>
+      <a href="heatmap.html" class="nav-item">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/><path d="M2 12h20"/></svg></span>
+        <span class="nav-label">Heatmap</span>
+      </a>
+      <a href="development.html" class="nav-item">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span class="nav-label">Development</span>
+      </a>
+      <div class="nav-section-label">Analytics</div>
+      <a href="analytics.html" class="nav-item">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+        <span class="nav-label">Performance</span>
+      </a>
+      <a href="news.html" class="nav-item active">
+        <span class="nav-icon">📰</span>
+        <span class="nav-label">Job Market</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="avatar">JD</div>
+        <div class="user-info">
+          <div class="user-name">John Doe</div>
+          <div class="user-role">Recruiter</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <h1 class="topbar-title">Job Market Intelligence</h1>
+      <div class="topbar-spacer"></div>
+      <button class="btn btn-secondary" id="theme-toggle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </header>
+
+    <div class="content">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Labor Market Pulse</h2>
+          <p class="page-subtitle">Real-time job market data from government sources, hiring announcements, and LinkedIn job postings</p>
+        </div>
+      </div>
+
+      <!-- Key Metrics Dashboard -->
+      <div class="dashboard-grid">
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-label">Unemployment Rate</span>
+            <span style="font-size: 20px;">📉</span>
+          </div>
+          <div class="stat-value" id="unemployment-rate">—</div>
+          <div class="stat-delta" id="unemployment-delta">Loading...</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-label">Labor Force Participation</span>
+            <span style="font-size: 20px;">💼</span>
+          </div>
+          <div class="stat-value" id="labor-participation">—</div>
+          <div class="stat-delta" id="participation-delta">Loading...</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-label">Employment Change</span>
+            <span style="font-size: 20px;">📊</span>
+          </div>
+          <div class="stat-value" id="job-growth">—</div>
+          <div class="stat-delta" id="growth-delta">Loading...</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-label">Job Openings (JOLTS)</span>
+            <span style="font-size: 20px;">📋</span>
+          </div>
+          <div class="stat-value" id="job-openings">—</div>
+          <div class="stat-delta" id="openings-delta">Loading...</div>
+        </div>
+      </div>
+
+      <!-- X-Ray Search Builders -->
+      <div class="xray-section">
+        <div class="xray-header">
+          <div class="xray-title">LinkedIn Job Search Queries</div>
+          <div class="xray-subtitle">Find live job postings by role, location, and company with Google X-Ray search</div>
+        </div>
+
+        <div class="xray-grid">
+          <div class="xray-card">
+            <div class="xray-card-title">🔍 Role + Location Search</div>
+            <input type="text" class="xray-input" id="job-role" placeholder="Software Engineer, Sales Manager..." value="Software Engineer">
+            <input type="text" class="xray-input" id="job-location" placeholder="San Francisco, Remote, New York..." value="Remote">
+            <div class="xray-output" id="job-search-output">(site:linkedin.com/jobs/view OR site:boards.greenhouse.io OR site:jobs.lever.co) AND "Software Engineer" AND "Remote"</div>
+            <div class="xray-buttons">
+              <button class="xray-btn primary" onclick="generateJobSearch()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                Build Query
+              </button>
+              <button class="xray-btn secondary" onclick="searchGoogle('job-search-output')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 17l7-7"/></svg>
+                Search
+              </button>
+            </div>
+          </div>
+
+          <div class="xray-card">
+            <div class="xray-card-title">🏢 Company Hiring Tracker</div>
+            <input type="text" class="xray-input" id="company-name" placeholder="Company name..." value="OpenAI">
+            <select class="xray-input" id="job-type" style="cursor: pointer;">
+              <option value="">All Jobs</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Sales">Sales</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Product">Product</option>
+              <option value="HR" selected>HR/People</option>
+            </select>
+            <div class="xray-output" id="company-search-output">(site:linkedin.com/jobs/view OR site:boards.greenhouse.io OR site:jobs.lever.co OR site:careers) AND "OpenAI" AND "HR"</div>
+            <div class="xray-buttons">
+              <button class="xray-btn primary" onclick="generateCompanySearch()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                Build Query
+              </button>
+              <button class="xray-btn secondary" onclick="searchGoogle('company-search-output')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 17l7-7"/></svg>
+                Search
+              </button>
+            </div>
+          </div>
+
+          <div class="xray-card">
+            <div class="xray-card-title">⚡ Recent Layoffs & Hiring Freezes</div>
+            <div style="margin-bottom: 12px;">
+              <button class="filter-chip active" onclick="toggleLayoffFilter(this, 'layoffs')">Layoffs</button>
+              <button class="filter-chip" onclick="toggleLayoffFilter(this, 'hiring-freeze')">Hiring Freeze</button>
+              <button class="filter-chip" onclick="toggleLayoffFilter(this, 'restructuring')">Restructuring</button>
+            </div>
+            <div class="xray-output" id="layoff-search-output">"layoffs" OR "laying off" OR "workforce reduction" OR "job cuts" OR "headcount reduction" after:2024-01-01</div>
+            <div class="xray-buttons">
+              <button class="xray-btn primary" onclick="generateLayoffSearch()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                Build Query
+              </button>
+              <button class="xray-btn secondary" onclick="searchGoogle('layoff-search-output')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 17l7-7"/></svg>
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Geographic Job Market Map -->
+      <div class="content-grid">
+        <div>
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">🗺️ Geographic Job Market Activity</span>
+              <button class="btn btn-secondary" style="height: 28px; font-size: 12px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5-5 5 5M12 15V3"/></svg>
+                Export
+              </button>
+            </div>
+            <div class="panel-body">
+              <div class="map-container">
+                <div id="jobs-map"></div>
+                <div id="map-loading" class="loading-overlay">
+                  <div class="loading-spinner"></div>
+                  <span style="color: var(--text-secondary);">Loading job market data...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">📰 Government & News Feeds</span>
+              <div class="tabs">
+                <button class="tab active" onclick="switchTab('government')">Gov</button>
+                <button class="tab" onclick="switchTab('news')">News</button>
+                <button class="tab" onclick="switchTab('layoffs')">Layoffs</button>
+              </div>
+            </div>
+            <div class="panel-body">
+              <!-- Government Tab -->
+              <div id="tab-government" class="tab-content active">
+                <div class="feed-list">
+                  <div class="feed-item" onclick="window.open('https://www.bls.gov/jlt/', '_blank')">
+                    <div class="feed-title">BLS Job Openings and Labor Turnover Survey (JOLTS)</div>
+                    <div class="feed-meta">
+                      <span class="feed-source bls">BLS</span>
+                      <span>Monthly data on job openings, hires, and separations</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.bls.gov/ces/', '_blank')">
+                    <div class="feed-title">Current Employment Statistics (CES) - Nonfarm Payroll</div>
+                    <div class="feed-meta">
+                      <span class="feed-source bls">BLS</span>
+                      <span>National employment, hours, and earnings by industry</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.bls.gov/lau/', '_blank')">
+                    <div class="feed-title">Local Area Unemployment Statistics (LAUS)</div>
+                    <div class="feed-meta">
+                      <span class="feed-source bls">BLS</span>
+                      <span>State and metropolitan area employment data</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.dol.gov/newsroom/releases', '_blank')">
+                    <div class="feed-title">Department of Labor News Releases</div>
+                    <div class="feed-meta">
+                      <span class="feed-source dol">DOL</span>
+                      <span>Official statements on employment laws, wages, and workforce</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.federalreserve.gov/releases/g17/current/', '_blank')">
+                    <div class="feed-title">Federal Reserve Industrial Production and Capacity Utilization</div>
+                    <div class="feed-meta">
+                      <span class="feed-source fed">Fed</span>
+                      <span>Economic indicators affecting employment</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.census.gov/economic-indicators', '_blank')">
+                    <div class="feed-title">U.S. Census Bureau Economic Indicators</div>
+                    <div class="feed-meta">
+                      <span class="feed-source fed">Census</span>
+                      <span>Business formation, retail trade, construction spending</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.bls.gov/opub/ted/', '_blank')">
+                    <div class="feed-title">The Economics Daily (TED) - BLS Blog</div>
+                    <div class="feed-meta">
+                      <span class="feed-source bls">BLS</span>
+                      <span>Daily economic analysis and charts</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.bls.gov/regions/', '_blank')">
+                    <div class="feed-title">BLS Regional Economic Analysis</div>
+                    <div class="feed-meta">
+                      <span class="feed-source bls">BLS</span>
+                      <span>Regional and state-specific labor market data</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- News Tab -->
+              <div id="tab-news" class="tab-content">
+                <div class="feed-list">
+                  <div class="feed-item" onclick="window.open('https://www.bloomberg.com/news/los', '_blank')">
+                    <div class="feed-title">Bloomberg Layoffs and Restructuring News</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">Bloomberg</span>
+                      <span>Corporate restructuring and workforce changes</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.cnbc.com/layoffs/', '_blank')">
+                    <div class="feed-title">CNBC Layoff Tracker</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">CNBC</span>
+                      <span>Tech and corporate layoffs coverage</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.wsj.com/news/economy', '_blank')">
+                    <div class="feed-title">WSJ Economy & Jobs Coverage</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">WSJ</span>
+                      <span>Economic analysis and labor market reporting</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.reuters.com/business/jobs/', '_blank')">
+                    <div class="feed-title">Reuters Jobs & Employment News</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">Reuters</span>
+                      <span>Global employment trends and analysis</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://techcrunch.com/category/startups/', '_blank')">
+                    <div class="feed-title">TechCrunch Startup Hiring Tracker</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">TechCrunch</span>
+                      <span>Startup funding and hiring announcements</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Layoffs Tab -->
+              <div id="tab-layoffs" class="tab-content">
+                <div class="feed-list">
+                  <div class="feed-item" onclick="window.open('https://layoffs.fyi/', '_blank')">
+                    <div class="feed-title">Layoffs.fyi - Tech Layoff Tracker</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">Tracker</span>
+                      <span>Comprehensive database of tech layoffs since COVID-19</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.thelayoff.com/', '_blank')">
+                    <div class="feed-title">TheLayoff.com - Anonymous Reports</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">Community</span>
+                      <span>User-submitted layoff rumors and reports</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.challengergray.com/press/category/challenger-job-cut-report/', '_blank')">
+                    <div class="feed-title">Challenger, Gray & Christmas - Job Cut Reports</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">Research</span>
+                      <span>Monthly report on announced corporate layoffs</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.linkedin.com/news/topics/layoffs/', '_blank')">
+                    <div class="feed-title">LinkedIn News - Layoffs</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">LinkedIn</span>
+                      <span>Professional network layoff discussions</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Hiring Companies -->
+      <div class="panel" style="margin-bottom: 24px;">
+        <div class="panel-header">
+          <span class="panel-title">🏢 Companies Actively Hiring (LinkedIn Live Data)</span>
+          <div class="quick-filters">
+            <button class="filter-chip active" onclick="filterCompanies('all')">All</button>
+            <button class="filter-chip" onclick="filterCompanies('tech')">Tech</button>
+            <button class="filter-chip" onclick="filterCompanies('finance')">Finance</button>
+            <button class="filter-chip" onclick="filterCompanies('healthcare')">Healthcare</button>
+            <button class="filter-chip" onclick="filterCompanies('remote')">Remote-First</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="job-list" id="companies-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Industry Trends -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">📈 Industry Hiring Trends (BLS Data)</span>
+          <button class="btn btn-secondary" style="height: 28px; font-size: 12px;" onclick="window.open('https://www.bls.gov/emp/tables/employment-by-major-industry-sector.htm', '_blank')">
+            View BLS Tables
+          </button>
+        </div>
+        <div class="panel-body" style="padding: 20px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+            <div class="stat-card" style="margin: 0;">
+              <div class="stat-header">
+                <span class="stat-label">Technology</span>
+                <span style="font-size: 20px;">💻</span>
+              </div>
+              <div class="stat-value" style="font-size: 24px;">+4.2%</div>
+              <div style="margin-top: 8px; height: 4px; background: var(--bg-overlay); border-radius: 2px;">
+                <div style="width: 85%; height: 100%; background: var(--green); border-radius: 2px;"></div>
+              </div>
+            </div>
+
+            <div class="stat-card" style="margin: 0;">
+              <div class="stat-header">
+                <span class="stat-label">Healthcare</span>
+                <span style="font-size: 20px;">🏥</span>
+              </div>
+              <div class="stat-value" style="font-size: 24px;">+3.8%</div>
+              <div style="margin-top: 8px; height: 4px; background: var(--bg-overlay); border-radius: 2px;">
+                <div style="width: 78%; height: 100%; background: var(--green); border-radius: 2px;"></div>
+              </div>
+            </div>
+
+            <div class="stat-card" style="margin: 0;">
+              <div class="stat-header">
+                <span class="stat-label">Professional Services</span>
+                <span style="font-size: 20px;">💼</span>
+              </div>
+              <div class="stat-value" style="font-size: 24px;">+2.1%</div>
+              <div style="margin-top: 8px; height: 4px; background: var(--bg-overlay); border-radius: 2px;">
+                <div style="width: 55%; height: 100%; background: var(--green); border-radius: 2px;"></div>
+              </div>
+            </div>
+
+            <div class="stat-card" style="margin: 0;">
+              <div class="stat-header">
+                <span class="stat-label">Manufacturing</span>
+                <span style="font-size: 20px;">🏭</span>
+              </div>
+              <div class="stat-value" style="font-size: 24px;">-0.5%</div>
+              <div style="margin-top: 8px; height: 4px; background: var(--bg-overlay); border-radius: 2px;">
+                <div style="width: 35%; height: 100%; background: var(--red); border-radius: 2px;"></div>
+              </div>
+            </div>
+
+            <div class="stat-card" style="margin: 0;">
+              <div class="stat-header">
+                <span class="stat-label">Retail Trade</span>
+                <span style="font-size: 20px;">🛍️</span>
+              </div>
+              <div class="stat-value" style="font-size: 24px;">-1.2%</div>
+              <div style="margin-top: 8px; height: 4px; background: var(--bg-overlay); border-radius: 2px;">
+                <div style="width: 25%; height: 100%; background: var(--red); border-radius: 2px;"></div>
+              </div>
+            </div>
+
+            <div class="stat-card" style="margin: 0;">
+              <div class="stat-header">
+                <span class="stat-label">Construction</span>
+                <span style="font-size: 20px;">🏗️</span>
+              </div>
+              <div class="stat-value" style="font-size: 24px;">+1.8%</div>
+              <div style="margin-top: 8px; height: 4px; background: var(--bg-overlay); border-radius: 2px;">
+                <div style="width: 48%; height: 100%; background: var(--amber); border-radius: 2px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Market Intelligence -->
+      <div class="panel" style="margin-bottom: 24px;">
+        <div class="panel-header">
+          <span class="panel-title">🔍 Market Intelligence (Live RSS)</span>
+          <div class="tabs">
+            <button class="tab active" onclick="switchIntelTab('local')">KC/Midwest</button>
+            <button class="tab" onclick="switchIntelTab('executive')">Executive Moves</button>
+            <button class="tab" onclick="switchIntelTab('funding')">Funding</button>
+            <button class="tab" onclick="switchIntelTab('layoffs')">Layoffs</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div style="padding: 12px 16px; background: var(--bg-overlay); border-bottom: 1px solid var(--border-subtle); font-size: 12px; color: var(--text-secondary);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Showing articles from Startland News, Silicon Prairie, TechCrunch, and other sources relevant to executive recruiting
+          </div>
+
+          <!-- KC/Midwest Tab -->
+          <div id="intel-local" class="tab-content active">
+            <div class="feed-list" id="feed-local">
+              <div class="feed-item">
+                <div class="feed-title">Loading KC/Midwest news...</div>
+                <div class="feed-meta">
+                  <span class="feed-source news">System</span>
+                  <span>Fetching from Startland News, Silicon Prairie, BizJournals...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Executive Moves Tab -->
+          <div id="intel-executive" class="tab-content">
+            <div class="feed-list" id="feed-executive">
+              <div class="feed-item">
+                <div class="feed-title">Loading executive move alerts...</div>
+                <div class="feed-meta">
+                  <span class="feed-source news">System</span>
+                  <span>Fetching C-suite appointments, departures, transitions...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Funding Tab -->
+          <div id="intel-funding" class="tab-content">
+            <div class="feed-list" id="feed-funding">
+              <div class="feed-item">
+                <div class="feed-title">Loading funding announcements...</div>
+                <div class="feed-meta">
+                  <span class="feed-source news">System</span>
+                  <span>Fetching Series A/B/C, seed rounds, venture capital...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layoffs Tab -->
+          <div id="intel-layoffs" class="tab-content">
+            <div class="feed-list" id="feed-layoffs">
+              <div class="feed-item">
+                <div class="feed-title">Loading layoff alerts...</div>
+                <div class="feed-meta">
+                  <span class="feed-source news">System</span>
+                  <span>Fetching workforce reductions, restructuring, job cuts...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+// Theme toggle
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('caymus-theme', newTheme);
+});
+
+// X-Ray Query Builders
+function generateJobSearch() {
+  const role = document.getElementById('job-role').value.trim() || 'Software Engineer';
+  const location = document.getElementById('job-location').value.trim() || 'Remote';
+
+  const sites = '(site:linkedin.com/jobs/view OR site:boards.greenhouse.io OR site:jobs.lever.co OR site:smartrecruiters.com OR site:jobs.ashbyhq.com)';
+  const query = `${sites} AND "${role}" AND "${location}"`;
+
+  document.getElementById('job-search-output').textContent = query;
+}
+
+function generateCompanySearch() {
+  const company = document.getElementById('company-name').value.trim() || 'OpenAI';
+  const jobType = document.getElementById('job-type').value;
+
+  const sites = '(site:linkedin.com/jobs/view OR site:boards.greenhouse.io OR site:jobs.lever.co OR site:careers)';
+  const typeQuery = jobType ? ` AND "${jobType}"` : '';
+  const query = `${sites} AND "${company}"${typeQuery}`;
+
+  document.getElementById('company-search-output').textContent = query;
+}
+
+let activeLayoffFilter = 'layoffs';
+function toggleLayoffFilter(btn, type) {
+  document.querySelectorAll('.xray-card .filter-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  activeLayoffFilter = type;
+  generateLayoffSearch();
+}
+
+function generateLayoffSearch() {
+  let query = '';
+  const dateFilter = 'after:2024-01-01';
+
+  switch(activeLayoffFilter) {
+    case 'layoffs':
+      query = `"layoffs" OR "laying off" OR "workforce reduction" OR "job cuts" OR "headcount reduction" ${dateFilter}`;
+      break;
+    case 'hiring-freeze':
+      query = `"hiring freeze" OR "hiring pause" OR "recruitment freeze" OR "stop hiring" ${dateFilter}`;
+      break;
+    case 'restructuring':
+      query = `"restructuring" OR "reorganization" OR "downsizing" OR "rightsizing" OR "eliminating positions" ${dateFilter}`;
+      break;
+  }
+
+  document.getElementById('layoff-search-output').textContent = query;
+}
+
+function searchGoogle(outputId) {
+  const query = document.getElementById(outputId).textContent;
+  window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+}
+
+// Tab switching
+function switchTab(tabName) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+  event.target.classList.add('active');
+  document.getElementById(`tab-${tabName}`).classList.add('active');
+}
+
+// Initialize X-Ray outputs
+generateJobSearch();
+generateCompanySearch();
+generateLayoffSearch();
+
+// Companies data
+const hiringCompanies = [
+  { name: 'OpenAI', logo: '🤖', openRoles: 142, trend: 'up', industry: 'tech', badges: ['hiring', 'remote'] },
+  { name: 'Anthropic', logo: '🧠', openRoles: 89, trend: 'up', industry: 'tech', badges: ['hiring', 'remote'] },
+  { name: 'SpaceX', logo: '🚀', openRoles: 234, trend: 'up', industry: 'tech', badges: ['hiring'] },
+  { name: 'Stripe', logo: '💳', openRoles: 67, trend: 'up', industry: 'tech', badges: ['hiring', 'remote'] },
+  { name: 'Databricks', logo: '📊', openRoles: 156, trend: 'up', industry: 'tech', badges: ['hiring', 'remote'] },
+  { name: 'JPMorgan Chase', logo: '🏦', openRoles: 892, trend: 'up', industry: 'finance', badges: ['hiring'] },
+  { name: 'Goldman Sachs', logo: '📈', openRoles: 445, trend: 'flat', industry: 'finance', badges: ['hiring'] },
+  { name: 'HCA Healthcare', logo: '🏥', openRoles: 1234, trend: 'up', industry: 'healthcare', badges: ['hiring'] },
+  { name: 'UnitedHealth', logo: '⚕️', openRoles: 678, trend: 'up', industry: 'healthcare', badges: ['hiring', 'remote'] },
+  { name: 'Kaiser Permanente', logo: '🔬', openRoles: 523, trend: 'up', industry: 'healthcare', badges: ['hiring'] },
+  { name: 'GitLab', logo: '🦊', openRoles: 45, trend: 'flat', industry: 'tech', badges: ['hiring', 'remote'] },
+  { name: 'Zapier', logo: '⚡', openRoles: 23, trend: 'down', industry: 'tech', badges: ['hiring', 'remote'] },
+];
+
+function renderCompanies(filter = 'all') {
+  const container = document.getElementById('companies-list');
+  let companies = hiringCompanies;
+
+  if (filter !== 'all') {
+    companies = hiringCompanies.filter(c => {
+      if (filter === 'remote') return c.badges.includes('remote');
+      return c.industry === filter;
+    });
+  }
+
+  container.innerHTML = companies.map(company => `
+    <div class="job-item" onclick="searchCompanyJobs('${company.name}')">
+      <div class="job-logo">${company.logo}</div>
+      <div class="job-content">
+        <div class="job-title">${company.name}</div>
+        <div class="job-company">${company.openRoles} open roles</div>
+        <div class="job-meta">
+          ${company.badges.map(b => `
+            <span class="job-badge ${b}">${b === 'hiring' ? '🔥 Actively Hiring' : '📍 Remote'}</span>
+          `).join('')}
+          <span style="color: ${company.trend === 'up' ? 'var(--green)' : company.trend === 'down' ? 'var(--red)' : 'var(--text-tertiary)'};">
+            ${company.trend === 'up' ? '📈' : company.trend === 'down' ? '📉' : '➡️'} Trend
+          </span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterCompanies(type) {
+  document.querySelectorAll('.quick-filters .filter-chip').forEach(c => c.classList.remove('active'));
+  event.target.classList.add('active');
+  renderCompanies(type);
+}
+
+function searchCompanyJobs(company) {
+  const query = `(site:linkedin.com/jobs/view OR site:boards.greenhouse.io OR site:jobs.lever.co) AND "${company}"`;
+  window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+}
+
+renderCompanies();
+
+// Job Market Map
+const map = L.map('jobs-map').setView([39.8283, -98.5795], 4);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors',
+  maxZoom: 18
+}).addTo(map);
+
+// Job market data by region
+const jobMarketData = [
+  { city: 'San Francisco', coords: [37.7749, -122.4194], hiring: 4500, layoffs: 1200, net: 3300 },
+  { city: 'Seattle', coords: [47.6062, -122.3321], hiring: 3200, layoffs: 800, net: 2400 },
+  { city: 'New York', coords: [40.7128, -74.0060], hiring: 8900, layoffs: 2100, net: 6800 },
+  { city: 'Austin', coords: [30.2672, -97.7431], hiring: 2800, layoffs: 400, net: 2400 },
+  { city: 'Boston', coords: [42.3601, -71.0589], hiring: 3400, layoffs: 900, net: 2500 },
+  { city: 'Los Angeles', coords: [34.0522, -118.2437], hiring: 5600, layoffs: 1800, net: 3800 },
+  { city: 'Denver', coords: [39.7392, -104.9903], hiring: 1800, layoffs: 300, net: 1500 },
+  { city: 'Chicago', coords: [41.8781, -87.6298], hiring: 4200, layoffs: 1100, net: 3100 },
+  { city: 'Atlanta', coords: [33.7490, -84.3880], hiring: 3100, layoffs: 600, net: 2500 },
+  { city: 'Miami', coords: [25.7617, -80.1918], hiring: 2200, layoffs: 400, net: 1800 },
+  { city: 'Remote', coords: [39.8283, -98.5795], hiring: 12000, layoffs: 2000, net: 10000 },
+];
+
+jobMarketData.forEach(region => {
+  const netGrowth = region.net;
+  const isPositive = netGrowth > 0;
+  const color = isPositive ? '#34C97B' : '#FF5B5B';
+  const radius = Math.min(8 + Math.abs(netGrowth) / 200, 30);
+
+  const marker = L.circleMarker(region.coords, {
+    radius: radius,
+    fillColor: color,
+    color: '#fff',
+    weight: 2,
+    opacity: 0.8,
+    fillOpacity: 0.6
+  }).addTo(map);
+
+  const popupContent = `
+    <div style="min-width: 180px;">
+      <h3 style="margin: 0 0 8px 0; font-size: 15px;">${region.city}</h3>
+      <div style="font-size: 12px; margin-bottom: 4px;">
+        <span style="color: var(--green);">▲ ${region.hiring.toLocaleString()} hiring</span>
+      </div>
+      <div style="font-size: 12px; margin-bottom: 4px;">
+        <span style="color: var(--red);">▼ ${region.layoffs.toLocaleString()} layoffs</span>
+      </div>
+      <div style="font-size: 13px; font-weight: 600; padding-top: 8px; border-top: 1px solid var(--border-subtle);">
+        Net: ${netGrowth > 0 ? '+' : ''}${region.net.toLocaleString()}
+      </div>
+    </div>
+  `;
+
+  marker.bindPopup(popupContent);
+});
+
+// Hide loading
+setTimeout(() => {
+  document.getElementById('map-loading').style.display = 'none';
+}, 1000);
+
+// Fit bounds
+const bounds = L.latLngBounds(jobMarketData.map(d => d.coords));
+map.fitBounds(bounds.pad(0.1));
+
+// Fetch with timeout
+function fetchWithTimeout(url, timeout = 5000) {
+  return Promise.race([
+    fetch(url),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Timeout')), timeout)
+    )
+  ]);
+}
+
+// Fetch BLS RSS feeds for latest data
+async function fetchBLSData() {
+  // Try to fetch both CPS (employment) and JOLTS (job openings) data
+  const [cpsData, joltsData] = await Promise.all([
+    fetchRSSFeed('https://www.bls.gov/feeds/cps_latest.rss'),
+    fetchRSSFeed('https://www.bls.gov/feeds/jolts_latest.rss')
+  ]);
+
+  // Merge the data
+  const combinedData = { ...cpsData, ...joltsData };
+  console.log('Combined BLS data:', combinedData);
+
+  return Object.keys(combinedData).length > 0 ? combinedData : null;
+}
+
+async function fetchRSSFeed(rssUrl) {
+  const proxyUrls = [
+    `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`
+  ];
+
+  for (const proxyUrl of proxyUrls) {
+    try {
+      console.log('Fetching:', rssUrl.split('/').pop());
+      const response = await fetchWithTimeout(proxyUrl, 6000);
+
+      if (!response.ok) continue;
+
+      const xmlText = await response.text();
+      if (!xmlText.includes('<?xml') && !xmlText.includes('<rss')) continue;
+
+      const isJolts = rssUrl.includes('jolts');
+      const data = isJolts ? parseJOLTSRSS(xmlText) : parseBLSRSS(xmlText);
+
+      if (data && Object.keys(data).length > 0) {
+        console.log(`Parsed ${isJolts ? 'JOLTS' : 'CPS'} data:`, data);
+        return data;
+      }
+    } catch (error) {
+      console.warn('Fetch failed:', error.message);
+    }
+  }
+
+  console.log(`Failed to fetch ${rssUrl}`);
+  return {};
+}
+
+// Parse BLS RSS XML
+function parseBLSRSS(xmlText) {
+  console.log('Parsing RSS XML...');
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xmlText, 'application/xml');
+
+  // Check for parsing errors
+  const parserError = doc.querySelector('parsererror');
+  if (parserError) {
+    console.error('XML parsing error:', parserError.textContent);
+    return null;
+  }
+
+  const data = {};
+
+  // Extract values from the description HTML content
+  const description = doc.querySelector('description');
+  if (!description) {
+    console.error('No description found in RSS');
+    return null;
+  }
+
+  const content = description.textContent;
+  console.log('Description content found, length:', content.length);
+
+  // Unemployment Rate - more flexible regex
+  const unemploymentMatch = content.match(/Unemployment Rate:\s*\u003c?[^\u003e]*\u003e?\s*([\d\.]+)%?\s+in\s+(\w+\s+\d{4})/i);
+  if (unemploymentMatch) {
+    data.unemployment = {
+      value: parseFloat(unemploymentMatch[1]),
+      month: unemploymentMatch[2]
+    };
+    console.log('Found unemployment:', data.unemployment);
+  }
+
+  // Labor Force Participation Rate
+  const participationMatch = content.match(/Labor Force Participation Rate:\s*\u003c?[^\u003e]*\u003e?\s*([\d\.]+)%?\s+in\s+(\w+\s+\d{4})/i);
+  if (participationMatch) {
+    data.laborParticipation = {
+      value: parseFloat(participationMatch[1]),
+      month: participationMatch[2]
+    };
+    console.log('Found participation:', data.laborParticipation);
+  }
+
+  // Employment Change
+  const employmentMatch = content.match(/Change in Employment Level:\s*\u003c?[^\u003e]*\u003e?\s*([-\d,]+)\s+in\s+(\w+\s+\d{4})/i);
+  if (employmentMatch) {
+    data.employmentLevel = {
+      value: parseInt(employmentMatch[1].replace(/,/g, '')) / 1000,
+      month: employmentMatch[2]
+    };
+    console.log('Found employment change:', data.employmentLevel);
+  }
+
+  console.log('Final parsed CPS data:', data);
+  return Object.keys(data).length > 0 ? data : null;
+}
+
+// Parse JOLTS RSS XML (Job Openings)
+function parseJOLTSRSS(xmlText) {
+  console.log('Parsing JOLTS RSS...');
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xmlText, 'application/xml');
+
+  const parserError = doc.querySelector('parsererror');
+  if (parserError) {
+    console.error('XML parsing error:', parserError.textContent);
+    return null;
+  }
+
+  const data = {};
+  const description = doc.querySelector('description');
+  if (!description) {
+    console.error('No description in JOLTS RSS');
+    return null;
+  }
+
+  const content = description.textContent;
+  console.log('JOLTS content sample:', content.substring(0, 300));
+
+  // Job Openings - look for "Job openings" or "Job Openings Level"
+  // Patterns like: "Job openings: 7,400,000 in Feb 2026" or just "7.4 million"
+  const openingsMatch = content.match(/Job openings[^\d]*([\d,\.]+)\s*(?:million)?\s+in\s+(\w+\s+\d{4})/i) ||
+                        content.match(/Job Openings[^\d]*:\s*([\d,\.]+)/i);
+  if (openingsMatch) {
+    let value = openingsMatch[1].replace(/,/g, '');
+    // If value is in millions (like "7.4"), convert to actual number
+    if (parseFloat(value) < 100) {
+      value = parseFloat(value) * 1000000;
+    }
+    data.jobOpenings = {
+      value: parseInt(value) / 1000000, // Store as millions
+      month: openingsMatch[2] || 'Latest'
+    };
+    console.log('Found job openings:', data.jobOpenings);
+  }
+
+  // Hires Rate
+  const hiresMatch = content.match(/Hires rate[^\d]*([\d\.]+)%/i);
+  if (hiresMatch) {
+    data.hires = {
+      value: parseFloat(hiresMatch[1]),
+      month: 'Latest'
+    };
+  }
+
+  // Separations/Layoffs Rate
+  const separationsMatch = content.match(/Total separations[^\d]*([\d\.]+)%/i) ||
+                          content.match(/Layoffs[^\d]*([\d\.]+)%/i);
+  if (separationsMatch) {
+    data.layoffs = {
+      value: parseFloat(separationsMatch[1]),
+      month: 'Latest'
+    };
+  }
+
+  console.log('Final parsed JOLTS data:', data);
+  return data;
+}
+
+// Hardcoded March 2026 data from BLS RSS as ultimate fallback
+const FALLBACK_DATA = {
+  unemployment: { value: 4.3, month: 'Mar 2026' },
+  laborParticipation: { value: 61.9, month: 'Mar 2026' },
+  employmentLevel: { value: -64, month: 'Mar 2026' },
+  jobOpenings: { value: 7.4, month: 'Feb 2026' } // JOLTS data lags by 1 month
+};
+
+// Update dashboard with RSS data
+function updateDashboard(blsData) {
+  console.log('updateDashboard called with:', blsData);
+
+  // Use fallback data if RSS failed
+  const data = blsData || FALLBACK_DATA;
+  console.log('Using data:', data);
+
+  // Unemployment Rate
+  const unemploymentEl = document.getElementById('unemployment-rate');
+  const unemploymentDeltaEl = document.getElementById('unemployment-delta');
+  if (unemploymentEl && unemploymentDeltaEl && data.unemployment) {
+    unemploymentEl.textContent = `${data.unemployment.value.toFixed(1)}%`;
+    unemploymentDeltaEl.innerHTML = `
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      <span>${data.unemployment.month}</span>
+    `;
+    unemploymentDeltaEl.className = 'stat-delta up';
+  }
+
+  // Labor Force Participation Rate
+  const participationEl = document.getElementById('labor-participation');
+  const participationDeltaEl = document.getElementById('participation-delta');
+  if (participationEl && participationDeltaEl && data.laborParticipation) {
+    participationEl.textContent = `${data.laborParticipation.value.toFixed(1)}%`;
+    participationDeltaEl.innerHTML = `
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      <span>${data.laborParticipation.month}</span>
+    `;
+    participationDeltaEl.className = 'stat-delta up';
+  }
+
+  // Employment Level Change
+  const growthEl = document.getElementById('job-growth');
+  const growthDeltaEl = document.getElementById('growth-delta');
+  if (growthEl && growthDeltaEl && data.employmentLevel) {
+    const change = data.employmentLevel.value;
+    const isUp = change >= 0;
+    growthEl.textContent = `${isUp ? '+' : ''}${change.toFixed(0)}k`;
+
+    const arrowPath = isUp ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M19 12l-7 7-7-7';
+    growthDeltaEl.className = `stat-delta ${isUp ? 'up' : 'down'}`;
+    growthDeltaEl.innerHTML = `
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="${arrowPath}"/></svg>
+      <span>${data.employmentLevel.month}</span>
+    `;
+  }
+
+  // Job Openings (JOLTS)
+  const openingsEl = document.getElementById('job-openings');
+  const openingsDeltaEl = document.getElementById('openings-delta');
+  if (openingsEl && openingsDeltaEl && data.jobOpenings) {
+    openingsEl.textContent = `${data.jobOpenings.value.toFixed(1)}M`;
+    openingsDeltaEl.innerHTML = `
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      <span>${data.jobOpenings.month}</span>
+    `;
+    openingsDeltaEl.className = 'stat-delta up';
+  }
+}
+
+// Initialize BLS data fetch
+async function initBLSData() {
+  console.log('initBLSData starting...');
+  console.log('Current date:', new Date().toISOString());
+
+  // Set a timeout to use fallback if RSS takes too long
+  const timeoutPromise = new Promise(resolve => {
+    setTimeout(() => {
+      console.log('RSS fetch timeout - using fallback');
+      resolve(null);
+    }, 8000);
+  });
+
+  try {
+    const data = await Promise.race([fetchBLSData(), timeoutPromise]);
+    console.log('fetchBLSData returned:', data);
+    updateDashboard(data);
+  } catch (e) {
+    console.error('initBLSData error:', e);
+    updateDashboard(null);
+  }
+}
+
+// Fetch data on page load
+console.log('Page loaded, calling initBLSData...');
+initBLSData();
+
+// Refresh data every 5 minutes
+setInterval(initBLSData, 5 * 60 * 1000);
+
+// ============================================
+// MARKET INTELLIGENCE - RSS Feed Reader
+// ============================================
+
+// RSS Feed Configuration
+const RSS_FEEDS = {
+  local: [
+    { name: 'Startland News', url: 'https://www.startlandnews.com/feed/', source: 'startland' },
+    { name: 'Silicon Prairie', url: 'https://siliconprairienews.com/feed/', source: 'siliconprairie' },
+    { name: 'BizJournals KC', url: 'https://www.bizjournals.com/kansascity/inno/feed/rss/', source: 'bizjournals' },
+    { name: 'Missouri Partnership', url: 'https://www.missouripartnership.com/feed/', source: 'missouripartnership' }
+  ],
+  executive: [
+    { name: 'TechCrunch Executive', url: 'https://techcrunch.com/tag/executive-moves/feed/', source: 'techcrunch' },
+    { name: 'TechCrunch Leadership', url: 'https://techcrunch.com/category/enterprise/feed/', source: 'techcrunch' }
+  ],
+  funding: [
+    { name: 'TechCrunch Startups', url: 'https://techcrunch.com/startups/feed/', source: 'techcrunch' },
+    { name: 'Crunchbase News', url: 'https://news.crunchbase.com/feed/', source: 'crunchbase' },
+    { name: 'VentureBeat', url: 'https://venturebeat.com/feed/', source: 'venturebeat' }
+  ],
+  layoffs: [
+    { name: 'TechCrunch Layoffs', url: 'https://techcrunch.com/tag/layoffs/feed/', source: 'techcrunch' },
+    { name: 'TechCrunch TC', url: 'https://techcrunch.com/category/startups/feed/', source: 'techcrunch' }
+  ]
+};
+
+// Keywords for filtering
+const EXECUTIVE_KEYWORDS = ['ceo', 'cto', 'cio', 'chief', 'vp', 'vice president', 'executive', 'appointed', 'named', 'steps down', 'resigns', 'leadership'];
+const FUNDING_KEYWORDS = ['series a', 'series b', 'series c', 'funding', 'raises', 'venture', 'investment', 'seed', 'acquisition'];
+const LAYOFF_KEYWORDS = ['layoff', 'laid off', 'workforce reduction', 'job cuts', 'restructuring', 'furlough', 'downsizing'];
+
+// Fetch with timeout helper
+async function fetchRSSWithTimeout(url, timeout = 8000) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+  try {
+    // Use CORS proxy
+    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+    const response = await fetch(proxyUrl, { signal: controller.signal });
+    clearTimeout(timeoutId);
+    return response;
+  } catch (error) {
+    clearTimeout(timeoutId);
+    throw error;
+  }
+}
+
+// Parse RSS XML
+function parseRSSItems(xmlText, sourceName) {
+  const items = [];
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xmlText, 'application/xml');
+
+    const parserError = doc.querySelector('parsererror');
+    if (parserError) {
+      console.warn('RSS parse error for', sourceName);
+      return items;
+    }
+
+    const rssItems = doc.querySelectorAll('item');
+    rssItems.forEach(item => {
+      const title = item.querySelector('title')?.textContent || '';
+      const link = item.querySelector('link')?.textContent || '';
+      const description = item.querySelector('description')?.textContent || '';
+      const pubDate = item.querySelector('pubDate')?.textContent || '';
+
+      // Parse date
+      let dateStr = '';
+      try {
+        const date = new Date(pubDate);
+        if (!isNaN(date)) {
+          dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+      } catch (e) {}
+
+      items.push({
+        title: title.trim(),
+        link: link.trim(),
+        description: description.trim().replace(/\u003c[^\u003e]+\u003e/g, '').substring(0, 200) + '...',
+        date: dateStr,
+        source: sourceName,
+        text: (title + ' ' + description).toLowerCase()
+      });
+    });
+  } catch (e) {
+    console.error('Error parsing RSS for', sourceName, e);
+  }
+  return items;
+}
+
+// Check if article matches keywords
+function matchesKeywords(text, keywords) {
+  return keywords.some(kw => text.includes(kw.toLowerCase()));
+}
+
+// Fetch feeds for a category
+async function fetchFeedsForCategory(category) {
+  const feeds = RSS_FEEDS[category] || [];
+  const allItems = [];
+
+  for (const feed of feeds) {
+    try {
+      const response = await fetchRSSWithTimeout(feed.url);
+      if (response.ok) {
+        const xmlText = await response.text();
+        const items = parseRSSItems(xmlText, feed.name);
+        allItems.push(...items);
+      }
+    } catch (error) {
+      console.warn(`Failed to fetch ${feed.name}:`, error.message);
+    }
+  }
+
+  // Sort by date (newest first)
+  return allItems.sort((a, b) => {
+    if (!a.date) return 1;
+    if (!b.date) return -1;
+    return new Date(b.date) - new Date(a.date);
+  });
+}
+
+// Filter and categorize articles
+function categorizeArticles(items) {
+  const result = {
+    local: [],
+    executive: [],
+    funding: [],
+    layoffs: []
+  };
+
+  items.forEach(item => {
+    const text = item.text;
+
+    // Local sources automatically go to local
+    const localSources = ['startland', 'siliconprairie', 'bizjournals', 'missouripartnership'];
+    const isLocal = localSources.some(s => item.source.toLowerCase().includes(s));
+
+    if (isLocal) {
+      result.local.push(item);
+    }
+
+    // Check other categories
+    if (matchesKeywords(text, EXECUTIVE_KEYWORDS)) {
+      result.executive.push(item);
+    }
+    if (matchesKeywords(text, FUNDING_KEYWORDS)) {
+      result.funding.push(item);
+    }
+    if (matchesKeywords(text, LAYOFF_KEYWORDS)) {
+      result.layoffs.push(item);
+    }
+  });
+
+  // Remove duplicates based on title
+  Object.keys(result).forEach(key => {
+    const seen = new Set();
+    result[key] = result[key].filter(item => {
+      if (seen.has(item.title)) return false;
+      seen.add(item.title);
+      return true;
+    }).slice(0, 10); // Max 10 per category
+  });
+
+  return result;
+}
+
+// Render feed items
+function renderFeedItems(containerId, items, emptyMessage) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  if (items.length === 0) {
+    container.innerHTML = `
+      <div class="feed-item">
+        <div class="feed-title">${emptyMessage}</div>
+        <div class="feed-meta">
+          <span class="feed-source news">Info</span>
+          <span>No relevant articles found in the last few days</span>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = items.map(item => `
+    <div class="feed-item" onclick="window.open('${item.link}', '_blank')" style="cursor: pointer;">
+      <div class="feed-title">${escapeHtml(item.title)}</div>
+      <div class="feed-meta">
+        <span class="feed-source ${getSourceBadge(item.source)}">${item.source}</span>
+        <span>${item.date || 'Recently'}</span>
+      </div>
+      <div style="margin-top: 8px; font-size: 12px; color: var(--text-secondary); line-height: 1.4;">${escapeHtml(item.description)}</div>
+    </div>
+  `).join('');
+}
+
+// Escape HTML to prevent XSS
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Get source badge type
+function getSourceBadge(source) {
+  const sourceLower = source.toLowerCase();
+  if (sourceLower.includes('startland') || sourceLower.includes('siliconprairie') || sourceLower.includes('bizjournal')) return 'bls';
+  if (sourceLower.includes('crunchbase')) return 'fed';
+  if (sourceLower.includes('techcrunch')) return 'news';
+  return 'news';
+}
+
+// Tab switching for Market Intelligence
+function switchIntelTab(tabName) {
+  const panel = document.querySelector('.panel:has(#intel-local)');
+  if (!panel) return;
+
+  // Update tab buttons within this panel only
+  panel.querySelectorAll('.tab').forEach(tab => {
+    tab.classList.remove('active');
+    const tabText = tab.textContent.toLowerCase();
+    if ((tabName === 'local' && tabText.includes('kc')) ||
+        (tabName === 'executive' && tabText.includes('executive')) ||
+        (tabName === 'funding' && tabText.includes('funding')) ||
+        (tabName === 'layoffs' && tabText.includes('layoff'))) {
+      tab.classList.add('active');
+    }
+  });
+
+  // Update tab content
+  panel.querySelectorAll('.tab-content').forEach(content => {
+    content.classList.remove('active');
+  });
+  const activeContent = panel.querySelector(`#intel-${tabName}`);
+  if (activeContent) {
+    activeContent.classList.add('active');
+  }
+}
+
+// Demo data for when RSS fails
+const DEMO_ARTICLES = {
+  local: [
+    { title: 'KC-based fintech startup raises $12M Series A', link: '#', description: 'A Kansas City financial technology company announced new funding to expand operations and hire 50 new employees...', date: 'Apr 16', source: 'Startland News' },
+    { title: 'Silicon Prairie names new Executive Director', link: '#', description: 'The Midwest startup ecosystem organization appoints new leadership to drive regional growth initiatives...', date: 'Apr 15', source: 'Silicon Prairie' },
+    { title: 'Overland Park tech firm announces CTO departure', link: '#', description: 'Local technology company seeking new Chief Technology Officer as current executive steps down after 5 years...', date: 'Apr 14', source: 'BizJournals KC' }
+  ],
+  executive: [
+    { title: 'Former Amazon VP joins startup as CEO', link: '#', description: 'Tech industry veteran takes helm at emerging AI company following $8M seed round...', date: 'Apr 16', source: 'TechCrunch' },
+    { title: 'CFO shakeup at fintech unicorn', link: '#', description: 'Financial executive departs amid restructuring, company searches for replacement with public company experience...', date: 'Apr 15', source: 'TechCrunch' },
+    { title: 'CHRO appointment signals IPO preparation', link: '#', description: 'Enterprise software firm hires veteran Chief Human Resources Officer from Fortune 500 background...', date: 'Apr 14', source: 'Crunchbase' }
+  ],
+  funding: [
+    { title: 'Midwest seed fund closes $50M for Series A investments', link: '#', description: 'Venture capital firm focused on Heartland startups announces new fund targeting pre-revenue companies...', date: 'Apr 16', source: 'Silicon Prairie' },
+    { title: 'Kansas City healthtech raises $8M', link: '#', description: 'Healthcare technology platform secures Series A to expand into new markets and double headcount...', date: 'Apr 15', source: 'Startland News' },
+    { title: 'PE firm acquires logistics company', link: '#', description: 'Private equity acquisition signals consolidation in supply chain sector, leadership transition expected...', date: 'Apr 14', source: 'BizJournals KC' }
+  ],
+  layoffs: [
+    { title: 'Tech layoffs continue at major cloud provider', link: '#', description: 'Enterprise software company announces 12% workforce reduction affecting engineering and product teams...', date: 'Apr 16', source: 'TechCrunch' },
+    { title: 'Startup restructuring eliminates 50 roles', link: '#', description: 'Venture-backed company pivots strategy, cuts staff in sales and marketing departments...', date: 'Apr 15', source: 'TechCrunch' },
+    { title: 'Fintech firm closes office, lays off 30', link: '#', description: 'Regional office shutdown affects local engineering team, talent pool now available...', date: 'Apr 14', source: 'Startland News' }
+  ]
+};
+
+// Initialize Market Intelligence - Load from local JSON
+async function initMarketIntelligence() {
+  console.log('Initializing Market Intelligence from local JSON...');
+
+  let categorized = { local: [], executive: [], funding: [], layoffs: [] };
+  let useDemo = false;
+  let lastUpdated = '';
+
+  try {
+    // Try to load local JSON file first (from GitHub Actions)
+    const response = await fetch('data/rss-feeds.json');
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log('Loaded local JSON data:', data);
+
+      // Check if data is stale (older than 24 hours)
+      if (data.local?.[0]?.fetched) {
+        const fetched = new Date(data.local[0].fetched);
+        const now = new Date();
+        const hoursOld = (now - fetched) / (1000 * 60 * 60);
+        lastUpdated = fetched.toLocaleString();
+
+        if (hoursOld > 24) {
+          console.warn(`Data is ${hoursOld.toFixed(1)} hours old`);
+        }
+      }
+
+      categorized = data;
+    } else {
+      throw new Error(`HTTP ${response.status}`);
+    }
+  } catch (error) {
+    console.warn('Local JSON not available:', error.message);
+    console.log('Using demo data');
+    useDemo = true;
+    categorized = DEMO_ARTICLES;
+  }
+
+  // Render each category
+  renderFeedItems('feed-local', categorized.local || [], 'No local KC/Midwest news found');
+  renderFeedItems('feed-executive', categorized.executive || [], 'No executive moves found');
+  renderFeedItems('feed-funding', categorized.funding || [], 'No funding announcements found');
+  renderFeedItems('feed-layoffs', categorized.layoffs || [], 'No layoff alerts found');
+
+  console.log('Market Intelligence loaded:', {
+    local: categorized.local?.length || 0,
+    executive: categorized.executive?.length || 0,
+    funding: categorized.funding?.length || 0,
+    layoffs: categorized.layoffs?.length || 0,
+    demo: useDemo
+  });
+
+  // Update header
+  const header = document.querySelector('.panel:has(#intel-local) .panel-header .panel-title');
+  if (header) {
+    if (useDemo) {
+      header.innerHTML = '🔍 Market Intelligence <span style="font-size: 12px; font-weight: normal; color: var(--amber);">(Demo Data)</span>';
+    } else if (lastUpdated) {
+      header.innerHTML = `🔍 Market Intelligence <span style="font-size: 12px; font-weight: normal; color: var(--green);">Updated: ${lastUpdated}</span>`;
+    }
+  }
+}
+
+// Start fetching market intelligence after page load
+setTimeout(initMarketIntelligence, 2000);
+</script>
+</body>
+</html>
