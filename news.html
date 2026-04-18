@@ -691,77 +691,6 @@
         </div>
       </div>
 
-      <!-- X-Ray Search Builders -->
-      <div class="xray-section">
-        <div class="xray-header">
-          <div class="xray-title">LinkedIn Job Search Queries</div>
-          <div class="xray-subtitle">Find live job postings by role, location, and company with Google X-Ray search</div>
-        </div>
-
-        <div class="xray-grid">
-          <div class="xray-card">
-            <div class="xray-card-title">🔍 Role + Location Search</div>
-            <input type="text" class="xray-input" id="job-role" placeholder="Software Engineer, Sales Manager..." value="Software Engineer">
-            <input type="text" class="xray-input" id="job-location" placeholder="San Francisco, Remote, New York..." value="Remote">
-            <div class="xray-output" id="job-search-output">(site:linkedin.com/jobs/view OR site:boards.greenhouse.io OR site:jobs.lever.co) AND "Software Engineer" AND "Remote"</div>
-            <div class="xray-buttons">
-              <button class="xray-btn primary" onclick="generateJobSearch()">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                Build Query
-              </button>
-              <button class="xray-btn secondary" onclick="searchGoogle('job-search-output')">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 17l7-7"/></svg>
-                Search
-              </button>
-            </div>
-          </div>
-
-          <div class="xray-card">
-            <div class="xray-card-title">🏢 Company Hiring Tracker</div>
-            <input type="text" class="xray-input" id="company-name" placeholder="Company name..." value="OpenAI">
-            <select class="xray-input" id="job-type" style="cursor: pointer;">
-              <option value="">All Jobs</option>
-              <option value="Engineering">Engineering</option>
-              <option value="Sales">Sales</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Product">Product</option>
-              <option value="HR" selected>HR/People</option>
-            </select>
-            <div class="xray-output" id="company-search-output">(site:linkedin.com/jobs/view OR site:boards.greenhouse.io OR site:jobs.lever.co OR site:careers) AND "OpenAI" AND "HR"</div>
-            <div class="xray-buttons">
-              <button class="xray-btn primary" onclick="generateCompanySearch()">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                Build Query
-              </button>
-              <button class="xray-btn secondary" onclick="searchGoogle('company-search-output')">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 17l7-7"/></svg>
-                Search
-              </button>
-            </div>
-          </div>
-
-          <div class="xray-card">
-            <div class="xray-card-title">⚡ Recent Layoffs & Hiring Freezes</div>
-            <div style="margin-bottom: 12px;">
-              <button class="filter-chip active" onclick="toggleLayoffFilter(this, 'layoffs')">Layoffs</button>
-              <button class="filter-chip" onclick="toggleLayoffFilter(this, 'hiring-freeze')">Hiring Freeze</button>
-              <button class="filter-chip" onclick="toggleLayoffFilter(this, 'restructuring')">Restructuring</button>
-            </div>
-            <div class="xray-output" id="layoff-search-output">"layoffs" OR "laying off" OR "workforce reduction" OR "job cuts" OR "headcount reduction" after:2024-01-01</div>
-            <div class="xray-buttons">
-              <button class="xray-btn primary" onclick="generateLayoffSearch()">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                Build Query
-              </button>
-              <button class="xray-btn secondary" onclick="searchGoogle('layoff-search-output')">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 17l7-7"/></svg>
-                Search
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Geographic Job Market Map -->
       <div class="content-grid">
         <div>
@@ -1134,60 +1063,6 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
   localStorage.setItem('caymus-theme', newTheme);
 });
 
-// X-Ray Query Builders
-function generateJobSearch() {
-  const role = document.getElementById('job-role').value.trim() || 'Software Engineer';
-  const location = document.getElementById('job-location').value.trim() || 'Remote';
-
-  const sites = '(site:linkedin.com/jobs/view OR site:boards.greenhouse.io OR site:jobs.lever.co OR site:smartrecruiters.com OR site:jobs.ashbyhq.com)';
-  const query = `${sites} AND "${role}" AND "${location}"`;
-
-  document.getElementById('job-search-output').textContent = query;
-}
-
-function generateCompanySearch() {
-  const company = document.getElementById('company-name').value.trim() || 'OpenAI';
-  const jobType = document.getElementById('job-type').value;
-
-  const sites = '(site:linkedin.com/jobs/view OR site:boards.greenhouse.io OR site:jobs.lever.co OR site:careers)';
-  const typeQuery = jobType ? ` AND "${jobType}"` : '';
-  const query = `${sites} AND "${company}"${typeQuery}`;
-
-  document.getElementById('company-search-output').textContent = query;
-}
-
-let activeLayoffFilter = 'layoffs';
-function toggleLayoffFilter(btn, type) {
-  document.querySelectorAll('.xray-card .filter-chip').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  activeLayoffFilter = type;
-  generateLayoffSearch();
-}
-
-function generateLayoffSearch() {
-  let query = '';
-  const dateFilter = 'after:2024-01-01';
-
-  switch(activeLayoffFilter) {
-    case 'layoffs':
-      query = `"layoffs" OR "laying off" OR "workforce reduction" OR "job cuts" OR "headcount reduction" ${dateFilter}`;
-      break;
-    case 'hiring-freeze':
-      query = `"hiring freeze" OR "hiring pause" OR "recruitment freeze" OR "stop hiring" ${dateFilter}`;
-      break;
-    case 'restructuring':
-      query = `"restructuring" OR "reorganization" OR "downsizing" OR "rightsizing" OR "eliminating positions" ${dateFilter}`;
-      break;
-  }
-
-  document.getElementById('layoff-search-output').textContent = query;
-}
-
-function searchGoogle(outputId) {
-  const query = document.getElementById(outputId).textContent;
-  window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
-}
-
 // Tab switching
 function switchTab(tabName) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -1196,11 +1071,6 @@ function switchTab(tabName) {
   event.target.classList.add('active');
   document.getElementById(`tab-${tabName}`).classList.add('active');
 }
-
-// Initialize X-Ray outputs
-generateJobSearch();
-generateCompanySearch();
-generateLayoffSearch();
 
 // Companies data
 const hiringCompanies = [
