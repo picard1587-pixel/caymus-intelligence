@@ -1,0 +1,2159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caymus — Connections</title>
+<script>
+  // Load theme immediately before page renders to prevent flash
+  const savedTheme = localStorage.getItem('caymus-theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     CSS CUSTOM PROPERTIES
+  ============================================ */
+  :root {
+    --bg-base: #0F1115;
+    --bg-elevated: #151922;
+    --bg-overlay: #1A1F2B;
+    --bg-hover: #1E2433;
+    --bg-selected: #1F2A3F;
+
+    --text-primary: #E6EAF2;
+    --text-secondary: #9AA4B2;
+    --text-tertiary: #5A6478;
+    --text-inverse: #0F1115;
+
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-default: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
+
+    --accent: #4F7CFF;
+    --accent-dim: rgba(79,124,255,0.15);
+    --accent-hover: #6B93FF;
+
+    --green: #34C97B;
+    --green-dim: rgba(52,201,123,0.12);
+    --amber: #F5A623;
+    --amber-dim: rgba(245,166,35,0.12);
+    --red: #FF5B5B;
+    --red-dim: rgba(255,91,91,0.12);
+    --purple: #A78BFA;
+    --purple-dim: rgba(167,139,250,0.12);
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.7);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+
+    --sidebar-width: 224px;
+    --topbar-height: 56px;
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-theme="light"] {
+    --bg-base: #F4F5F7;
+    --bg-elevated: #FFFFFF;
+    --bg-overlay: #F0F2F5;
+    --bg-hover: #E8EBF0;
+    --bg-selected: #E0E8FF;
+
+    --text-primary: #111827;
+    --text-secondary: #4B5563;
+    --text-tertiary: #9CA3AF;
+    --text-inverse: #FFFFFF;
+
+    --border-subtle: rgba(0,0,0,0.05);
+    --border-default: rgba(0,0,0,0.09);
+    --border-strong: rgba(0,0,0,0.16);
+
+    --accent: #3B6EF0;
+    --accent-dim: rgba(59,110,240,0.10);
+    --accent-hover: #2A5CE0;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.18);
+  }
+
+  /* ============================================
+     RESET & BASE
+  ============================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 14px; height: 100%; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    height: 100%;
+    overflow: hidden;
+    transition: background 0.25s var(--ease-in-out), color 0.25s var(--ease-in-out);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============================================
+     LAYOUT
+  ============================================ */
+  .app {
+    display: flex;
+    height: 100vh;
+    position: relative;
+  }
+
+  /* ============================================
+     SIDEBAR
+  ============================================ */
+  .sidebar {
+    width: var(--sidebar-width);
+    height: 100%;
+    background: var(--bg-elevated);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 20;
+    transition: width 0.25s var(--ease-out), background 0.25s var(--ease-in-out);
+  }
+
+  .sidebar-logo {
+    height: var(--topbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .logo-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+
+  .logo-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 12px 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+  }
+
+  .sidebar-nav::-webkit-scrollbar { display: none; }
+
+  .nav-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    padding: 12px 10px 6px;
+    white-space: nowrap;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    text-decoration: none;
+  }
+
+  .nav-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+  .nav-item.active {
+    background: var(--accent-dim);
+    color: var(--accent);
+  }
+
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 3px; height: 16px;
+    background: var(--accent);
+    border-radius: 0 3px 3px 0;
+  }
+
+  .nav-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-badge {
+    margin-left: auto;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+
+  .sidebar-footer {
+    padding: 12px 8px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .user-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s;
+    overflow: hidden;
+  }
+
+  .user-card:hover { background: var(--bg-hover); }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .user-info { overflow: hidden; }
+  .user-name { font-size: 12.5px; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+  .user-role { font-size: 11px; color: var(--text-tertiary); white-space: nowrap; }
+
+  /* ============================================
+     MAIN CONTENT
+  ============================================ */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .topbar {
+    height: var(--topbar-height);
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .topbar-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+  }
+
+  .topbar-spacer { flex: 1; }
+
+  .search-box {
+    position: relative;
+    width: 320px;
+  }
+
+  .search-box input {
+    width: 100%;
+    height: 36px;
+    background: var(--bg-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 0 36px 0 12px;
+    font-size: 13px;
+    color: var(--text-primary);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .search-box input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
+
+  .search-box input::placeholder { color: var(--text-tertiary); }
+
+  .search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+    pointer-events: none;
+  }
+
+  .btn {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .btn-primary:hover { background: var(--accent-hover); }
+
+  .btn-secondary {
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-overlay);
+    color: var(--text-primary);
+  }
+
+  /* ============================================
+     FILTERS BAR
+  ============================================ */
+  .filters-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-base);
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .quick-filters {
+    flex-wrap: wrap;
+    max-width: 600px;
+  }
+
+  .quick-filters .filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .filter-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .filter-select {
+    height: 32px;
+    padding: 0 28px 0 12px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239AA4B2' d='M3 4.5L6 7.5L9 4.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+  }
+
+  .filter-select:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .filter-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .filter-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-pill:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+  }
+
+  .filter-pill.active {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .filter-pill .remove {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.15s;
+  }
+
+  .filter-pill .remove:hover { opacity: 1; }
+
+  .results-count {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+
+  .results-count strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* ============================================
+     CONTENT AREA
+  ============================================ */
+  .content {
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+  }
+
+  .content::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .content::-webkit-scrollbar-track {
+    background: var(--bg-base);
+  }
+
+  .content::-webkit-scrollbar-thumb {
+    background: var(--border-default);
+    border-radius: 4px;
+  }
+
+  .content::-webkit-scrollbar-thumb:hover {
+    background: var(--border-strong);
+  }
+
+  /* ============================================
+     CONNECTIONS GRID
+  ============================================ */
+  .connections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  .connection-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    cursor: pointer;
+  }
+
+  .connection-card:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .connection-header {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .connection-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .connection-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .connection-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .connection-location {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .connection-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    background: var(--bg-base);
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .tag-primary {
+    background: var(--accent-dim);
+    color: var(--accent);
+  }
+
+  .connection-experience {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 14px;
+  }
+
+  .experience-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .experience-item:last-child { margin-bottom: 0; }
+
+  .experience-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  .experience-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .experience-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .experience-company {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+  }
+
+  .experience-date {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+
+  .connection-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .btn-sm {
+    height: 32px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .btn-link {
+    background: transparent;
+    color: var(--accent);
+    padding: 0 8px;
+  }
+
+  .btn-link:hover {
+    color: var(--accent-hover);
+    background: var(--accent-dim);
+  }
+
+  /* ============================================
+     TABLE VIEW
+  ============================================ */
+  .table-container {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .data-table th {
+    background: var(--bg-overlay);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    border-bottom: 1px solid var(--border-subtle);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .data-table th:hover {
+    color: var(--text-secondary);
+    background: var(--bg-hover);
+  }
+
+  .data-table th.sortable::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 6px;
+    vertical-align: middle;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid var(--text-tertiary);
+    opacity: 0.3;
+    transition: opacity 0.15s;
+  }
+
+  .data-table th.sort-asc::after {
+    border-top: none;
+    border-bottom: 4px solid var(--accent);
+    opacity: 1;
+  }
+
+  .data-table th.sort-desc::after {
+    border-top: 4px solid var(--accent);
+    opacity: 1;
+  }
+
+  .data-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+  }
+
+  .data-table tr:hover td {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .cell-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cell-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .cell-info { min-width: 0; }
+
+  .cell-name-text {
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cell-location {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+
+  .cell-current {
+    max-width: 200px;
+  }
+
+  .cell-title {
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cell-company {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+
+  .cell-linkedin a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    transition: background 0.15s, transform 0.15s;
+  }
+
+  .cell-linkedin a:hover {
+    background: var(--bg-hover);
+    transform: scale(1.1);
+  }
+
+  .cell-linkedin svg {
+    display: block;
+  }
+
+  /* ============================================
+     LIGHT THEME IMPROVEMENTS
+  ============================================ */
+  [data-theme="light"] .table-container {
+    border: 1px solid var(--border-default);
+    box-shadow: var(--shadow-sm);
+  }
+
+  [data-theme="light"] .data-table th {
+    background: var(--bg-elevated);
+    border-bottom: 2px solid var(--border-default);
+    font-weight: 700;
+  }
+
+  [data-theme="light"] .data-table td {
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  [data-theme="light"] .data-table tr:hover td {
+    background: var(--bg-selected);
+  }
+
+  [data-theme="light"] .filter-pill {
+    border: 1px solid var(--border-default);
+    background: var(--bg-elevated);
+  }
+
+  [data-theme="light"] .filter-pill.active {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  [data-theme="light"] .filter-select {
+    border: 1px solid var(--border-default);
+  }
+
+  [data-theme="light"] .view-toggle {
+    border: 1px solid var(--border-default);
+  }
+
+  /* ============================================
+     VIEW TOGGLE
+  ============================================ */
+  .view-toggle {
+    display: flex;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 2px;
+  }
+
+  .view-btn {
+    height: 28px;
+    padding: 0 12px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s;
+  }
+
+  .view-btn.active {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ============================================
+     PAGINATION
+  ============================================ */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 20px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .page-btn {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .page-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+  }
+
+  .page-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  .page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  /* ============================================
+     LOADING & EMPTY STATES
+  ============================================ */
+  .loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    color: var(--text-tertiary);
+  }
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-subtle);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    text-align: center;
+    color: var(--text-tertiary);
+  }
+
+  .empty-state-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--bg-elevated);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 28px;
+  }
+
+  .empty-state h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .empty-state p {
+    font-size: 13px;
+    max-width: 300px;
+  }
+
+  /* ============================================
+     DETAIL MODAL
+  ============================================ */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    width: 90%;
+    max-width: 640px;
+    max-height: 90vh;
+    overflow: hidden;
+    transform: scale(0.95);
+    transition: transform 0.2s var(--ease-out);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-overlay.active .modal {
+    transform: scale(1);
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .modal-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .modal-info { flex: 1; }
+
+  .modal-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .modal-location {
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    background: var(--bg-hover);
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .modal-close:hover {
+    background: var(--border-subtle);
+    color: var(--text-primary);
+  }
+
+  .modal-content {
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+  }
+
+  .modal-section {
+    margin-bottom: 24px;
+  }
+
+  .modal-section:last-child { margin-bottom: 0; }
+
+  .modal-section-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+  }
+
+  .modal-experience-item {
+    display: flex;
+    gap: 12px;
+    padding: 14px;
+    background: var(--bg-base);
+    border-radius: var(--radius-md);
+    margin-bottom: 10px;
+  }
+
+  .modal-experience-item:last-child { margin-bottom: 0; }
+
+  .experience-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-overlay);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+
+  .modal-experience-content { flex: 1; }
+
+  .modal-experience-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+
+  .modal-experience-company {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+
+  .modal-experience-date {
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 12px;
+    padding: 20px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .modal-actions .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  /* ============================================
+     RESPONSIVE
+  ============================================ */
+  @media (max-width: 1024px) {
+    .sidebar { display: none; }
+    .search-box { width: 200px; }
+  }
+
+  @media (max-width: 768px) {
+    .connections-grid {
+      grid-template-columns: 1fr;
+    }
+    .filters-bar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .filter-group {
+      flex-wrap: wrap;
+    }
+    .search-box {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">C</div>
+      <div class="logo-text">Caymus</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Recruiting</div>
+      <a href="recruiting-dashboard.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="connections.html" class="nav-item active">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </span>
+        <span class="nav-label">Connections</span>
+        <span class="nav-badge" id="total-badge">0</span>
+      </a>
+      <a href="pipeline.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </span>
+        <span class="nav-label">Pipeline</span>
+      </a>
+      <a href="sequences.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        <span class="nav-label">Sequences</span>
+      </a>
+      <a href="templates.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </span>
+        <span class="nav-label">Templates</span>
+      </a>
+      <div class="nav-section-label">Discovery</div>
+      <a href="xray.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
+        <span class="nav-label">X-Ray Search</span>
+      </a>
+      <a href="heatmap.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+        </span>
+        <span class="nav-label">Heatmap</span>
+      </a>
+      <a href="development.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </span>
+        <span class="nav-label">Development</span>
+      </a>
+      <div class="nav-section-label">Analytics</div>
+      <a href="analytics.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </span>
+        <span class="nav-label">Performance</span>
+      </a>
+      <a href="news.html" class="nav-item">
+        <span class="nav-icon">📰</span>
+        <span class="nav-label">Job Market</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="avatar">JD</div>
+        <div class="user-info">
+          <div class="user-name">John Doe</div>
+          <div class="user-role">Recruiter</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Topbar -->
+    <header class="topbar">
+      <h1 class="topbar-title">Connections</h1>
+      <div class="topbar-spacer"></div>
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search by name, company, title...">
+        <span class="search-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
+      </div>
+      <button class="btn btn-secondary" id="theme-toggle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+      <button class="btn btn-primary" id="export-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export
+      </button>
+    </header>
+
+    <!-- Filters Bar -->
+    <div class="filters-bar">
+      <div class="filter-group">
+        <span class="filter-label">View:</span>
+        <div class="view-toggle">
+          <button class="view-btn" data-view="grid">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Grid
+          </button>
+          <button class="view-btn active" data-view="table">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            Table
+          </button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Location:</span>
+        <select class="filter-select" id="location-filter">
+          <option value="">All Locations</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Company:</span>
+        <select class="filter-select" id="company-filter">
+          <option value="">All Companies</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Title:</span>
+        <select class="filter-select" id="title-filter">
+          <option value="">All Titles</option>
+        </select>
+      </div>
+      <div class="filter-group quick-filters">
+        <span class="filter-label">Quick Filters:</span>
+        <div class="filter-pills">
+          <button class="filter-pill" data-filter="recent-exec" title="VP/CEO/Director roles started in last 90 days">Recent Exec Changes</button>
+          <button class="filter-pill" data-filter="software-dev">Software Developers</button>
+          <button class="filter-pill" data-filter="executives">Executives</button>
+          <button class="filter-pill" id="clear-filters" style="border-style: dashed; opacity: 0.7;">Clear</button>
+        </div>
+      </div>
+      <div class="results-count">
+        Showing <strong id="results-count">0</strong> connections
+      </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="content" id="content-area">
+      <div class="loading-state">
+        <div class="loading-spinner"></div>
+        <p>Loading connections...</p>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination">
+      <!-- Dynamically populated -->
+    </div>
+  </main>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="detail-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-avatar" id="modal-avatar">--</div>
+      <div class="modal-info">
+        <div class="modal-name" id="modal-name">--</div>
+        <div class="modal-location" id="modal-location">--</div>
+      </div>
+      <button class="modal-close" id="modal-close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-section">
+        <div class="modal-section-title">Work Experience</div>
+        <div id="modal-experience">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Contact Information</div>
+        <div class="modal-experience-item">
+          <div class="experience-icon">🔗</div>
+          <div class="modal-experience-content">
+            <div class="modal-experience-title">LinkedIn Profile</div>
+            <div class="modal-experience-company">
+              <a href="#" id="modal-linkedin" target="_blank" style="color: var(--accent);">View Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary">Message</button>
+      <button class="btn btn-primary">Add to Sequence</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================
+// DATA & STATE
+// ============================================
+let allConnections = [];
+let filteredConnections = [];
+let currentPage = 1;
+const ITEMS_PER_PAGE = 20;
+let currentView = 'table';
+let sortColumn = null;
+let sortDirection = 'asc';
+let activeQuickFilter = null;
+let tableSearchTerm = '';
+
+// ============================================
+// CSV PARSER
+// ============================================
+function parseCSV(csvText) {
+  const lines = csvText.split('\n');
+  const headers = parseCSVLine(lines[0]);
+  const results = [];
+
+  for (let i = 1; i < lines.length; i++) {
+    if (!lines[i].trim()) continue;
+    const values = parseCSVLine(lines[i]);
+    const row = {};
+    headers.forEach((header, index) => {
+      row[header] = values[index] || '';
+    });
+    results.push(row);
+  }
+
+  return results;
+}
+
+function parseCSVLine(line) {
+  const values = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === ',' && !inQuotes) {
+      values.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  values.push(current.trim());
+  return values;
+}
+
+// ============================================
+// DATA PROCESSING
+// ============================================
+function processData(rawData) {
+  return rawData.map((row, index) => {
+    const firstName = row['First Name'] || '';
+    const lastName = row['Last Name'] || '';
+    const fullName = `${firstName} ${lastName}`.trim() || row['candidate.name'] || `Candidate ${index + 1}`;
+    const location = row['candidate.location'] || 'Unknown Location';
+    const linkedin = row['candidate.linkedin'] || '';
+
+    // Extract experiences
+    const experiences = [];
+    for (let i = 0; i < 4; i++) {
+      const title = row[`candidate.experiences.${i}.title`] || '';
+      const company = row[`candidate.experiences.${i}.company`] || '';
+      const startDate = row[`candidate.experiences.${i}.startDate`] || '';
+      const endDate = row[`candidate.experiences.${i}.endDate`] || '';
+
+      if (title && company) {
+        experiences.push({ title, company, startDate, endDate });
+      }
+    }
+
+    // Get current role (first experience)
+    const currentRole = experiences[0] || { title: 'Unknown Title', company: 'Unknown Company' };
+
+    return {
+      id: index,
+      name: fullName,
+      firstName,
+      lastName,
+      location,
+      linkedin,
+      experiences,
+      currentRole,
+      outreachDate: row['candidateSequence.firstOutreachAt'] || '',
+      addedDate: row['candidateSequence.addedToSequenceAt'] || ''
+    };
+  });
+}
+
+// ============================================
+// FILTER & SEARCH
+// ============================================
+function filterConnections() {
+  const searchTerm = document.getElementById('search-input').value.toLowerCase();
+  const locationFilter = document.getElementById('location-filter').value;
+  const companyFilter = document.getElementById('company-filter').value;
+  const titleFilter = document.getElementById('title-filter').value;
+
+  filteredConnections = allConnections.filter(conn => {
+    // Search
+    if (searchTerm) {
+      const searchable = [
+        conn.name.toLowerCase(),
+        conn.location.toLowerCase(),
+        conn.currentRole.title.toLowerCase(),
+        conn.currentRole.company.toLowerCase(),
+        ...conn.experiences.map(e => e.company.toLowerCase()),
+        ...conn.experiences.map(e => e.title.toLowerCase())
+      ].join(' ');
+      if (!searchable.includes(searchTerm)) return false;
+    }
+
+    // Location filter
+    if (locationFilter && !conn.location.includes(locationFilter)) return false;
+
+    // Company filter
+    if (companyFilter) {
+      const hasCompany = conn.experiences.some(e =>
+        e.company.toLowerCase().includes(companyFilter.toLowerCase())
+      );
+      if (!hasCompany) return false;
+    }
+
+    // Title filter
+    if (titleFilter) {
+      const hasTitle = conn.experiences.some(e =>
+        e.title.toLowerCase().includes(titleFilter.toLowerCase())
+      );
+      if (!hasTitle) return false;
+    }
+
+    return true;
+  });
+
+  currentPage = 1;
+  updateResultsCount();
+  renderConnections();
+  renderPagination();
+}
+
+// ============================================
+// UNIFIED FILTERING
+// ============================================
+function applyAllFilters() {
+  // Start with all connections
+  let result = [...allConnections];
+
+  // Apply quick filter if active
+  if (activeQuickFilter) {
+    const now = new Date();
+    const ninetyDaysAgo = new Date(now - 90 * 24 * 60 * 60 * 1000);
+    const execTitles = ['vp', 'vice president', 'ceo', 'chief executive', 'director', 'cto', 'cfo', 'coo', 'cmo', 'chief', 'president', 'head of', 'founder'];
+    const softwareTitles = ['software', 'developer', 'engineer', 'programmer', 'coder', 'full stack', 'frontend', 'backend', 'devops', 'sre', 'architect'];
+
+    result = result.filter(conn => {
+      const currentTitle = conn.currentRole.title.toLowerCase();
+      const startDate = conn.currentRole.startDate ? new Date(conn.currentRole.startDate) : null;
+
+      switch (activeQuickFilter) {
+        case 'recent-exec':
+          if (!startDate || startDate < ninetyDaysAgo) return false;
+          return execTitles.some(title => currentTitle.includes(title));
+        case 'software-dev':
+          return softwareTitles.some(title => currentTitle.includes(title));
+        case 'executives':
+          return execTitles.some(title => currentTitle.includes(title));
+        default:
+          return true;
+      }
+    });
+  }
+
+  // Apply table search term if present
+  if (tableSearchTerm) {
+    const term = tableSearchTerm.toLowerCase();
+    result = result.filter(conn => {
+      const searchable = [
+        conn.name.toLowerCase(),
+        conn.location.toLowerCase(),
+        conn.currentRole.title.toLowerCase(),
+        conn.currentRole.company.toLowerCase(),
+        ...conn.experiences.map(e => e.company.toLowerCase()),
+        ...conn.experiences.map(e => e.title.toLowerCase())
+      ].join(' ');
+      return searchable.includes(term);
+    });
+  }
+
+  // Apply dropdown filters
+  const searchTerm = document.getElementById('search-input')?.value.toLowerCase() || '';
+  const locationFilter = document.getElementById('location-filter')?.value || '';
+  const companyFilter = document.getElementById('company-filter')?.value || '';
+  const titleFilter = document.getElementById('title-filter')?.value || '';
+
+  if (searchTerm) {
+    result = result.filter(conn => {
+      const searchable = [
+        conn.name.toLowerCase(),
+        conn.location.toLowerCase(),
+        conn.currentRole.title.toLowerCase(),
+        conn.currentRole.company.toLowerCase(),
+        ...conn.experiences.map(e => e.company.toLowerCase()),
+        ...conn.experiences.map(e => e.title.toLowerCase())
+      ].join(' ');
+      return searchable.includes(searchTerm);
+    });
+  }
+
+  if (locationFilter) {
+    result = result.filter(conn => conn.location.includes(locationFilter));
+  }
+
+  if (companyFilter) {
+    result = result.filter(conn =>
+      conn.experiences.some(e => e.company.toLowerCase().includes(companyFilter.toLowerCase()))
+    );
+  }
+
+  if (titleFilter) {
+    result = result.filter(conn =>
+      conn.experiences.some(e => e.title.toLowerCase().includes(titleFilter.toLowerCase()))
+    );
+  }
+
+  filteredConnections = result;
+  currentPage = 1;
+  updateResultsCount();
+  renderConnections();
+  renderPagination();
+}
+
+// ============================================
+// QUICK FILTERS
+// ============================================
+function applyQuickFilter(filterType) {
+  activeQuickFilter = filterType;
+  applyAllFilters();
+}
+
+// ============================================
+// SORTING
+// ============================================
+function sortConnections(column) {
+  if (sortColumn === column) {
+    sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+  } else {
+    sortColumn = column;
+    sortDirection = 'asc';
+  }
+
+  filteredConnections.sort((a, b) => {
+    let valA, valB;
+
+    switch (column) {
+      case 'name':
+        valA = a.name.toLowerCase();
+        valB = b.name.toLowerCase();
+        break;
+      case 'location':
+        valA = a.location.toLowerCase();
+        valB = b.location.toLowerCase();
+        break;
+      case 'tenure':
+        // Sort by tenure in months (longer tenure first when desc)
+        valA = getTenureMonths(a.currentRole.startDate, a.currentRole.endDate);
+        valB = getTenureMonths(b.currentRole.startDate, b.currentRole.endDate);
+        break;
+      default:
+        return 0;
+    }
+
+    if (valA < valB) return sortDirection === 'asc' ? -1 : 1;
+    if (valA > valB) return sortDirection === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  renderConnections();
+  updateSortIndicators();
+}
+
+function updateSortIndicators() {
+  document.querySelectorAll('.data-table th.sortable').forEach(th => {
+    th.classList.remove('sort-asc', 'sort-desc');
+    if (th.dataset.sort === sortColumn) {
+      th.classList.add(sortDirection === 'asc' ? 'sort-asc' : 'sort-desc');
+    }
+  });
+}
+
+// ============================================
+// RENDER FUNCTIONS
+// ============================================
+function renderConnections() {
+  const contentArea = document.getElementById('content-area');
+  const start = (currentPage - 1) * ITEMS_PER_PAGE;
+  const end = start + ITEMS_PER_PAGE;
+  const pageConnections = filteredConnections.slice(start, end);
+
+  if (filteredConnections.length === 0) {
+    contentArea.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">🔍</div>
+        <h3>No connections found</h3>
+        <p>Try adjusting your filters or search terms to find what you're looking for.</p>
+      </div>
+    `;
+    return;
+  }
+
+  if (currentView === 'grid') {
+    renderGridView(contentArea, pageConnections);
+  } else {
+    renderTableView(contentArea, pageConnections);
+  }
+}
+
+function renderGridView(container, connections) {
+  container.innerHTML = `<div class="connections-grid">${connections.map(conn => `
+    <div class="connection-card" data-id="${conn.id}">
+      <div class="connection-header">
+        <div class="connection-avatar">${conn.firstName.charAt(0)}${conn.lastName.charAt(0)}</div>
+        <div class="connection-info">
+          <div class="connection-name">${conn.name}</div>
+          <div class="connection-location">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            ${conn.location}
+          </div>
+          <div class="connection-tags">
+            <span class="tag tag-primary">${calculateTenure(conn.currentRole.startDate, conn.currentRole.endDate)} at ${conn.currentRole.company}</span>
+          </div>
+        </div>
+      </div>
+      <div class="connection-experience">
+        ${conn.experiences.slice(0, 2).map(exp => `
+          <div class="experience-item">
+            <div class="experience-dot"></div>
+            <div class="experience-content">
+              <div class="experience-title">${exp.title}</div>
+              <div class="experience-company">${exp.company}</div>
+              <div class="experience-date">${formatDateRange(exp.startDate, exp.endDate)}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="connection-actions">
+        <button class="btn btn-primary btn-sm" onclick="openModal(${conn.id})">View Profile</button>
+        <a href="${conn.linkedin}" target="_blank" class="btn btn-link btn-sm">LinkedIn</a>
+      </div>
+    </div>
+  `).join('')}</div>`;
+
+  // Add click handlers
+  container.querySelectorAll('.connection-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (!e.target.closest('a') && !e.target.closest('button')) {
+        openModal(parseInt(card.dataset.id));
+      }
+    });
+  });
+}
+
+function renderTableView(container, connections) {
+  container.innerHTML = `
+    <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 12px; color: var(--text-tertiary); font-weight: 500;">Search Rows:</span>
+      <input type="text" id="table-row-filter" value="${tableSearchTerm}" placeholder="Search name, location, company, role..."
+        style="flex: 1; max-width: 400px; height: 32px; padding: 0 12px; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); font-size: 13px; color: var(--text-primary);"
+      >
+    </div>
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th class="sortable" data-sort="name">Name</th>
+            <th class="sortable" data-sort="location">Location</th>
+            <th>Current Role / Company</th>
+            <th class="sortable" data-sort="tenure">Tenure</th>
+            <th>LinkedIn</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${connections.map(conn => `
+            <tr data-id="${conn.id}">
+              <td>
+                <div class="cell-name">
+                  <div class="cell-avatar">${conn.firstName.charAt(0)}${conn.lastName.charAt(0)}</div>
+                  <div class="cell-info">
+                    <div class="cell-name-text">${conn.name}</div>
+                    <div class="cell-location">${conn.experiences.length} positions</div>
+                  </div>
+                </div>
+              </td>
+              <td>${conn.location}</td>
+              <td class="cell-current">
+                <div class="cell-title">${conn.currentRole.title}</div>
+                <div class="cell-company">${conn.currentRole.company}</div>
+              </td>
+              <td>
+                <div class="cell-title">${calculateTenure(conn.currentRole.startDate, conn.currentRole.endDate)}</div>
+                <div class="cell-company">${formatDateRange(conn.currentRole.startDate, conn.currentRole.endDate)}</div>
+              </td>
+              <td class="cell-linkedin">
+                <a href="${conn.linkedin}" target="_blank" title="View LinkedIn Profile">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color: #0A66C2;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  // Add click handlers
+  container.querySelectorAll('.data-table tbody tr').forEach(row => {
+    row.addEventListener('click', () => openModal(parseInt(row.dataset.id)));
+  });
+
+  // Add table row filter functionality - combines with other filters
+  const rowFilter = container.querySelector('#table-row-filter');
+  if (rowFilter) {
+    rowFilter.addEventListener('input', debounce((e) => {
+      tableSearchTerm = e.target.value;
+      applyAllFilters();
+    }, 300));
+
+    // Focus the input after rendering
+    rowFilter.focus();
+  }
+}
+
+function renderPagination() {
+  const pagination = document.getElementById('pagination');
+  const totalPages = Math.ceil(filteredConnections.length / ITEMS_PER_PAGE);
+
+  if (totalPages <= 1) {
+    pagination.innerHTML = '';
+    return;
+  }
+
+  let html = `
+    <button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+  `;
+
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+      html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+    } else if (i === currentPage - 2 || i === currentPage + 2) {
+      html += `<span style="color: var(--text-tertiary);">...</span>`;
+    }
+  }
+
+  html += `
+    <button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  `;
+
+  pagination.innerHTML = html;
+}
+
+// ============================================
+// MODAL FUNCTIONS
+// ============================================
+function openModal(id) {
+  const conn = allConnections.find(c => c.id === id);
+  if (!conn) return;
+
+  document.getElementById('modal-avatar').textContent = `${conn.firstName.charAt(0)}${conn.lastName.charAt(0)}`;
+  document.getElementById('modal-name').textContent = conn.name;
+  document.getElementById('modal-location').innerHTML = `
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    ${conn.location}
+  `;
+  document.getElementById('modal-linkedin').href = conn.linkedin || '#';
+
+  const expContainer = document.getElementById('modal-experience');
+  expContainer.innerHTML = conn.experiences.map(exp => `
+    <div class="modal-experience-item">
+      <div class="experience-icon">💼</div>
+      <div class="modal-experience-content">
+        <div class="modal-experience-title">${exp.title}</div>
+        <div class="modal-experience-company">${exp.company}</div>
+        <div class="modal-experience-date">${formatDateRange(exp.startDate, exp.endDate)}</div>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('detail-modal').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('detail-modal').classList.remove('active');
+}
+
+// ============================================
+// POPULATE FILTERS
+// ============================================
+function populateFilters() {
+  // Locations
+  const locations = [...new Set(allConnections.map(c => c.location.split(',')[0].trim()))].sort();
+  const locationSelect = document.getElementById('location-filter');
+  locations.forEach(loc => {
+    if (loc && loc !== 'Unknown Location') {
+      const option = document.createElement('option');
+      option.value = loc;
+      option.textContent = loc;
+      locationSelect.appendChild(option);
+    }
+  });
+
+  // Companies
+  const companies = [...new Set(allConnections.flatMap(c => c.experiences.map(e => e.company)))].sort();
+  const companySelect = document.getElementById('company-filter');
+  companies.forEach(comp => {
+    if (comp && comp !== 'Unknown Company') {
+      const option = document.createElement('option');
+      option.value = comp;
+      option.textContent = comp;
+      companySelect.appendChild(option);
+    }
+  });
+
+  // Common title keywords
+  const titleKeywords = ['Engineer', 'Manager', 'Director', 'Senior', 'Software', 'Security', 'Data', 'Analyst', 'Developer'];
+  const titleSelect = document.getElementById('title-filter');
+  titleKeywords.forEach(title => {
+    const option = document.createElement('option');
+    option.value = title;
+    option.textContent = title;
+    titleSelect.appendChild(option);
+  });
+}
+
+// ============================================
+// UTILITIES
+// ============================================
+function formatDateRange(start, end) {
+  if (!start) return 'Present';
+  const startYear = start.split('/').pop();
+  const endYear = end ? end.split('/').pop() : 'Present';
+  return `${startYear} - ${endYear}`;
+}
+
+function calculateTenure(startDate, endDate) {
+  if (!startDate) return '-';
+
+  const start = new Date(startDate);
+  const end = endDate ? new Date(endDate) : new Date();
+
+  if (isNaN(start.getTime())) return '-';
+
+  const diffMs = end - start;
+  const diffMonths = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30.44));
+  const years = Math.floor(diffMonths / 12);
+  const months = diffMonths % 12;
+
+  if (years > 0 && months > 0) {
+    return `${years} yr ${months} mo`;
+  } else if (years > 0) {
+    return `${years} yr`;
+  } else if (months > 0) {
+    return `${months} mo`;
+  } else {
+    return '< 1 mo';
+  }
+}
+
+function getTenureMonths(startDate, endDate) {
+  if (!startDate) return 0;
+  const start = new Date(startDate);
+  const end = endDate ? new Date(endDate) : new Date();
+  if (isNaN(start.getTime())) return 0;
+  const diffMs = end - start;
+  return Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30.44));
+}
+
+function updateResultsCount() {
+  document.getElementById('results-count').textContent = filteredConnections.length;
+  document.getElementById('total-badge').textContent = allConnections.length;
+}
+
+function goToPage(page) {
+  currentPage = page;
+  renderConnections();
+  renderPagination();
+  document.querySelector('.content').scrollTop = 0;
+}
+
+// ============================================
+// EVENT HANDLERS
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  // Load CSV data
+  fetch('final_pin.csv')
+    .then(response => response.text())
+    .then(csvText => {
+      const rawData = parseCSV(csvText);
+      allConnections = processData(rawData);
+      filteredConnections = [...allConnections];
+      populateFilters();
+      updateResultsCount();
+      renderConnections();
+      renderPagination();
+    })
+    .catch(err => {
+      console.error('Failed to load CSV:', err);
+      document.getElementById('content-area').innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-icon">❌</div>
+          <h3>Failed to load data</h3>
+          <p>Could not load final_pin.csv. Please ensure the file exists in the same directory.</p>
+        </div>
+      `;
+    });
+
+  // Search
+  document.getElementById('search-input').addEventListener('input', debounce(() => applyAllFilters(), 300));
+
+  // Filters
+  document.getElementById('location-filter').addEventListener('change', () => applyAllFilters());
+  document.getElementById('company-filter').addEventListener('change', () => applyAllFilters());
+  document.getElementById('title-filter').addEventListener('change', () => applyAllFilters());
+
+  // View toggle
+  document.querySelectorAll('.view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentView = btn.dataset.view;
+      renderConnections();
+    });
+  });
+
+  // Table sorting
+  document.querySelectorAll('.data-table th.sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const column = th.dataset.sort;
+      if (column) {
+        sortConnections(column);
+      }
+    });
+  });
+
+  // Quick filters
+  document.querySelectorAll('.filter-pill[data-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isActive = btn.classList.contains('active');
+      document.querySelectorAll('.filter-pill[data-filter]').forEach(b => b.classList.remove('active'));
+
+      if (!isActive) {
+        btn.classList.add('active');
+        activeQuickFilter = btn.dataset.filter;
+      } else {
+        activeQuickFilter = null;
+      }
+      applyAllFilters();
+    });
+  });
+
+  // Clear all filters button
+  document.getElementById('clear-filters').addEventListener('click', () => {
+    // Clear quick filter pills
+    document.querySelectorAll('.filter-pill[data-filter]').forEach(b => b.classList.remove('active'));
+    // Clear dropdown filters
+    document.getElementById('location-filter').value = '';
+    document.getElementById('company-filter').value = '';
+    document.getElementById('title-filter').value = '';
+    // Clear search inputs
+    document.getElementById('search-input').value = '';
+    tableSearchTerm = '';
+    // Reset quick filter
+    activeQuickFilter = null;
+    // Apply cleared filters
+    applyAllFilters();
+  });
+
+  // Modal
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('detail-modal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('detail-modal')) closeModal();
+  });
+
+  // Theme toggle with localStorage persistence
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('caymus-theme', newTheme);
+  });
+
+  // Export
+  document.getElementById('export-btn').addEventListener('click', () => {
+    const csv = convertToCSV(filteredConnections);
+    downloadCSV(csv, 'filtered_connections.csv');
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === '/' && document.activeElement !== document.getElementById('search-input')) {
+      e.preventDefault();
+      document.getElementById('search-input').focus();
+    }
+  });
+});
+
+function debounce(fn, delay) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn(...args), delay);
+  };
+}
+
+function convertToCSV(data) {
+  const headers = ['Name', 'Location', 'Current Title', 'Current Company', 'LinkedIn'];
+  const rows = data.map(c => [
+    `"${c.name}"`,
+    `"${c.location}"`,
+    `"${c.currentRole.title}"`,
+    `"${c.currentRole.company}"`,
+    `"${c.linkedin}"`
+  ]);
+  return [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+}
+
+function downloadCSV(csv, filename) {
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>

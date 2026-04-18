@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caymus — Recruiting Dashboard</title>
+<script>
+  // Load theme immediately before page renders to prevent flash
+  const savedTheme = localStorage.getItem('caymus-theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     CSS CUSTOM PROPERTIES
+  ============================================ */
+  :root {
+    --bg-base: #0F1115;
+    --bg-elevated: #151922;
+    --bg-overlay: #1A1F2B;
+    --bg-hover: #1E2433;
+    --bg-selected: #1F2A3F;
+
+    --text-primary: #E6EAF2;
+    --text-secondary: #9AA4B2;
+    --text-tertiary: #5A6478;
+    --text-inverse: #0F1115;
+
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-default: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
+
+    --accent: #4F7CFF;
+    --accent-dim: rgba(79,124,255,0.15);
+    --accent-hover: #6B93FF;
+
+    --green: #34C97B;
+    --green-dim: rgba(52,201,123,0.12);
+    --amber: #F5A623;
+    --amber-dim: rgba(245,166,35,0.12);
+    --red: #FF5B5B;
+    --red-dim: rgba(255,91,91,0.12);
+    --purple: #A78BFA;
+    --purple-dim: rgba(167,139,250,0.12);
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.7);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+
+    --sidebar-width: 224px;
+    --topbar-height: 56px;
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-theme="light"] {
+    --bg-base: #F4F5F7;
+    --bg-elevated: #FFFFFF;
+    --bg-overlay: #F0F2F5;
+    --bg-hover: #E8EBF0;
+    --bg-selected: #E0E8FF;
+
+    --text-primary: #111827;
+    --text-secondary: #4B5563;
+    --text-tertiary: #9CA3AF;
+    --text-inverse: #FFFFFF;
+
+    --border-subtle: rgba(0,0,0,0.05);
+    --border-default: rgba(0,0,0,0.09);
+    --border-strong: rgba(0,0,0,0.16);
+
+    --accent: #3B6EF0;
+    --accent-dim: rgba(59,110,240,0.10);
+    --accent-hover: #2A5CE0;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.18);
+  }
+
+  /* ============================================
+     RESET & BASE
+  ============================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 14px; height: 100%; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    height: 100%;
+    overflow: hidden;
+    transition: background 0.25s var(--ease-in-out), color 0.25s var(--ease-in-out);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============================================
+     LAYOUT
+  ============================================ */
+  .app {
+    display: flex;
+    height: 100vh;
+    position: relative;
+  }
+
+  /* ============================================
+     SIDEBAR
+  ============================================ */
+  .sidebar {
+    width: var(--sidebar-width);
+    height: 100%;
+    background: var(--bg-elevated);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 20;
+    transition: width 0.25s var(--ease-out), background 0.25s var(--ease-in-out);
+  }
+
+  .sidebar.collapsed { width: 60px; }
+
+  .sidebar-logo {
+    height: var(--topbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .logo-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+
+  .logo-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+
+  .sidebar.collapsed .logo-text { opacity: 0; }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 12px 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+  }
+
+  .sidebar-nav::-webkit-scrollbar { display: none; }
+
+  .nav-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    padding: 12px 10px 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+
+  .sidebar.collapsed .nav-section-label { opacity: 0; }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+  }
+
+  .nav-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+  .nav-item.active {
+    background: var(--accent-dim);
+    color: var(--accent);
+  }
+
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 3px; height: 16px;
+    background: var(--accent);
+    border-radius: 0 3px 3px 0;
+  }
+
+  .nav-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-label { transition: opacity 0.2s; }
+  .sidebar.collapsed .nav-label { opacity: 0; }
+
+  .nav-badge {
+    margin-left: auto;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+  }
+
+  .sidebar.collapsed .nav-badge { opacity: 0; }
+
+  .sidebar-footer {
+    padding: 12px 8px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .user-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s;
+    overflow: hidden;
+  }
+
+  .user-card:hover { background: var(--bg-hover); }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .user-info { overflow: hidden; }
+  .user-name { font-size: 12.5px; font-weight: 600; color: var(--text-primary); white-space: nowrap; transition: opacity 0.2s; }
+  .user-role { font-size: 11px; color: var(--text-tertiary); white-space: nowrap; transition: opacity 0.2s; }
+  .sidebar.collapsed .user-name,
+  .sidebar.collapsed .user-role { opacity: 0; }
+
+  /* ============================================
+     MAIN CONTENT
+  ============================================ */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  /* ============================================
+     TOP BAR
+  ============================================ */
+  .topbar {
+    height: var(--topbar-height);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 16px;
+    flex-shrink: 0;
+    background: var(--bg-elevated);
+    transition: background 0.25s var(--ease-in-out);
+  }
+
+  .topbar-collapse-btn {
+    width: 28px; height: 28px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-default);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .topbar-collapse-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+  .topbar-search {
+    flex: 1;
+    max-width: 360px;
+    position: relative;
+  }
+
+  .search-input {
+    width: 100%;
+    height: 32px;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 0 12px 0 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  }
+
+  .search-input::placeholder { color: var(--text-tertiary); }
+
+  .search-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+    background: var(--bg-elevated);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+    pointer-events: none;
+  }
+
+  .search-kbd {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 2px;
+    pointer-events: none;
+  }
+
+  .kbd {
+    background: var(--bg-hover);
+    border: 1px solid var(--border-default);
+    border-radius: 4px;
+    padding: 1px 4px;
+    font-size: 10px;
+    color: var(--text-tertiary);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .topbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .topbar-btn {
+    width: 32px; height: 32px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-default);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s, transform 0.1s;
+    position: relative;
+  }
+
+  .topbar-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+  .topbar-btn:active { transform: scale(0.96); }
+
+  .notif-dot {
+    position: absolute;
+    top: 6px; right: 6px;
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 1.5px solid var(--bg-elevated);
+  }
+
+  /* ============================================
+     CONTENT AREA
+  ============================================ */
+  .content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 28px 32px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-default) transparent;
+  }
+
+  .content::-webkit-scrollbar { width: 6px; }
+  .content::-webkit-scrollbar-track { background: transparent; }
+  .content::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 3px; }
+
+  /* ============================================
+     PAGE HEADER
+  ============================================ */
+  .page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    gap: 16px;
+  }
+
+  .page-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  .page-subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 3px;
+    font-weight: 400;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  /* ============================================
+     BUTTONS
+  ============================================ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 14px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: background 0.15s, color 0.15s, transform 0.1s, box-shadow 0.15s;
+    white-space: nowrap;
+    user-select: none;
+    text-decoration: none;
+  }
+
+  .btn:active { transform: scale(0.98); }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 0 0 3px var(--accent-dim); }
+
+  .btn-secondary {
+    background: var(--bg-overlay);
+    color: var(--text-primary);
+    border: 1px solid var(--border-default);
+  }
+
+  .btn-secondary:hover { background: var(--bg-hover); border-color: var(--border-strong); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+  }
+
+  .btn-ghost:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+  /* ============================================
+     STAT CARDS
+  ============================================ */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .stat-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.15s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-default);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .stat-card:hover::after { opacity: 1; }
+  .stat-card.green::after { background: var(--green); }
+  .stat-card.blue::after { background: var(--accent); }
+  .stat-card.amber::after { background: var(--amber); }
+  .stat-card.purple::after { background: var(--purple); }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 10px;
+  }
+
+  .stat-value {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-meta {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .stat-delta {
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  .stat-delta.up { color: var(--green); }
+  .stat-delta.down { color: var(--red); }
+
+  .stat-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stat-icon.green { background: var(--green-dim); color: var(--green); }
+  .stat-icon.blue { background: var(--accent-dim); color: var(--accent); }
+  .stat-icon.amber { background: var(--amber-dim); color: var(--amber); }
+  .stat-icon.purple { background: var(--purple-dim); color: var(--purple); }
+
+  /* ============================================
+     SECTION LAYOUT
+  ============================================ */
+  .section-row {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .section-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: background 0.25s var(--ease-in-out);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .section-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.2px;
+  }
+
+  .section-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ============================================
+     TABLE
+  ============================================ */
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  th {
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.15s;
+  }
+
+  th:hover { color: var(--text-secondary); }
+
+  th .sort-icon {
+    display: inline-block;
+    margin-left: 4px;
+    opacity: 0.4;
+    transition: opacity 0.15s;
+  }
+
+  th:hover .sort-icon { opacity: 0.8; }
+  th.sorted .sort-icon { opacity: 1; color: var(--accent); }
+
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 13px;
+    color: var(--text-primary);
+    vertical-align: middle;
+    transition: background 0.12s;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+
+  [data-theme="light"] tr:nth-child(even) td { background: rgba(0,0,0,0.015); }
+
+  tbody tr {
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+
+  tbody tr:hover td { background: var(--bg-hover); }
+  tbody tr.selected td { background: var(--bg-selected); }
+
+  .candidate-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .candidate-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: white;
+  }
+
+  .candidate-name { font-weight: 500; color: var(--text-primary); font-size: 13px; }
+  .candidate-email { font-size: 11.5px; color: var(--text-tertiary); }
+
+  /* ============================================
+     BADGES / TAGS
+  ============================================ */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .badge-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .badge.green { background: var(--green-dim); color: var(--green); }
+  .badge.blue { background: var(--accent-dim); color: var(--accent); }
+  .badge.amber { background: var(--amber-dim); color: var(--amber); }
+  .badge.red { background: var(--red-dim); color: var(--red); }
+  .badge.purple { background: var(--purple-dim); color: var(--purple); }
+  .badge.gray { background: var(--bg-hover); color: var(--text-secondary); }
+
+  /* ============================================
+     PIPELINE MINI CHART
+  ============================================ */
+  .pipeline-bar {
+    display: flex;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    gap: 1px;
+    width: 80px;
+  }
+
+  .pipeline-segment {
+    height: 100%;
+    border-radius: 1px;
+    flex: 1;
+    opacity: 0.9;
+  }
+
+  /* ============================================
+     ACTIVITY FEED (RIGHT PANEL)
+  ============================================ */
+  .activity-list {
+    padding: 8px 0;
+    max-height: 360px;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .activity-list::-webkit-scrollbar { display: none; }
+
+  .activity-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.12s;
+    position: relative;
+  }
+
+  .activity-item:hover { background: var(--bg-hover); }
+
+  .activity-item::after {
+    content: '';
+    position: absolute;
+    left: 36px;
+    top: 38px;
+    bottom: -10px;
+    width: 1px;
+    background: var(--border-subtle);
+  }
+
+  .activity-item:last-child::after { display: none; }
+
+  .activity-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .activity-icon.green { background: var(--green-dim); color: var(--green); }
+  .activity-icon.blue { background: var(--accent-dim); color: var(--accent); }
+  .activity-icon.amber { background: var(--amber-dim); color: var(--amber); }
+  .activity-icon.purple { background: var(--purple-dim); color: var(--purple); }
+
+  .activity-content {}
+  .activity-text { font-size: 12.5px; color: var(--text-primary); line-height: 1.4; }
+  .activity-text strong { font-weight: 600; }
+  .activity-time { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+
+  /* ============================================
+     PIPELINE STAGES
+  ============================================ */
+  .pipeline-stages {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    padding: 16px 20px;
+  }
+
+  .stage-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .stage-header {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .stage-count {
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 10px;
+  }
+
+  .stage-card {
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s, transform 0.15s, box-shadow 0.15s;
+  }
+
+  .stage-card:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-default);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .stage-card-name {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+
+  .stage-card-role {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+
+  /* ============================================
+     COMMAND PALETTE
+  ============================================ */
+  .command-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 15vh;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s var(--ease-in-out);
+  }
+
+  .command-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .command-palette {
+    width: 560px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transform: scale(0.97) translateY(-8px);
+    transition: transform 0.15s var(--ease-out);
+  }
+
+  .command-overlay.open .command-palette {
+    transform: scale(1) translateY(0);
+  }
+
+  .command-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .command-search-icon { color: var(--text-tertiary); flex-shrink: 0; }
+
+  .command-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text-primary);
+  }
+
+  .command-input::placeholder { color: var(--text-tertiary); }
+
+  .command-esc {
+    background: var(--bg-hover);
+    border: 1px solid var(--border-default);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .command-results {
+    padding: 8px;
+    max-height: 360px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-default) transparent;
+  }
+
+  .command-group-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    padding: 8px 10px 4px;
+  }
+
+  .command-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+
+  .command-item:hover,
+  .command-item.active { background: var(--bg-hover); }
+
+  .command-item-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+
+  .command-item-label { font-size: 13.5px; color: var(--text-primary); font-weight: 500; }
+  .command-item-desc { font-size: 12px; color: var(--text-tertiary); margin-left: auto; }
+
+  .command-footer {
+    padding: 10px 18px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .command-hint {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+
+  /* ============================================
+     TOAST NOTIFICATIONS
+  ============================================ */
+  .toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+  }
+
+  .toast {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: var(--shadow-lg);
+    min-width: 280px;
+    max-width: 360px;
+    pointer-events: all;
+    animation: toastIn 0.25s var(--ease-out) forwards;
+  }
+
+  .toast.removing {
+    animation: toastOut 0.2s var(--ease-in-out) forwards;
+  }
+
+  @keyframes toastIn {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes toastOut {
+    to { transform: translateX(20px); opacity: 0; }
+  }
+
+  .toast-icon {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .toast-icon.green { background: var(--green-dim); color: var(--green); }
+  .toast-icon.blue { background: var(--accent-dim); color: var(--accent); }
+
+  .toast-text { font-size: 13px; color: var(--text-primary); font-weight: 500; }
+  .toast-sub { font-size: 12px; color: var(--text-secondary); margin-top: 1px; }
+
+  .toast-close {
+    margin-left: auto;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 4px;
+    transition: background 0.1s, color 0.1s;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .toast-close:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+  /* ============================================
+     MODAL
+  ============================================ */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s var(--ease-in-out);
+  }
+
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    width: 480px;
+    max-width: 90vw;
+    transform: scale(0.97);
+    transition: transform 0.2s var(--ease-out);
+    overflow: hidden;
+  }
+
+  .modal-overlay.open .modal { transform: scale(1); }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .modal-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+  }
+
+  .modal-close {
+    width: 28px; height: 28px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-default);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .modal-close:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+  .modal-body { padding: 20px 24px; }
+
+  .form-group { margin-bottom: 16px; }
+  .form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  .form-input {
+    width: 100%;
+    height: 36px;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 0 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  /* ============================================
+     PROGRESS RING
+  ============================================ */
+  .progress-ring-wrap { display: flex; align-items: center; gap: 8px; }
+
+  /* ============================================
+     TAB BAR
+  ============================================ */
+  .tab-bar {
+    display: flex;
+    gap: 2px;
+    padding: 4px;
+    background: var(--bg-overlay);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .tab {
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s;
+    user-select: none;
+  }
+
+  .tab.active { background: var(--bg-elevated); color: var(--text-primary); box-shadow: var(--shadow-sm); }
+  .tab:not(.active):hover { color: var(--text-primary); }
+
+  /* ============================================
+     FILTER BAR
+  ============================================ */
+  .filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border-default);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s, color 0.12s;
+    white-space: nowrap;
+  }
+
+  .filter-chip:hover { background: var(--bg-hover); border-color: var(--border-strong); color: var(--text-primary); }
+  .filter-chip.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+
+  /* ============================================
+     ANIMATIONS
+  ============================================ */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .anim-in {
+    animation: fadeSlideUp 0.2s var(--ease-out) both;
+  }
+
+  .anim-in:nth-child(1) { animation-delay: 0ms; }
+  .anim-in:nth-child(2) { animation-delay: 40ms; }
+  .anim-in:nth-child(3) { animation-delay: 80ms; }
+  .anim-in:nth-child(4) { animation-delay: 120ms; }
+
+  /* ============================================
+     SKELETON LOADER
+  ============================================ */
+  @keyframes shimmer {
+    0% { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg,
+      var(--bg-hover) 25%,
+      var(--bg-overlay) 50%,
+      var(--bg-hover) 75%);
+    background-size: 800px 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+  }
+
+  /* ============================================
+     TOOLTIP
+  ============================================ */
+  [data-tooltip] { position: relative; }
+  [data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    box-shadow: var(--shadow-md);
+    z-index: 100;
+  }
+
+  [data-tooltip]:hover::after { opacity: 1; }
+
+  /* ============================================
+     SHORTCUT BADGE
+  ============================================ */
+  .shortcut {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .shortcut .kbd {
+    font-size: 10px;
+    padding: 1px 5px;
+    background: var(--bg-hover);
+    border: 1px solid var(--border-default);
+    border-radius: 4px;
+    color: var(--text-tertiary);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ============================================
+     EMPTY STATE
+  ============================================ */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    text-align: center;
+  }
+
+  .empty-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    margin-bottom: 14px;
+  }
+
+  .empty-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+  .empty-desc { font-size: 12.5px; color: var(--text-tertiary); max-width: 240px; }
+
+  /* ============================================
+     MISC UTILITIES
+  ============================================ */
+  .text-muted { color: var(--text-secondary); }
+  .text-tertiary { color: var(--text-tertiary); }
+  .text-xs { font-size: 11px; }
+  .text-sm { font-size: 12.5px; }
+  .flex { display: flex; }
+  .items-center { align-items: center; }
+  .gap-2 { gap: 8px; }
+  .gap-1 { gap: 4px; }
+  .ml-auto { margin-left: auto; }
+  .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  svg { display: block; }
+
+  /* Scrollbar */
+  * { scrollbar-width: thin; scrollbar-color: var(--border-default) transparent; }
+  *::-webkit-scrollbar { width: 5px; height: 5px; }
+  *::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ======== SIDEBAR ======== -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">C</div>
+      <span class="logo-text">Caymus</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Recruiting</div>
+      <a href="recruiting-dashboard.html" class="nav-item active">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="connections.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </span>
+        <span class="nav-label">Connections</span>
+      </a>
+      <a href="pipeline.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </span>
+        <span class="nav-label">Pipeline</span>
+      </a>
+      <a href="sequences.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        <span class="nav-label">Sequences</span>
+      </a>
+      <a href="templates.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </span>
+        <span class="nav-label">Templates</span>
+      </a>
+      <div class="nav-section-label">Discovery</div>
+      <a href="xray.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
+        <span class="nav-label">X-Ray Search</span>
+      </a>
+      <a href="heatmap.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+        </span>
+        <span class="nav-label">Heatmap</span>
+      </a>
+      <a href="development.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </span>
+        <span class="nav-label">Development</span>
+      </a>
+      <div class="nav-section-label">Analytics</div>
+      <a href="analytics.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </span>
+        <span class="nav-label">Performance</span>
+      </a>
+      <a href="news.html" class="nav-item">
+        <span class="nav-icon">📰</span>
+        <span class="nav-label">Job Market</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="#" class="nav-item" onclick="event.preventDefault(); showToast('Settings', 'Settings page coming soon', 'accent');">
+        <span class="nav-icon">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="7.5" cy="7.5" r="6"/>
+            <path d="M7.5 4.5v3l2 2"/>
+          </svg>
+        </span>
+        <span class="nav-label">Settings</span>
+      </a>
+      <div class="user-card">
+        <div class="avatar">JR</div>
+        <div class="user-info">
+          <div class="user-name">Jamie R.</div>
+          <div class="user-role">Recruiter</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======== MAIN ======== -->
+  <div class="main">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <button class="topbar-collapse-btn" id="collapseBtn" onclick="toggleSidebar()" data-tooltip="Toggle sidebar">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="1" y="1" width="12" height="12" rx="2"/>
+          <path d="M5 1v12"/>
+        </svg>
+      </button>
+
+      <div class="topbar-search">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="6" cy="6" r="4.5"/>
+          <path d="M10 10l2.5 2.5"/>
+        </svg>
+        <input class="search-input" id="searchInput" type="text" placeholder="Search candidates, companies…" onkeydown="handleSearchKey(event)">
+        <div class="search-kbd">
+          <span class="kbd">⌘</span>
+          <span class="kbd">K</span>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <button class="topbar-btn" onclick="showToast('Notifications', 'You have 3 new updates', 'blue')" data-tooltip="Notifications">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M7.5 2a5 5 0 015 5v3l1.5 2H1L2.5 10V7a5 5 0 015-5z"/>
+            <path d="M6 13a1.5 1.5 0 003 0"/>
+          </svg>
+          <span class="notif-dot"></span>
+        </button>
+        <button class="topbar-btn" onclick="toggleTheme()" data-tooltip="Toggle theme" id="themeBtn">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.5" id="themeIcon">
+            <circle cx="7.5" cy="7.5" r="3"/>
+            <path d="M7.5 1v1.5M7.5 12.5V14M1 7.5h1.5M12.5 7.5H14M3.2 3.2l1 1M10.8 10.8l1 1M10.8 3.2l-1 1M3.2 10.8l1-1"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content" id="mainContent">
+
+      <!-- PAGE HEADER -->
+      <div class="page-header anim-in">
+        <div>
+          <h1 class="page-title">Candidates</h1>
+          <p class="page-subtitle">48 active · 12 in final rounds · 3 offers extended</p>
+        </div>
+        <div class="header-actions">
+          <div class="tab-bar">
+            <div class="tab active" onclick="switchTab(this, 'table')">Table</div>
+            <div class="tab" onclick="switchTab(this, 'kanban')">Pipeline</div>
+            <div class="tab" onclick="switchTab(this, 'analytics')">Analytics</div>
+          </div>
+          <button class="btn btn-secondary" id="theme-toggle"
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STATS GRID -->
+      <div class="stats-grid">
+        <div class="stat-card green anim-in" onclick="showToast('Active Candidates', 'Viewing all 48 active candidates', 'green')">
+          <div class="stat-icon green">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="8" cy="5" r="3"/>
+              <path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+            </svg>
+          </div>
+          <div class="stat-label">Active Candidates</div>
+          <div class="stat-value">48</div>
+          <div class="stat-meta">
+            <span class="stat-delta up">↑ 12%</span>
+            <span>from last month</span>
+          </div>
+        </div>
+
+        <div class="stat-card blue anim-in" onclick="showToast('Interviews', 'Viewing scheduled interviews', 'blue')">
+          <div class="stat-icon blue">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="2" width="12" height="12" rx="2"/>
+              <path d="M5 8h6M5 5h6"/>
+            </svg>
+          </div>
+          <div class="stat-label">Interviews This Week</div>
+          <div class="stat-value">14</div>
+          <div class="stat-meta">
+            <span class="stat-delta up">↑ 3</span>
+            <span>from last week</span>
+          </div>
+        </div>
+
+        <div class="stat-card amber anim-in">
+          <div class="stat-icon amber">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="8" cy="8" r="6"/>
+              <path d="M8 5v4l2.5 2"/>
+            </svg>
+          </div>
+          <div class="stat-label">Avg. Time to Hire</div>
+          <div class="stat-value">23d</div>
+          <div class="stat-meta">
+            <span class="stat-delta down">↓ 2d</span>
+            <span>vs benchmark</span>
+          </div>
+        </div>
+
+        <div class="stat-card purple anim-in">
+          <div class="stat-icon purple">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="1,11 5,7 8,9 11,5 15,8"/>
+              <path d="M11 5h4v4"/>
+            </svg>
+          </div>
+          <div class="stat-label">Offer Acceptance</div>
+          <div class="stat-value">87%</div>
+          <div class="stat-meta">
+            <span class="stat-delta up">↑ 4%</span>
+            <span>from last quarter</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN TABLE + ACTIVITY -->
+      <div class="section-row">
+
+        <!-- TABLE -->
+        <div class="section-card">
+          <div class="section-header">
+            <span class="section-title">All Candidates</span>
+            <div class="section-actions">
+              <button class="btn btn-ghost" style="height:28px;font-size:12px;">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M1 3h10M3 6h6M5 9h2"/>
+                </svg>
+                Filter
+              </button>
+              <button class="btn btn-ghost" style="height:28px;font-size:12px;">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M2 6l3 3 5-5"/>
+                </svg>
+                Sort
+              </button>
+            </div>
+          </div>
+
+          <!-- FILTER BAR -->
+          <div class="filter-bar">
+            <button class="filter-chip active">All</button>
+            <button class="filter-chip" onclick="toggleFilter(this)">Active</button>
+            <button class="filter-chip" onclick="toggleFilter(this)">Final Round</button>
+            <button class="filter-chip" onclick="toggleFilter(this)">Offer Extended</button>
+            <button class="filter-chip" onclick="toggleFilter(this)">On Hold</button>
+          </div>
+
+          <!-- TABLE -->
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:32px;padding-left:16px;">
+                    <input type="checkbox" style="accent-color:var(--accent);width:13px;height:13px;cursor:pointer;" onchange="selectAll(this)">
+                  </th>
+                  <th class="sorted">Candidate <span class="sort-icon">↑</span></th>
+                  <th>Role <span class="sort-icon">↕</span></th>
+                  <th>Status <span class="sort-icon">↕</span></th>
+                  <th>Stage <span class="sort-icon">↕</span></th>
+                  <th>Company <span class="sort-icon">↕</span></th>
+                  <th>Updated <span class="sort-icon">↕</span></th>
+                </tr>
+              </thead>
+              <tbody id="candidateTable">
+                <!-- JS rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ACTIVITY FEED -->
+        <div class="section-card">
+          <div class="section-header">
+            <span class="section-title">Activity</span>
+            <span class="text-xs text-tertiary">Today</span>
+          </div>
+          <div class="activity-list" id="activityFeed">
+            <!-- JS rendered -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PIPELINE KANBAN -->
+      <div class="section-card" style="margin-bottom:32px;">
+        <div class="section-header">
+          <span class="section-title">Pipeline Overview</span>
+          <button class="btn btn-ghost" style="height:28px;font-size:12px;">View full pipeline →</button>
+        </div>
+        <div class="pipeline-stages" id="pipelineKanban">
+          <!-- JS rendered -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ======== COMMAND PALETTE ======== -->
+<div class="command-overlay" id="commandOverlay" onclick="closeCommand(event)">
+  <div class="command-palette">
+    <div class="command-input-wrap">
+      <svg class="command-search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="7" cy="7" r="5"/>
+        <path d="M12 12l2.5 2.5"/>
+      </svg>
+      <input class="command-input" id="commandInput" placeholder="Search or jump to…" oninput="filterCommands(this.value)">
+      <span class="command-esc" onclick="closeCommandPalette()">Esc</span>
+    </div>
+    <div class="command-results" id="commandResults">
+      <!-- JS rendered -->
+    </div>
+    <div class="command-footer">
+      <span class="command-hint">
+        <span class="kbd">↑↓</span> Navigate
+      </span>
+      <span class="command-hint">
+        <span class="kbd">↵</span> Select
+      </span>
+      <span class="command-hint">
+        <span class="kbd">Esc</span> Close
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- ======== ADD CANDIDATE MODAL ======== -->
+<div class="modal-overlay" id="candidateModal" onclick="closeModalOverlay(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Add Candidate</span>
+      <button class="modal-close" onclick="closeModal()">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M1 1l11 11M12 1L1 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input class="form-input" type="text" placeholder="Alex">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input class="form-input" type="text" placeholder="Johnson">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="alex@company.com">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Role</label>
+          <input class="form-input" type="text" placeholder="Senior Engineer">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Company</label>
+          <input class="form-input" type="text" placeholder="Acme Corp">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">LinkedIn URL</label>
+        <input class="form-input" type="text" placeholder="linkedin.com/in/alexjohnson">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="addCandidate()">Add Candidate</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======== TOAST CONTAINER ======== -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// ============================================
+//  DATA
+// ============================================
+const candidates = [
+  { id:1, name:'Maya Reyes', email:'maya.r@gmail.com', role:'Product Manager', status:'active', stage:'Final Round', company:'Stripe', updated:'2h ago', color:'#6366F1' },
+  { id:2, name:'Chris Nakamura', email:'cnakamura@me.com', role:'Sr. Engineer', status:'offer', stage:'Offer Extended', company:'Vercel', updated:'4h ago', color:'#10B981' },
+  { id:3, name:'Layla Hassan', email:'lhassan@outlook.com', role:'Design Lead', status:'active', stage:'Technical', company:'Linear', updated:'Yesterday', color:'#F59E0B' },
+  { id:4, name:'Ethan Mbeki', email:'e.mbeki@proton.me', role:'Data Scientist', status:'hold', stage:'On Hold', company:'Notion', updated:'2d ago', color:'#8B5CF6' },
+  { id:5, name:'Priya Sharma', email:'priya.s@gmail.com', role:'Growth Lead', status:'active', stage:'Screening', company:'Figma', updated:'3d ago', color:'#EC4899' },
+  { id:6, name:'Luca Ferretti', email:'luca@ferretti.io', role:'Sr. Designer', status:'active', stage:'Hiring Manager', company:'Loom', updated:'3d ago', color:'#3B82F6' },
+  { id:7, name:'Dana Powell', email:'dana.p@gmail.com', role:'Engineering Mgr', status:'offer', stage:'Offer Extended', company:'Rippling', updated:'5d ago', color:'#14B8A6' },
+  { id:8, name:'Rahul Desai', email:'rdesai@yahoo.com', role:'Backend Engineer', status:'active', stage:'Technical', company:'PostHog', updated:'1w ago', color:'#F97316' },
+];
+
+const statusConfig = {
+  active: { label:'Active', cls:'green' },
+  offer:  { label:'Offer', cls:'blue' },
+  hold:   { label:'On Hold', cls:'amber' },
+  rejected: { label:'Rejected', cls:'red' },
+};
+
+const activities = [
+  { icon:'✓', type:'green', text:'<strong>Maya Reyes</strong> completed final round interview', time:'2h ago' },
+  { icon:'📄', type:'blue', text:'Offer letter sent to <strong>Chris Nakamura</strong>', time:'4h ago' },
+  { icon:'📅', type:'amber', text:'Technical interview scheduled with <strong>Layla Hassan</strong>', time:'Yesterday 3pm' },
+  { icon:'💬', text:'<strong>Ethan Mbeki</strong> moved to On Hold by team decision', type:'purple', time:'2d ago' },
+  { icon:'✓', type:'green', text:'<strong>Priya Sharma</strong> passed initial screening', time:'3d ago' },
+  { icon:'📅', type:'blue', text:'Hiring manager review for <strong>Luca Ferretti</strong>', time:'3d ago' },
+];
+
+const pipelineData = [
+  { stage:'Sourcing', count:12, cards:[{name:'Tom Briggs',role:'Sr. Engineer'},{name:'Ava Nguyen',role:'PM'}] },
+  { stage:'Screening', count:9, cards:[{name:'Priya Sharma',role:'Growth Lead'},{name:'Omar Said',role:'Analyst'}] },
+  { stage:'Technical', count:8, cards:[{name:'Layla Hassan',role:'Design Lead'},{name:'Rahul Desai',role:'Backend'}] },
+  { stage:'Hiring Mgr', count:6, cards:[{name:'Luca Ferretti',role:'Sr. Designer'}] },
+  { stage:'Final', count:4, cards:[{name:'Maya Reyes',role:'Product Mgr'},{name:'Dana Powell',role:'Eng. Mgr'}] },
+];
+
+const commands = [
+  { group:'Navigation', items:[
+    { label:'Go to Candidates', desc:'G then C', icon:'👤' },
+    { label:'Go to Pipeline', desc:'G then P', icon:'📊' },
+    { label:'Go to Sourcing', desc:'G then S', icon:'🔍' },
+    { label:'Go to Analytics', desc:'G then A', icon:'📈' },
+  ]},
+  { group:'Actions', items:[
+    { label:'Add Candidate', desc:'C', icon:'➕', action: ()=>{ closeCommandPalette(); openModal(); } },
+    { label:'Export to CSV', desc:'', icon:'📤' },
+    { label:'Send Offer Letter', desc:'', icon:'📄' },
+  ]},
+  { group:'Recent Candidates', items:
+    candidates.slice(0,3).map(c=>({ label:c.name, desc:c.role, icon:'👤' }))
+  },
+];
+
+// ============================================
+//  RENDER CANDIDATES TABLE
+// ============================================
+function renderTable() {
+  const tbody = document.getElementById('candidateTable');
+  tbody.innerHTML = candidates.map(c => {
+    const st = statusConfig[c.status] || statusConfig.active;
+    return `
+    <tr onclick="selectRow(this, ${c.id})" onkeydown="rowKeyDown(event, this)">
+      <td style="padding-left:16px;width:32px;">
+        <input type="checkbox" style="accent-color:var(--accent);width:13px;height:13px;cursor:pointer;" onclick="event.stopPropagation()">
+      </td>
+      <td>
+        <div class="candidate-cell">
+          <div class="candidate-avatar" style="background:${c.color};">${c.name.split(' ').map(n=>n[0]).join('')}</div>
+          <div>
+            <div class="candidate-name">${c.name}</div>
+            <div class="candidate-email">${c.email}</div>
+          </div>
+        </div>
+      </td>
+      <td class="text-muted">${c.role}</td>
+      <td><span class="badge ${st.cls}"><span class="badge-dot"></span>${st.label}</span></td>
+      <td class="text-muted" style="font-size:12.5px;">${c.stage}</td>
+      <td>
+        <span style="font-size:12.5px;color:var(--text-secondary);">${c.company}</span>
+      </td>
+      <td class="text-tertiary text-sm">${c.updated}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ============================================
+//  RENDER ACTIVITY FEED
+// ============================================
+function renderActivity() {
+  const feed = document.getElementById('activityFeed');
+  feed.innerHTML = activities.map(a => `
+    <div class="activity-item">
+      <div class="activity-icon ${a.type}">${a.icon}</div>
+      <div class="activity-content">
+        <div class="activity-text">${a.text}</div>
+        <div class="activity-time">${a.time}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============================================
+//  RENDER PIPELINE KANBAN
+// ============================================
+function renderPipeline() {
+  const el = document.getElementById('pipelineKanban');
+  el.innerHTML = pipelineData.map(col => `
+    <div class="stage-col">
+      <div class="stage-header">
+        <span>${col.stage}</span>
+        <span class="stage-count">${col.count}</span>
+      </div>
+      ${col.cards.map(card=>`
+        <div class="stage-card" onclick="showToast('${card.name}', '${card.role}', 'blue')">
+          <div class="stage-card-name">${card.name}</div>
+          <div class="stage-card-role">${card.role}</div>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+
+// ============================================
+//  COMMAND PALETTE
+// ============================================
+function renderCommands(filter = '') {
+  const el = document.getElementById('commandResults');
+  const lf = filter.toLowerCase();
+  el.innerHTML = commands.map(group => {
+    const items = group.items.filter(i => !lf || i.label.toLowerCase().includes(lf) || (i.desc||'').toLowerCase().includes(lf));
+    if (!items.length) return '';
+    return `
+      <div class="command-group-label">${group.group}</div>
+      ${items.map(item=>`
+        <div class="command-item" onclick="${item.action ? 'commandActions[\''+item.label+'\']()' : 'closeCommandPalette()'}">
+          <div class="command-item-icon">${item.icon}</div>
+          <span class="command-item-label">${item.label}</span>
+          ${item.desc ? `<span class="command-item-desc">${item.desc}</span>` : ''}
+        </div>
+      `).join('')}
+    `;
+  }).join('');
+}
+
+const commandActions = {
+  'Add Candidate': () => { closeCommandPalette(); openModal(); }
+};
+
+function filterCommands(val) { renderCommands(val); }
+
+function openCommandPalette() {
+  document.getElementById('commandOverlay').classList.add('open');
+  setTimeout(()=>document.getElementById('commandInput').focus(), 50);
+  renderCommands();
+}
+
+function closeCommandPalette() {
+  document.getElementById('commandOverlay').classList.remove('open');
+  document.getElementById('commandInput').value = '';
+}
+
+function closeCommand(e) {
+  if (e.target === document.getElementById('commandOverlay')) closeCommandPalette();
+}
+
+// ============================================
+//  MODAL
+// ============================================
+function openModal() {
+  document.getElementById('candidateModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('candidateModal').classList.remove('open');
+}
+
+function closeModalOverlay(e) {
+  if (e.target === document.getElementById('candidateModal')) closeModal();
+}
+
+function addCandidate() {
+  closeModal();
+  showToast('Candidate added', 'Profile created successfully', 'green');
+}
+
+// ============================================
+//  TOAST
+// ============================================
+let toastCounter = 0;
+function showToast(title, sub, type='green') {
+  const container = document.getElementById('toastContainer');
+  const id = 'toast-' + (++toastCounter);
+  const icons = { green:'✓', blue:'ℹ', amber:'⚠' };
+  const div = document.createElement('div');
+  div.className = 'toast';
+  div.id = id;
+  div.innerHTML = `
+    <div class="toast-icon ${type}">${icons[type]||'ℹ'}</div>
+    <div>
+      <div class="toast-text">${title}</div>
+      ${sub ? `<div class="toast-sub">${sub}</div>` : ''}
+    </div>
+    <button class="toast-close" onclick="dismissToast('${id}')">
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M1 1l9 9M10 1L1 10"/>
+      </svg>
+    </button>
+  `;
+  container.appendChild(div);
+  setTimeout(()=>dismissToast(id), 4000);
+}
+
+function dismissToast(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('removing');
+  setTimeout(()=>el.remove(), 220);
+}
+
+// ============================================
+//  SIDEBAR
+// ============================================
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('collapsed');
+}
+
+// ============================================
+//  THEME
+// ============================================
+let isDark = true;
+function toggleTheme() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  showToast(isDark ? 'Dark mode on' : 'Light mode on', '', 'blue');
+}
+
+// ============================================
+//  NAVIGATION
+// ============================================
+function navigate(page) {
+  const items = document.querySelectorAll('.nav-item');
+  items.forEach(i=>i.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  showToast('Navigating', 'Going to ' + page.charAt(0).toUpperCase() + page.slice(1), 'blue');
+}
+
+// ============================================
+//  TABLE INTERACTION
+// ============================================
+let selectedRow = null;
+function selectRow(tr, id) {
+  if (selectedRow === tr) { tr.classList.remove('selected'); selectedRow = null; return; }
+  if (selectedRow) selectedRow.classList.remove('selected');
+  tr.classList.add('selected');
+  selectedRow = tr;
+  const c = candidates.find(x=>x.id===id);
+  if (c) showToast(c.name, c.role + ' · ' + c.company, 'blue');
+}
+
+function selectAll(checkbox) {
+  document.querySelectorAll('#candidateTable input[type=checkbox]').forEach(cb=>cb.checked=checkbox.checked);
+}
+
+function rowKeyDown(e, tr) {
+  if (e.key === 'ArrowDown' && tr.nextElementSibling) tr.nextElementSibling.focus();
+  if (e.key === 'ArrowUp' && tr.previousElementSibling) tr.previousElementSibling.focus();
+}
+
+// ============================================
+//  FILTER CHIPS
+// ============================================
+function toggleFilter(chip) {
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  chip.classList.add('active');
+}
+
+// ============================================
+//  TAB SWITCHING
+// ============================================
+function switchTab(el, view) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ============================================
+//  KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', (e) => {
+  // Cmd+K or Ctrl+K
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    openCommandPalette();
+    return;
+  }
+
+  // Esc
+  if (e.key === 'Escape') {
+    closeCommandPalette();
+    closeModal();
+    return;
+  }
+
+  // Skip if typing in input
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+  // / → focus search
+  if (e.key === '/') {
+    e.preventDefault();
+    document.getElementById('searchInput').focus();
+    return;
+  }
+
+  // C → add candidate
+  if (e.key === 'c' || e.key === 'C') {
+    openModal();
+    return;
+  }
+});
+
+// Search key handler
+function handleSearchKey(e) {
+  if (e.key === 'Escape') e.target.blur();
+}
+
+// ============================================
+//  INIT
+// ============================================
+renderTable();
+renderActivity();
+renderPipeline();
+
+// Welcome toast
+setTimeout(() => showToast('Welcome back, Jamie', '3 interviews scheduled today', 'green'), 600);
+
+// Theme toggle with localStorage persistence
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('caymus-theme', newTheme);
+});
+</script>
+</body>
+</html>

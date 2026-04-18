@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caymus — Dynamic Recruiting Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
+<style>
+  :root {
+    --bg-base: #0F1115; --bg-elevated: #151922; --bg-overlay: #1A1F2B;
+    --bg-hover: #1E2433; --bg-selected: #1F2A3F;
+    --text-primary: #E6EAF2; --text-secondary: #9AA4B2; --text-tertiary: #5A6478;
+    --border-subtle: rgba(255,255,255,0.06); --border-default: rgba(255,255,255,0.10);
+    --accent: #4F7CFF; --accent-dim: rgba(79,124,255,0.15); --accent-hover: #6B93FF;
+    --green: #34C97B; --green-dim: rgba(52,201,123,0.12); --amber: #F5A623;
+    --purple: #A78BFA; --red: #FF5B5B;
+    --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px; --radius-xl: 20px;
+    --sidebar-width: 240px; --topbar-height: 56px;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  [data-theme="light"] {
+    --bg-base: #F4F5F7; --bg-elevated: #FFFFFF; --bg-overlay: #F0F2F5;
+    --bg-hover: #E8EBF0; --bg-selected: #E0E8FF;
+    --text-primary: #111827; --text-secondary: #4B5563; --text-tertiary: #9CA3AF;
+    --border-subtle: rgba(0,0,0,0.05); --border-default: rgba(0,0,0,0.09);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 14px; height: 100%; }
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif; background: var(--bg-base);
+    color: var(--text-primary); height: 100%; overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .app { display: flex; height: 100vh; }
+
+  /* Sidebar */
+  .sidebar {
+    width: var(--sidebar-width); background: var(--bg-elevated);
+    border-right: 1px solid var(--border-subtle); display: flex;
+    flex-direction: column; flex-shrink: 0; z-index: 20;
+  }
+  .sidebar-logo {
+    height: var(--topbar-height); display: flex; align-items: center;
+    padding: 0 18px; border-bottom: 1px solid var(--border-subtle); gap: 10px;
+  }
+  .logo-mark {
+    width: 28px; height: 28px; background: var(--accent); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px; color: white;
+  }
+  .logo-text {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--text-primary);
+  }
+  .sidebar-nav { flex: 1; padding: 12px 8px; overflow-y: auto; }
+  .nav-section-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-tertiary);
+    padding: 12px 10px 6px;
+  }
+  .nav-item {
+    display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+    border-radius: var(--radius-sm); cursor: pointer; transition: all 0.15s;
+    color: var(--text-secondary); font-size: 13.5px; font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .nav-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+  .nav-item.active { background: var(--accent-dim); color: var(--accent); }
+  .nav-icon { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
+  .nav-badge {
+    margin-left: auto; background: var(--accent-dim); color: var(--accent);
+    font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 20px;
+  }
+  .sidebar-footer { padding: 12px 8px; border-top: 1px solid var(--border-subtle); }
+  .user-card { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--radius-sm); }
+  .avatar {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: white;
+  }
+  .user-name { font-size: 12.5px; font-weight: 600; }
+  .user-role { font-size: 11px; color: var(--text-tertiary); }
+
+  /* Main Content */
+  .main { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+  .topbar {
+    height: var(--topbar-height); background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle); display: flex;
+    align-items: center; padding: 0 20px; gap: 16px; flex-shrink: 0;
+  }
+  .topbar-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; }
+  .topbar-spacer { flex: 1; }
+  .search-box { position: relative; width: 320px; }
+  .search-box input {
+    width: 100%; height: 36px; background: var(--bg-base);
+    border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+    padding: 0 36px 0 12px; font-size: 13px; color: var(--text-primary);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .search-box input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+  .search-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--text-tertiary); pointer-events: none; }
+  .btn {
+    height: 36px; padding: 0 16px; border-radius: var(--radius-md); font-size: 13px;
+    font-weight: 500; cursor: pointer; transition: all 0.15s; display: flex;
+    align-items: center; gap: 8px; border: none;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-secondary { background: var(--bg-hover); color: var(--text-secondary); border: 1px solid var(--border-subtle); }
+  .btn-secondary:hover { background: var(--bg-overlay); color: var(--text-primary); }
+  .btn-ghost { background: transparent; color: var(--text-secondary); }
+  .btn-ghost:hover { color: var(--text-primary); }
+  .btn-sm { height: 28px; padding: 0 12px; font-size: 12px; }
+
+  /* Content */
+  .content { flex: 1; overflow: auto; padding: 20px; }
+  .content::-webkit-scrollbar { width: 8px; }
+  .content::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
+
+  /* Stats Cards */
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px; margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--bg-elevated); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg); padding: 20px;
+  }
+  .stat-label { font-size: 12px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .stat-value { font-size: 28px; font-weight: 700; color: var(--text-primary); }
+  .stat-change { font-size: 12px; color: var(--green); margin-top: 4px; }
+
+  /* Section */
+  .section { margin-bottom: 24px; }
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; }
+
+  /* Filters */
+  .filters-bar {
+    display: flex; align-items: center; gap: 12px; padding: 16px;
+    background: var(--bg-elevated); border-radius: var(--radius-lg);
+    margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .filter-group { display: flex; align-items: center; gap: 8px; }
+  .filter-label { font-size: 12px; font-weight: 500; color: var(--text-tertiary); text-transform: uppercase; }
+  .filter-select {
+    height: 32px; padding: 0 28px 0 12px; background: var(--bg-base);
+    border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
+    font-size: 13px; color: var(--text-primary); cursor: pointer;
+    appearance: none; min-width: 140px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239AA4B2' d='M3 4.5L6 7.5L9 4.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 8px center;
+  }
+  .filter-select:focus { outline: none; border-color: var(--accent); }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--border-subtle); }
+  .tab {
+    padding: 10px 16px; font-size: 14px; font-weight: 500; color: var(--text-secondary);
+    border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.15s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .tab:hover { color: var(--text-primary); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-badge { background: var(--accent-dim); color: var(--accent); font-size: 10px; padding: 2px 6px; border-radius: 10px; }
+
+  /* Connections Grid */
+  .connections-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px;
+  }
+  .connection-card {
+    background: var(--bg-elevated); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg); padding: 20px; transition: all 0.15s; cursor: pointer;
+  }
+  .connection-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .connection-header { display: flex; gap: 14px; margin-bottom: 16px; }
+  .connection-avatar {
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700; color: white; flex-shrink: 0;
+  }
+  .connection-info { flex: 1; min-width: 0; }
+  .connection-name { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+  .connection-location { font-size: 12px; color: var(--text-tertiary); }
+  .connection-meta { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+  .meta-tag { font-size: 11px; padding: 3px 8px; background: var(--bg-base); border-radius: 4px; color: var(--text-secondary); }
+  .connection-experience { border-top: 1px solid var(--border-subtle); padding-top: 14px; }
+  .experience-item { display: flex; gap: 10px; margin-bottom: 10px; }
+  .experience-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 5px; flex-shrink: 0; }
+  .experience-content { flex: 1; min-width: 0; }
+  .experience-title { font-size: 13px; font-weight: 500; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .experience-company { font-size: 12px; color: var(--text-secondary); }
+
+  /* SQL Query Section */
+  .sql-section { background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); overflow: hidden; }
+  .sql-toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; background: var(--bg-overlay); border-bottom: 1px solid var(--border-subtle);
+  }
+  .sql-toolbar-title { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .sql-editor { border-bottom: 1px solid var(--border-subtle); }
+  .CodeMirror { height: 120px; background: var(--bg-base) !important; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+  .sql-results { padding: 16px; }
+  .sql-results-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .sql-results-count { font-size: 13px; color: var(--text-secondary); }
+  .results-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .results-table th {
+    background: var(--bg-overlay); padding: 10px 12px; text-align: left;
+    font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text-tertiary); border-bottom: 1px solid var(--border-subtle);
+  }
+  .results-table td { padding: 10px 12px; border-bottom: 1px solid var(--border-subtle); color: var(--text-secondary); }
+  .results-table tr:hover td { background: var(--bg-hover); color: var(--text-primary); }
+  .results-table tr:last-child td { border-bottom: none; }
+
+  /* Quick Queries */
+  .quick-queries { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .quick-query-btn {
+    padding: 6px 12px; background: var(--bg-hover); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm); font-size: 12px; color: var(--text-secondary);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .quick-query-btn:hover { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+
+  /* Loading */
+  .loading-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px; }
+  .loading-spinner { width: 40px; height: 40px; border: 3px solid var(--border-subtle); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px; color: var(--text-tertiary); }
+
+  /* Pagination */
+  .pagination { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 20px; }
+  .page-btn { min-width: 32px; height: 32px; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); font-size: 13px; color: var(--text-secondary); cursor: pointer; }
+  .page-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+  .page-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+  .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* Modal */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 100; opacity: 0; visibility: hidden; transition: all 0.2s; }
+  .modal-overlay.active { opacity: 1; visibility: visible; }
+  .modal { background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); width: 90%; max-width: 640px; max-height: 90vh; overflow: hidden; transform: scale(0.95); transition: transform 0.2s; display: flex; flex-direction: column; }
+  .modal-overlay.active .modal { transform: scale(1); }
+  .modal-header { display: flex; align-items: center; gap: 16px; padding: 20px; border-bottom: 1px solid var(--border-subtle); }
+  .modal-avatar { width: 72px; height: 72px; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--accent), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; color: white; flex-shrink: 0; }
+  .modal-info { flex: 1; }
+  .modal-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .modal-location { font-size: 14px; color: var(--text-secondary); }
+  .modal-close { width: 36px; height: 36px; border-radius: var(--radius-md); background: var(--bg-hover); border: none; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .modal-close:hover { background: var(--border-subtle); color: var(--text-primary); }
+  .modal-content { flex: 1; overflow: auto; padding: 20px; }
+  .modal-section { margin-bottom: 24px; }
+  .modal-section-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-tertiary); margin-bottom: 12px; }
+  .modal-actions { display: flex; gap: 12px; padding: 20px; border-top: 1px solid var(--border-subtle); }
+  .modal-actions .btn { flex: 1; justify-content: center; }
+
+  /* Responsive */
+  @media (max-width: 1024px) { .sidebar { display: none; } .search-box { width: 200px; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">C</div>
+      <div class="logo-text">Caymus</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Recruiting</div>
+      <div class="nav-item active" data-tab="dashboard">
+        <span class="nav-icon">📊</span>
+        <span>Dashboard</span>
+      </div>
+      <div class="nav-item" data-tab="connections">
+        <span class="nav-icon">👥</span>
+        <span>Connections</span>
+        <span class="nav-badge" id="sidebar-count">0</span>
+      </div>
+      <div class="nav-item" data-tab="sql">
+        <span class="nav-icon">⚡</span>
+        <span>SQL Query</span>
+      </div>
+      <div class="nav-section-label">Analytics</div>
+      <div class="nav-item" data-tab="insights">
+        <span class="nav-icon">📈</span>
+        <span>Insights</span>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="avatar">JD</div>
+        <div class="user-info">
+          <div class="user-name">Recruiter</div>
+          <div class="user-role">Caymus AI</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <header class="topbar">
+      <h1 class="topbar-title" id="page-title">Dashboard</h1>
+      <div class="topbar-spacer"></div>
+      <div class="search-box">
+        <input type="text" id="global-search" placeholder="Search candidates...">
+        <span class="search-icon">🔍</span>
+      </div>
+      <button class="btn btn-secondary" id="theme-toggle">🌓</button>
+    </header>
+
+    <div class="content" id="content">
+      <!-- Content loaded dynamically -->
+    </div>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/sql/sql.min.js"></script>
+<script>
+// ============================================
+// API Configuration
+// ============================================
+const API_URL = 'http://localhost:5000/api';
+
+// ============================================
+// State
+// ============================================
+let currentTab = 'dashboard';
+let candidates = [];
+let totalCandidates = 0;
+let currentPage = 1;
+let filters = { location: '', company: '', title: '' };
+let filterOptions = {};
+
+// ============================================
+// API Functions
+// ============================================
+async function api(endpoint, options = {}) {
+  const response = await fetch(`${API_URL}${endpoint}`, options);
+  if (!response.ok) throw new Error(`API Error: ${response.status}`);
+  return response.json();
+}
+
+async function fetchStats() {
+  return api('/stats');
+}
+
+async function fetchCandidates(params = {}) {
+  const queryParams = new URLSearchParams({ page: currentPage, per_page: 20, ...params });
+  return api(`/candidates?${queryParams}`);
+}
+
+async function fetchFilters() {
+  return api('/filters');
+}
+
+async function executeQuery(query) {
+  return api('/query', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query })
+  });
+}
+
+async function advancedSearch(queryType, params = {}) {
+  return api('/search/advanced', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query_type: queryType, ...params })
+  });
+}
+
+// ============================================
+// Render Functions
+// ============================================
+function renderDashboard() {
+  const content = document.getElementById('content');
+  content.innerHTML = `
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Loading dashboard...</p>
+    </div>
+  `;
+
+  fetchStats().then(stats => {
+    document.getElementById('sidebar-count').textContent = stats.total_candidates;
+
+    content.innerHTML = `
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Candidates</div>
+          <div class="stat-value">${stats.total_candidates.toLocaleString()}</div>
+          <div class="stat-change">+${stats.recent_additions} this month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total Experiences</div>
+          <div class="stat-value">${stats.total_experiences.toLocaleString()}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Unique Companies</div>
+          <div class="stat-value">${stats.unique_companies.toLocaleString()}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Locations</div>
+          <div class="stat-value">${stats.unique_locations.toLocaleString()}</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Top Companies</div>
+        </div>
+        <div class="connections-grid" id="top-companies">
+          ${stats.top_companies.map(c => `
+            <div class="connection-card" style="cursor: default;">
+              <div class="connection-header">
+                <div class="connection-avatar" style="background: linear-gradient(135deg, var(--green), var(--amber));">${c.company.charAt(0)}</div>
+                <div class="connection-info">
+                  <div class="connection-name">${c.company}</div>
+                  <div class="connection-location">${c.count} candidates</div>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Top Locations</div>
+        </div>
+        <div class="connections-grid" id="top-locations">
+          ${stats.top_locations.map(l => `
+            <div class="connection-card" style="cursor: default;">
+              <div class="connection-header">
+                <div class="connection-avatar" style="background: linear-gradient(135deg, var(--purple), var(--accent));">${l.location.charAt(0)}</div>
+                <div class="connection-info">
+                  <div class="connection-name">${l.location}</div>
+                  <div class="connection-location">${l.count} candidates</div>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).catch(err => {
+    content.innerHTML = `
+      <div class="empty-state">
+        <p>Failed to load dashboard. Is the server running?\u003c/p>
+        <button class="btn btn-primary" onclick="renderDashboard()" style="margin-top: 16px;">Retry</button>
+      </div>
+    `;
+  });
+}
+
+function renderConnections() {
+  const content = document.getElementById('content');
+  content.innerHTML = `
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Loading connections...</p>
+    </div>
+  `;
+
+  Promise.all([fetchCandidates(filters), fetchFilters()]).then(([data, filtersData]) => {
+    candidates = data.candidates;
+    totalCandidates = data.total;
+    filterOptions = filtersData;
+
+    content.innerHTML = `
+      <div class="filters-bar">
+        <div class="filter-group">
+          <span class="filter-label">Location:</span>
+          <select class="filter-select" id="filter-location">
+            <option value="">All</option>
+            ${filterOptions.locations.map(l => `<option value="${l.value}" ${filters.location === l.value ? 'selected' : ''}>${l.label}</option>`).join('')}
+          </select>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Company:</span>
+          <select class="filter-select" id="filter-company">
+            <option value="">All</option>
+            ${filterOptions.companies.slice(0, 50).map(c => `<option value="${c.value}" ${filters.company === c.value ? 'selected' : ''}>${c.label}</option>`).join('')}
+          </select>
+        </div>
+        <div class="filter-group" style="margin-left: auto;">
+          <span class="filter-label">Showing ${data.candidates.length} of ${data.total}</span>
+        </div>
+      </div>
+
+      <div class="connections-grid" id="connections-grid">
+        ${data.candidates.map(c => renderCandidateCard(c)).join('')}
+      </div>
+
+      <div class="pagination" id="pagination">
+        ${renderPagination(data.total_pages)}
+      </div>
+    `;
+
+    // Attach filter listeners
+    document.getElementById('filter-location')?.addEventListener('change', (e) => {
+      filters.location = e.target.value;
+      currentPage = 1;
+      renderConnections();
+    });
+
+    document.getElementById('filter-company')?.addEventListener('change', (e) => {
+      filters.company = e.target.value;
+      currentPage = 1;
+      renderConnections();
+    });
+
+  }).catch(err => {
+    content.innerHTML = `
+      <div class="empty-state">
+        <p>Failed to load connections.\u003c/p>
+        <button class="btn btn-primary" onclick="renderConnections()" style="margin-top: 16px;">Retry</button>
+      </div>
+    `;
+  });
+}
+
+function renderCandidateCard(candidate) {
+  const initials = `${candidate.first_name?.charAt(0) || ''}${candidate.last_name?.charAt(0) || ''}`;
+  const experiences = candidate.experiences || [];
+  const current = experiences[0] || {};
+
+  return `
+    <div class="connection-card" onclick="openCandidateModal(${candidate.id})">
+      <div class="connection-header">
+        <div class="connection-avatar">${initials}</div>
+        <div class="connection-info">
+          <div class="connection-name">${candidate.full_name}</div>
+          <div class="connection-location">${candidate.location || 'Unknown Location'}</div>
+          <div class="connection-meta">
+            <span class="meta-tag">${experiences.length} positions</span>
+          </div>
+        </div>
+      </div>
+      <div class="connection-experience">
+        ${experiences.slice(0, 2).map(e => `
+          <div class="experience-item">
+            <div class="experience-dot"></div>
+            <div class="experience-content">
+              <div class="experience-title">${e.title}</div>
+              <div class="experience-company">${e.company}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderPagination(totalPages) {
+  if (totalPages <= 1) return '';
+
+  let html = `
+    <button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">‹</button>
+  `;
+
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+      html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+    } else if (i === currentPage - 2 || i === currentPage + 2) {
+      html += `<span style="color: var(--text-tertiary);">...</span>`;
+    }
+  }
+
+  html += `
+    <button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">›</button>
+  `;
+
+  return html;
+}
+
+function renderSQLQuery() {
+  const content = document.getElementById('content');
+  content.innerHTML = `
+    <div class="section">
+      <div class="quick-queries">
+        <button class="quick-query-btn" onclick="runQuickQuery('SELECT * FROM candidates LIMIT 10')">All Candidates</button>
+        <button class="quick-query-btn" onclick="runQuickQuery('SELECT company, COUNT(*) as count FROM experiences GROUP BY company ORDER BY count DESC LIMIT 10')">Top Companies</button>
+        <button class="quick-query-btn" onclick="runQuickQuery('SELECT c.full_name, e.title, e.company FROM candidates c JOIN experiences e ON c.id = e.candidate_id WHERE e.is_current = 1 LIMIT 20')">Current Roles</button>
+        <button class="quick-query-btn" onclick="runQuickQuery('SELECT location, COUNT(*) as count FROM candidates WHERE location IS NOT NULL GROUP BY location ORDER BY count DESC LIMIT 10')">By Location</button>
+      </div>
+
+      <div class="sql-section">
+        <div class="sql-toolbar">
+          <div class="sql-toolbar-title">
+            ⚡ SQL Query Editor
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="executeSQLQuery()">Run Query</button>
+        </div>
+        <div class="sql-editor">
+          <textarea id="sql-input">SELECT * FROM candidates LIMIT 10</textarea>
+        </div>
+        <div class="sql-results" id="sql-results">
+          <div class="sql-results-header">
+            <span class="sql-results-count">Run a query to see results</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Schema Reference</div>
+      <div style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 16px; margin-top: 12px;">
+        <div style="font-family: monospace; font-size: 12px; color: var(--text-secondary);">
+          <div style="margin-bottom: 12px;">
+            <strong style="color: var(--accent);">Table: candidates</strong><br>
+            id, full_name, first_name, last_name, linkedin_url, location, location_city, location_state, location_country, first_outreach_at, added_to_sequence_at
+          </div>
+          <div>
+            <strong style="color: var(--accent);">Table: experiences</strong><br>
+            id, candidate_id, title, company, website, linkedin, start_date, end_date, is_current, sequence
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Initialize CodeMirror
+  setTimeout(() => {
+    if (typeof CodeMirror !== 'undefined') {
+      const editor = CodeMirror.fromTextArea(document.getElementById('sql-input'), {
+        mode: 'text/x-sql',
+        theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dracula' : 'default',
+        lineNumbers: true,
+        lineWrapping: true
+      });
+      window.sqlEditor = editor;
+    }
+  }, 100);
+}
+
+function renderInsights() {
+  const content = document.getElementById('content');
+  content.innerHTML = `
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Loading insights...</p>
+    </div>
+  `;
+
+  fetchStats().then(stats => {
+    content.innerHTML = `
+      <div class="section">
+        <div class="section-title">Role Distribution</div>
+        <div class="connections-grid" style="margin-top: 16px;">
+          ${stats.role_distribution.map(r => `
+            <div class="connection-card">
+              <div class="stat-value">${r.count}</div>
+              <div class="stat-label">${r.role_category}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Advanced Insights</div>
+        <div class="connections-grid" style="margin-top: 16px;">
+          <div class="connection-card" onclick="runAdvancedSearch('company_hoppers')" style="cursor: pointer;">
+            <div class="connection-name">Company Hoppers</div>
+            <div class="connection-location">Candidates with 3+ companies</div>
+          </div>
+          <div class="connection-card" onclick="runAdvancedSearch('senior_candidates')" style="cursor: pointer;">
+            <div class="connection-name">Senior Candidates</div>
+            <div class="connection-location">Senior/Lead/Principal titles</div>
+          </div>
+          <div class="connection-card" onclick="runAdvancedSearch('recent_joins')" style="cursor: pointer;">
+            <div class="connection-name">Recent Joins</div>
+            <div class="connection-location">Added in last 90 days</div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// ============================================
+// Actions
+// ============================================
+function goToPage(page) {
+  currentPage = page;
+  renderConnections();
+}
+
+function runQuickQuery(query) {
+  if (window.sqlEditor) {
+    window.sqlEditor.setValue(query);
+  }
+  executeSQLQuery();
+}
+
+async function executeSQLQuery() {
+  const query = window.sqlEditor ? window.sqlEditor.getValue() : document.getElementById('sql-input').value;
+  const resultsDiv = document.getElementById('sql-results');
+
+  resultsDiv.innerHTML = `
+    <div class="loading-state" style="height: 200px;">
+      <div class="loading-spinner"></div>
+    </div>
+  `;
+
+  try {
+    const data = await executeQuery(query);
+
+    if (data.error) {
+      resultsDiv.innerHTML = `
+        <div class="sql-results-header">
+          <span style="color: var(--red);">Error: ${data.error}</span>
+        </div>
+      `;
+      return;
+    }
+
+    const columns = data.columns || Object.keys(data.results[0] || {});
+
+    resultsDiv.innerHTML = `
+      <div class="sql-results-header">
+        <span class="sql-results-count">${data.count} results</span>
+        <button class="btn btn-secondary btn-sm" onclick="exportResults()">Export CSV</button>
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="results-table">
+          <thead>
+            <tr>${columns.map(col => `<th>${col}</th>`).join('')}</tr>
+          </thead>
+          <tbody>
+            ${data.results.map(row => `
+              <tr>${columns.map(col => `<td>${row[col] || '-'}</td>`).join('')}</tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+
+    window.lastResults = data.results;
+    window.lastColumns = columns;
+
+  } catch (err) {
+    resultsDiv.innerHTML = `
+      <div class="sql-results-header">
+        <span style="color: var(--red);">Error: ${err.message}</span>
+      </div>
+    `;
+  }
+}
+
+async function runAdvancedSearch(queryType) {
+  const content = document.getElementById('content');
+  content.innerHTML = `
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Running search...</p>
+    </div>
+  `;
+
+  try {
+    const data = await advancedSearch(queryType);
+
+    content.innerHTML = `
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Search Results (${data.count})</div>
+          <button class="btn btn-secondary btn-sm" onclick="renderInsights()">Back</button>
+        </div>
+        <div class="connections-grid">
+          ${data.results.map(r => `
+            <div class="connection-card" onclick="openCandidateModal(${r.id})">
+              <div class="connection-header">
+                <div class="connection-avatar">${(r.first_name?.charAt(0) || '') + (r.last_name?.charAt(0) || '')}</div>
+                <div class="connection-info">
+                  <div class="connection-name">${r.full_name}</div>
+                  <div class="connection-location">${r.location || 'Unknown'}</div>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  } catch (err) {
+    content.innerHTML = `
+      <div class="empty-state">
+        <p>Search failed: ${err.message}</p>
+      </div>
+    `;
+  }
+}
+
+async function openCandidateModal(id) {
+  try {
+    const candidate = await api(`/candidates/${id}`);
+    const initials = `${candidate.first_name?.charAt(0) || ''}${candidate.last_name?.charAt(0) || ''}`;
+
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay active';
+    modal.innerHTML = `
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-avatar">${initials}</div>
+          <div class="modal-info">
+            <div class="modal-name">${candidate.full_name}</div>
+            <div class="modal-location">${candidate.location || 'Unknown Location'}</div>
+          </div>
+          <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</button>
+        </div>
+        <div class="modal-content">
+          <div class="modal-section">
+            <div class="modal-section-title">Work Experience</div>
+            ${candidate.experiences?.map(e => `
+              <div style="padding: 12px; background: var(--bg-base); border-radius: var(--radius-md); margin-bottom: 8px;">
+                <div style="font-weight: 600;">${e.title}</div>
+                <div style="color: var(--text-secondary); font-size: 13px;">${e.company}</div>
+                <div style="color: var(--text-tertiary); font-size: 12px; margin-top: 4px;">${e.start_date?.split('T')[0] || ''} - ${e.end_date?.split('T')[0] || 'Present'}</div>
+              </div>
+            `).join('') || 'No experience data'}
+          </div>
+          ${candidate.linkedin_url ? `
+          <div class="modal-section">
+            <div class="modal-section-title">Links</div>
+            <a href="${candidate.linkedin_url}" target="_blank" style="color: var(--accent);">View LinkedIn Profile →</a>
+          </div>
+          ` : ''}
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">Close</button>
+          <button class="btn btn-primary">Add to Sequence</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.remove();
+    });
+  } catch (err) {
+    console.error('Failed to load candidate:', err);
+  }
+}
+
+// ============================================
+// Event Listeners
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  // Initial render
+  renderDashboard();
+
+  // Navigation
+  document.querySelectorAll('.nav-item[data-tab]').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      currentTab = item.dataset.tab;
+      document.getElementById('page-title').textContent = item.querySelector('span:last-child').textContent;
+
+      switch(currentTab) {
+        case 'dashboard': renderDashboard(); break;
+        case 'connections': renderConnections(); break;
+        case 'sql': renderSQLQuery(); break;
+        case 'insights': renderInsights(); break;
+      }
+    });
+  });
+
+  // Global search
+  document.getElementById('global-search').addEventListener('input', (e) => {
+    const term = e.target.value;
+    if (term.length > 2) {
+      filters.search = term;
+      if (currentTab !== 'connections') {
+        document.querySelector('[data-tab="connections"]').click();
+      } else {
+        renderConnections();
+      }
+    }
+  });
+
+  // Theme toggle
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+  });
+});
+</script>
+</body>
+</html>

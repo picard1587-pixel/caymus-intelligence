@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caymus — Geographic Heatmap</title>
+<script>
+  // Load theme immediately before page renders to prevent flash
+  const savedTheme = localStorage.getItem('caymus-theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+   <!-- Firebase SDK -->   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>   <script src="auth.js"></script>
+<style>
+  :root {
+    --bg-base: #0F1115;
+    --bg-elevated: #151922;
+    --bg-overlay: #1A1F2B;
+    --bg-hover: #1E2433;
+    --bg-selected: #1F2A3F;
+    --text-primary: #E6EAF2;
+    --text-secondary: #9AA4B2;
+    --text-tertiary: #5A6478;
+    --text-inverse: #0F1115;
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-default: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
+    --accent: #4F7CFF;
+    --accent-dim: rgba(79,124,255,0.15);
+    --accent-hover: #6B93FF;
+    --green: #34C97B;
+    --green-dim: rgba(52,201,123,0.12);
+    --amber: #F5A623;
+    --amber-dim: rgba(245,166,35,0.12);
+    --red: #FF5B5B;
+    --red-dim: rgba(255,91,91,0.12);
+    --purple: #A78BFA;
+    --purple-dim: rgba(167,139,250,0.12);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --sidebar-width: 224px;
+    --topbar-height: 56px;
+  }
+  [data-theme="light"] {
+    --bg-base: #F4F5F7;
+    --bg-elevated: #FFFFFF;
+    --bg-overlay: #F0F2F5;
+    --bg-hover: #E8EBF0;
+    --bg-selected: #E0E8FF;
+    --text-primary: #111827;
+    --text-secondary: #4B5563;
+    --text-tertiary: #9CA3AF;
+    --text-inverse: #FFFFFF;
+    --border-subtle: rgba(0,0,0,0.05);
+    --border-default: rgba(0,0,0,0.09);
+    --border-strong: rgba(0,0,0,0.16);
+    --accent: #3B6EF0;
+    --accent-dim: rgba(59,110,240,0.10);
+    --accent-hover: #2A5CE0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 14px; height: 100%; }
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    height: 100%;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .app { display: flex; height: 100vh; }
+  .sidebar {
+    width: var(--sidebar-width);
+    height: 100%;
+    background: var(--bg-elevated);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    z-index: 20;
+  }
+  .sidebar-logo {
+    height: var(--topbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 10px;
+  }
+  .logo-mark {
+    width: 28px; height: 28px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    color: white;
+  }
+  .logo-text {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text-primary);
+  }
+  .sidebar-nav {
+    flex: 1;
+    padding: 12px 8px;
+    overflow-y: auto;
+  }
+  .sidebar-nav::-webkit-scrollbar { display: none; }
+  .nav-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    padding: 12px 10px 6px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .nav-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+  .nav-item.active { background: var(--accent-dim); color: var(--accent); position: relative; }
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 3px; height: 16px;
+    background: var(--accent);
+    border-radius: 0 3px 3px 0;
+  }
+  .nav-icon { width: 18px; height: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .sidebar-footer {
+    padding: 12px 8px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .user-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+  .user-card:hover { background: var(--bg-hover); }
+  .avatar {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+  }
+  .user-info { overflow: hidden; }
+  .user-name { font-size: 12.5px; font-weight: 600; color: var(--text-primary); }
+  .user-role { font-size: 11px; color: var(--text-tertiary); }
+  .main { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+  .topbar {
+    height: var(--topbar-height);
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .topbar-title { font-weight: 700; font-size: 16px; color: var(--text-primary); }
+  .topbar-spacer { flex: 1; }
+  .btn {
+    height: 32px;
+    padding: 0 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    text-decoration: none;
+  }
+  .btn-secondary {
+    background: var(--bg-overlay);
+    color: var(--text-primary);
+    border: 1px solid var(--border-default);
+  }
+  .btn-secondary:hover { background: var(--bg-hover); border-color: var(--border-strong); }
+  .content { flex: 1; overflow: auto; padding: 20px; }
+  .page-header { margin-bottom: 20px; }
+  .page-title { font-size: 22px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+  .page-subtitle { font-size: 13px; color: var(--text-secondary); }
+  .map-container {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 500px;
+    margin-bottom: 20px;
+  }
+  #map { height: 100%; width: 100%; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .stat-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+  }
+  .stat-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .stat-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .stat-card-icon {
+    width: 32px; height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .stat-card-icon.blue { background: var(--accent-dim); }
+  .stat-card-icon.green { background: var(--green-dim); }
+  .stat-card-icon.purple { background: var(--purple-dim); }
+  .stat-list { display: flex; flex-direction: column; gap: 8px; }
+  .stat-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+  .stat-label { color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
+  .stat-value { font-weight: 600; color: var(--text-primary); }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--bg-elevated);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 10;
+  }
+  .loading-spinner {
+    width: 40px; height: 40px;
+    border: 3px solid var(--border-subtle);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .leaflet-popup-content-wrapper {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+  }
+  .leaflet-popup-tip { background: var(--bg-elevated); }
+  .leaflet-container a { color: var(--accent); }
+  [data-theme="light"] .leaflet-popup-content-wrapper {
+    background: white;
+    color: #111827;
+  }
+  [data-theme="light"] .leaflet-popup-tip { background: white; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">C</div>
+      <div class="logo-text">Caymus</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Recruiting</div>
+      <a href="recruiting-dashboard.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="connections.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </span>
+        <span class="nav-label">Connections</span>
+      </a>
+      <a href="pipeline.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </span>
+        <span class="nav-label">Pipeline</span>
+      </a>
+      <a href="sequences.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        <span class="nav-label">Sequences</span>
+      </a>
+      <a href="templates.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </span>
+        <span class="nav-label">Templates</span>
+      </a>
+      <div class="nav-section-label">Discovery</div>
+      <a href="xray.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
+        <span class="nav-label">X-Ray Search</span>
+      </a>
+      <a href="heatmap.html" class="nav-item active">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+        </span>
+        <span class="nav-label">Heatmap</span>
+      </a>
+      <a href="development.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </span>
+        <span class="nav-label">Development</span>
+      </a>
+      <div class="nav-section-label">Analytics</div>
+      <a href="analytics.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </span>
+        <span class="nav-label">Performance</span>
+      </a>
+      <a href="news.html" class="nav-item">
+        <span class="nav-icon">📰</span>
+        <span class="nav-label">Job Market</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="avatar">JD</div>
+        <div class="user-info">
+          <div class="user-name">John Doe</div>
+          <div class="user-role">Recruiter</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <h1 class="topbar-title">Geographic Heatmap</h1>
+      <div class="topbar-spacer"></div>
+      <button class="btn btn-secondary" id="theme-toggle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </header>
+
+    <div class="content">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Talent Distribution</h2>
+          <p class="page-subtitle">Visualize your network across geographic regions</p>
+        </div>
+      </div>
+
+      <div class="map-container" style="position: relative;">
+        <div id="map"></div>
+        <div id="loading-overlay" class="loading-overlay">
+          <div class="loading-spinner"></div>
+          <span style="color: var(--text-secondary);">Loading map data...</span>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-title">Connection Density</span>
+            <div class="stat-card-icon blue">📍</div>
+          </div>
+          <div class="stat-list" id="top-locations">
+            <div class="stat-item">
+              <span class="stat-label" style="color: var(--text-tertiary);">Loading...</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-title">By Tenure</span>
+            <div class="stat-card-icon green">⏱️</div>
+          </div>
+          <div class="stat-list" id="tenure-stats">
+            <div class="stat-item">
+              <span class="stat-label">
+                <span class="legend-dot" style="background: #34C97B;"></span>
+                Long Tenure (3+ yrs)
+              </span>
+              <span class="stat-value" id="tenure-long">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">
+                <span class="legend-dot" style="background: #F5A623;"></span>
+                Medium (1-3 yrs)
+              </span>
+              <span class="stat-value" id="tenure-medium">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">
+                <span class="legend-dot" style="background: #4F7CFF;"></span>
+                Short (&lt; 1 yr)
+              </span>
+              <span class="stat-value" id="tenure-short">-</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-title">Overview</span>
+            <div class="stat-card-icon purple">📊</div>
+          </div>
+          <div class="stat-list" id="overview-stats">
+            <div class="stat-item">
+              <span class="stat-label">Total Locations</span>
+              <span class="stat-value" id="total-locations">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Total Connections</span>
+              <span class="stat-value" id="total-connections">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Top Region</span>
+              <span class="stat-value" id="top-region">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+// Theme toggle
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('caymus-theme', newTheme);
+});
+
+// CSV Parser
+function parseCSV(csvText) {
+  const lines = csvText.split('\n');
+  const headers = parseCSVLine(lines[0]);
+  const results = [];
+  for (let i = 1; i < lines.length; i++) {
+    if (!lines[i].trim()) continue;
+    const values = parseCSVLine(lines[i]);
+    const row = {};
+    headers.forEach((header, index) => {
+      row[header] = values[index] || '';
+    });
+    results.push(row);
+  }
+  return results;
+}
+
+function parseCSVLine(line) {
+  const values = [];
+  let current = '';
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === ',' && !inQuotes) {
+      values.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  values.push(current.trim());
+  return values;
+}
+
+// Process data and extract location info
+function processData(rawData) {
+  return rawData.map((row, index) => {
+    const firstName = row['First Name'] || '';
+    const lastName = row['Last Name'] || '';
+    const fullName = `${firstName} ${lastName}`.trim() || `Candidate ${index + 1}`;
+    const location = row['candidate.location'] || 'Unknown Location';
+    const linkedin = row['candidate.linkedin'] || '';
+
+    // Extract current role
+    const currentTitle = row['candidate.experiences.0.title'] || 'Unknown Title';
+    const currentCompany = row['candidate.experiences.0.company'] || 'Unknown Company';
+    const startDate = row['candidate.experiences.0.startDate'] || '';
+
+    // Calculate tenure in months
+    let tenureMonths = 0;
+    if (startDate) {
+      const start = new Date(startDate);
+      if (!isNaN(start.getTime())) {
+        tenureMonths = Math.floor((new Date() - start) / (1000 * 60 * 60 * 24 * 30.44));
+      }
+    }
+
+    return {
+      id: index,
+      name: fullName,
+      location,
+      linkedin,
+      title: currentTitle,
+      company: currentCompany,
+      tenureMonths,
+      startDate
+    };
+  }).filter(c => c.location && c.location !== 'Unknown Location');
+}
+
+// Simple geocoding for common cities (lat/lng)
+const cityCoords = {
+  'san francisco': [37.7749, -122.4194],
+  'sf': [37.7749, -122.4194],
+  'bay area': [37.7749, -122.4194],
+  'new york': [40.7128, -74.0060],
+  'nyc': [40.7128, -74.0060],
+  'los angeles': [34.0522, -118.2437],
+  'la': [34.0522, -118.2437],
+  'chicago': [41.8781, -87.6298],
+  'seattle': [47.6062, -122.3321],
+  'austin': [30.2672, -97.7431],
+  'boston': [42.3601, -71.0589],
+  'denver': [39.7392, -104.9903],
+  'atlanta': [33.7490, -84.3880],
+  'miami': [25.7617, -80.1918],
+  'portland': [45.5152, -122.6784],
+  'san diego': [32.7157, -117.1611],
+  'dallas': [32.7767, -96.7970],
+  'houston': [29.7604, -95.3698],
+  'phoenix': [33.4484, -112.0740],
+  'philadelphia': [39.9526, -75.1652],
+  'san jose': [37.3382, -121.8863],
+  'minneapolis': [44.9778, -93.2650],
+  'detroit': [42.3314, -83.0458],
+  'toronto': [43.6532, -79.3832],
+  'vancouver': [49.2827, -123.1207],
+  'london': [51.5074, -0.1278],
+  'berlin': [52.5200, 13.4050],
+  'paris': [48.8566, 2.3522],
+  'amsterdam': [52.3676, 4.9041],
+  'sydney': [-33.8688, 151.2093],
+  'melbourne': [-37.8136, 144.9631],
+  'singapore': [1.3521, 103.8198],
+  'tokyo': [35.6762, 139.6503],
+  'remote': [39.8283, -98.5795],
+  'usa': [39.8283, -98.5795]
+};
+
+function getCoordinates(location) {
+  const locLower = location.toLowerCase();
+  for (const [city, coords] of Object.entries(cityCoords)) {
+    if (locLower.includes(city)) return coords;
+  }
+  return null;
+}
+
+function getTenureColor(months) {
+  if (months >= 36) return '#34C97B'; // Long - Green
+  if (months >= 12) return '#F5A623'; // Medium - Amber
+  return '#4F7CFF'; // Short - Blue
+}
+
+function getTenureLabel(months) {
+  if (months >= 36) return 'Long (3+ yrs)';
+  if (months >= 12) return 'Medium (1-3 yrs)';
+  return 'Short (< 1 yr)';
+}
+
+// Initialize map
+const map = L.map('map').setView([39.8283, -98.5795], 4);
+
+// Add OpenStreetMap tiles
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors',
+  maxZoom: 18
+}).addTo(map);
+
+// Load and display data
+fetch('final_pin.csv')
+  .then(response => response.text())
+  .then(csvText => {
+    const rawData = parseCSV(csvText);
+    const connections = processData(rawData);
+
+    // Group by location
+    const locationGroups = {};
+    connections.forEach(conn => {
+      const coords = getCoordinates(conn.location);
+      if (coords) {
+        const key = `${coords[0]},${coords[1]}`;
+        if (!locationGroups[key]) {
+          locationGroups[key] = {
+            coords,
+            city: conn.location.split(',')[0],
+            connections: []
+          };
+        }
+        locationGroups[key].connections.push(conn);
+      }
+    });
+
+    // Stats
+    const stats = {
+      totalConnections: connections.length,
+      totalLocations: Object.keys(locationGroups).length,
+      byTenure: { long: 0, medium: 0, short: 0 },
+      topLocations: []
+    };
+
+    // Create markers
+    Object.values(locationGroups).forEach(group => {
+      const count = group.connections.length;
+      const avgTenure = group.connections.reduce((sum, c) => sum + c.tenureMonths, 0) / count;
+
+      // Update tenure stats
+      group.connections.forEach(conn => {
+        if (conn.tenureMonths >= 36) stats.byTenure.long++;
+        else if (conn.tenureMonths >= 12) stats.byTenure.medium++;
+        else stats.byTenure.short++;
+      });
+
+      // Marker size based on count
+      const radius = 6 + Math.min(count * 1.5, 20);
+      const color = getTenureColor(avgTenure);
+
+      const marker = L.circleMarker(group.coords, {
+        radius: radius,
+        fillColor: color,
+        color: '#fff',
+        weight: 2,
+        opacity: 0.8,
+        fillOpacity: 0.7
+      }).addTo(map);
+
+      // Popup content
+      const topConnections = group.connections.slice(0, 5);
+      const moreCount = count - 5;
+      const popupContent = `
+        <div style="min-width: 200px;">
+          <h3 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600;">${group.city}</h3>
+          <p style="margin: 0 0 8px 0; font-size: 12px; color: var(--text-secondary);">${count} connection${count > 1 ? 's' : ''}</p>
+          <div style="border-top: 1px solid var(--border-subtle); padding-top: 8px;">
+            ${topConnections.map(c => `
+              <div style="margin-bottom: 6px; font-size: 12px;">
+                <div style="font-weight: 500;">${c.name}</div>
+                <div style="color: var(--text-secondary);">${c.title} at ${c.company}</div>
+              </div>
+            `).join('')}
+            ${moreCount > 0 ? `<div style="font-size: 11px; color: var(--accent);">+${moreCount} more...</div>` : ''}
+          </div>
+        </div>
+      `;
+
+      marker.bindPopup(popupContent);
+    });
+
+    // Calculate top locations
+    stats.topLocations = Object.values(locationGroups)
+      .map(g => ({ city: g.city, count: g.connections.length }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5);
+
+    // Update stats display
+    document.getElementById('total-locations').textContent = stats.totalLocations;
+    document.getElementById('total-connections').textContent = stats.totalConnections;
+    document.getElementById('top-region').textContent = stats.topLocations[0]?.city || 'N/A';
+
+    document.getElementById('tenure-long').textContent = stats.byTenure.long;
+    document.getElementById('tenure-medium').textContent = stats.byTenure.medium;
+    document.getElementById('tenure-short').textContent = stats.byTenure.short;
+
+    // Top locations list
+    const topLocationsHtml = stats.topLocations.map((loc, i) => `
+      <div class="stat-item">
+        <span class="stat-label">
+          <span style="color: var(--text-tertiary); width: 20px; display: inline-block;">${i + 1}.</span>
+          ${loc.city}
+        </span>
+        <span class="stat-value">${loc.count}</span>
+      </div>
+    `).join('');
+    document.getElementById('top-locations').innerHTML = topLocationsHtml;
+
+    // Fit map to bounds if we have markers
+    if (Object.keys(locationGroups).length > 0) {
+      const bounds = L.latLngBounds(Object.values(locationGroups).map(g => g.coords));
+      map.fitBounds(bounds.pad(0.2));
+    }
+
+    // Hide loading overlay
+    document.getElementById('loading-overlay').style.display = 'none';
+  })
+  .catch(err => {
+    console.error('Failed to load data:', err);
+    document.getElementById('loading-overlay').innerHTML = `
+      <div style="text-align: center; color: var(--red);">
+        <div style="font-size: 32px; margin-bottom: 8px;">❌</div>
+        <div>Failed to load map data</div>
+        <div style="font-size: 12px; color: var(--text-tertiary); margin-top: 8px;">Check that final_pin.csv exists</div>
+      </div>
+    `;
+  });
+</script>
+</body>
+</html>

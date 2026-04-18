@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caymus — X-Ray Search</title>
+<script>
+  // Load theme immediately before page renders to prevent flash
+  const savedTheme = localStorage.getItem('caymus-theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     CSS CUSTOM PROPERTIES
+  ============================================ */
+  :root {
+    --bg-base: #0F1115;
+    --bg-elevated: #151922;
+    --bg-overlay: #1A1F2B;
+    --bg-hover: #1E2433;
+    --bg-selected: #1F2A3F;
+
+    --text-primary: #E6EAF2;
+    --text-secondary: #9AA4B2;
+    --text-tertiary: #5A6478;
+    --text-inverse: #0F1115;
+
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-default: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
+
+    --accent: #4F7CFF;
+    --accent-dim: rgba(79,124,255,0.15);
+    --accent-hover: #6B93FF;
+
+    --green: #34C97B;
+    --green-dim: rgba(52,201,123,0.12);
+    --amber: #F5A623;
+    --amber-dim: rgba(245,166,35,0.12);
+    --red: #FF5B5B;
+    --red-dim: rgba(255,91,91,0.12);
+    --purple: #A78BFA;
+    --purple-dim: rgba(167,139,250,0.12);
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.7);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+
+    --sidebar-width: 224px;
+    --topbar-height: 56px;
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-theme="light"] {
+    --bg-base: #F4F5F7;
+    --bg-elevated: #FFFFFF;
+    --bg-overlay: #F0F2F5;
+    --bg-hover: #E8EBF0;
+    --bg-selected: #E0E8FF;
+
+    --text-primary: #111827;
+    --text-secondary: #4B5563;
+    --text-tertiary: #9CA3AF;
+    --text-inverse: #FFFFFF;
+
+    --border-subtle: rgba(0,0,0,0.05);
+    --border-default: rgba(0,0,0,0.09);
+    --border-strong: rgba(0,0,0,0.16);
+
+    --accent: #3B6EF0;
+    --accent-dim: rgba(59,110,240,0.10);
+    --accent-hover: #2A5CE0;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.18);
+  }
+
+  /* ============================================
+     RESET & BASE
+  ============================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 14px; height: 100%; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    height: 100%;
+    overflow: hidden;
+    transition: background 0.25s var(--ease-in-out), color 0.25s var(--ease-in-out);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============================================
+     LAYOUT
+  ============================================ */
+  .app {
+    display: flex;
+    height: 100vh;
+    position: relative;
+  }
+
+  /* ============================================
+     SIDEBAR
+  ============================================ */
+  .sidebar {
+    width: var(--sidebar-width);
+    height: 100%;
+    background: var(--bg-elevated);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 20;
+    transition: width 0.25s var(--ease-out), background 0.25s var(--ease-in-out);
+  }
+
+  .sidebar-logo {
+    height: var(--topbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .logo-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+
+  .logo-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 12px 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+  }
+
+  .sidebar-nav::-webkit-scrollbar { display: none; }
+
+  .nav-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    padding: 12px 10px 6px;
+    white-space: nowrap;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    text-decoration: none;
+  }
+
+  .nav-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+  .nav-item.active {
+    background: var(--accent-dim);
+    color: var(--accent);
+  }
+
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 3px; height: 16px;
+    background: var(--accent);
+    border-radius: 0 3px 3px 0;
+  }
+
+  .nav-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-badge {
+    margin-left: auto;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+
+  .sidebar-footer {
+    padding: 12px 8px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .user-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s;
+    overflow: hidden;
+  }
+
+  .user-card:hover { background: var(--bg-hover); }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .user-info { overflow: hidden; }
+  .user-name { font-size: 12.5px; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+  .user-role { font-size: 11px; color: var(--text-tertiary); white-space: nowrap; }
+
+  /* ============================================
+     MAIN CONTENT
+  ============================================ */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .topbar {
+    height: var(--topbar-height);
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .topbar-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+  }
+
+  .topbar-spacer { flex: 1; }
+
+  /* ============================================
+     CONTENT AREA
+  ============================================ */
+  .content {
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+  }
+
+  .content::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .content::-webkit-scrollbar-track {
+    background: var(--bg-base);
+  }
+
+  .content::-webkit-scrollbar-thumb {
+    background: var(--border-default);
+    border-radius: 4px;
+  }
+
+  .content::-webkit-scrollbar-thumb:hover {
+    background: var(--border-strong);
+  }
+
+  /* ============================================
+     X-RAY PAGE STYLES
+  ============================================ */
+  .page-header {
+    margin-bottom: 24px;
+  }
+
+  .page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .xray-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 20px;
+  }
+
+  .xray-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .xray-card:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+  }
+
+  .xray-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .xray-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .xray-icon.bd { background: var(--purple-dim); color: var(--purple); }
+  .xray-icon.sourcing { background: var(--green-dim); color: var(--green); }
+  .xray-icon.jobs { background: var(--amber-dim); color: var(--amber); }
+
+  .xray-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .xray-desc {
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  .xray-body {
+    padding: 20px;
+  }
+
+  .search-builder {
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .form-input {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    background: var(--bg-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    color: var(--text-primary);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
+
+  .form-input::placeholder {
+    color: var(--text-tertiary);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .quick-filters {
+    margin-bottom: 16px;
+  }
+
+  .quick-filters-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .filter-chip {
+    padding: 6px 12px;
+    background: var(--bg-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .filter-chip:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    border-color: var(--border-default);
+  }
+
+  .filter-chip.active {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .search-output {
+    background: var(--bg-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    margin-top: 16px;
+  }
+
+  .search-output-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .search-query {
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    word-break: break-all;
+    min-height: 40px;
+  }
+
+  .search-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .btn {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .btn-primary:hover { background: var(--accent-hover); }
+
+  .btn-secondary {
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-overlay);
+    color: var(--text-primary);
+  }
+
+  .btn-sm {
+    height: 28px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .info-box {
+    background: var(--bg-overlay);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+  }
+
+  .info-box-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .info-box-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ============================================
+     LIGHT THEME IMPROVEMENTS
+  ============================================ */
+  [data-theme="light"] .xray-card {
+    border: 1px solid var(--border-default);
+    box-shadow: var(--shadow-sm);
+  }
+
+  [data-theme="light"] .form-input {
+    border: 1px solid var(--border-default);
+  }
+
+  [data-theme="light"] .filter-chip {
+    border: 1px solid var(--border-default);
+    background: var(--bg-base);
+  }
+
+  [data-theme="light"] .filter-chip.active {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  [data-theme="light"] .search-output {
+    border: 1px solid var(--border-default);
+  }
+
+  [data-theme="light"] .info-box {
+    border-left-width: 4px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .xray-grid {
+      grid-template-columns: 1fr;
+    }
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">C</div>
+      <div class="logo-text">Caymus</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Recruiting</div>
+      <a href="recruiting-dashboard.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="connections.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </span>
+        <span class="nav-label">Connections</span>
+      </a>
+      <a href="pipeline.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </span>
+        <span class="nav-label">Pipeline</span>
+      </a>
+      <a href="sequences.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        <span class="nav-label">Sequences</span>
+      </a>
+      <a href="templates.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </span>
+        <span class="nav-label">Templates</span>
+      </a>
+      <div class="nav-section-label">Discovery</div>
+      <a href="xray.html" class="nav-item active">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
+        <span class="nav-label">X-Ray Search</span>
+      </a>
+      <a href="heatmap.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+        </span>
+        <span class="nav-label">Heatmap</span>
+      </a>
+      <a href="development.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </span>
+        <span class="nav-label">Development</span>
+      </a>
+      <div class="nav-section-label">Analytics</div>
+      <a href="analytics.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </span>
+        <span class="nav-label">Performance</span>
+      </a>
+      <a href="news.html" class="nav-item">
+        <span class="nav-icon">📰</span>
+        <span class="nav-label">Job Market</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="avatar">JD</div>
+        <div class="user-info">
+          <div class="user-name">John Doe</div>
+          <div class="user-role">Recruiter</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Topbar -->
+    <header class="topbar">
+      <h1 class="topbar-title">X-Ray Search</h1>
+      <div class="topbar-spacer"></div>
+      <button class="btn btn-secondary" id="theme-toggle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </header>
+
+    <!-- Content Area -->
+    <div class="content">
+      <!-- Page Header -->
+      <div class="page-header">
+        <h2 class="page-title">Google X-Ray Search Builder</h2>
+        <p class="page-subtitle">Generate advanced Google search queries for Business Development, Candidate Sourcing, and Job Postings</p>
+      </div>
+
+      <!-- Info Box -->
+      <div class="info-box">
+        <div class="info-box-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          How X-Ray Search Works
+        </div>
+        <div class="info-box-text">
+          X-Ray searching uses Google site-specific operators (like <code>site:linkedin.com/in/</code>) to find publicly indexed content from specific platforms.
+          These queries help you discover companies hiring, leadership changes, and candidate profiles without needing platform access.
+        </div>
+      </div>
+
+      <!-- X-Ray Cards Grid -->
+      <div class="xray-grid">
+        <!-- Business Development -->
+        <div class="xray-card">
+          <div class="xray-header">
+            <div class="xray-icon bd">&#128188;</div>
+            <div>
+              <div class="xray-title">Business Development</div>
+              <div class="xray-desc">Find hiring signals, expansions, and growth indicators</div>
+            </div>
+          </div>
+          <div class="xray-body">
+            <div class="search-builder">
+              <div class="form-group">
+                <label class="form-label">Target Company</label>
+                <input type="text" class="form-input" id="bd-company" placeholder="e.g., Google, Salesforce, Stripe">
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Location</label>
+                  <input type="text" class="form-input" id="bd-location" placeholder="e.g., Austin, Remote">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Department</label>
+                  <input type="text" class="form-input" id="bd-dept" placeholder="e.g., Sales, Marketing">
+                </div>
+              </div>
+            </div>
+
+            <div class="quick-filters">
+              <div class="quick-filters-title">Quick Filters</div>
+              <div class="filter-chips" id="bd-filters">
+                <button class="filter-chip" data-query="we're hiring">We're Hiring</button>
+                <button class="filter-chip" data-query="rapidly growing">Rapidly Growing</button>
+                <button class="filter-chip" data-query="new office">New Office</button>
+                <button class="filter-chip" data-query="expanding team">Expanding Team</button>
+                <button class="filter-chip" data-query="series A|series B|series C">Funding Round</button>
+                <button class="filter-chip" data-query="startup">Startup</button>
+              </div>
+            </div>
+
+            <div class="search-output">
+              <div class="search-output-label">Generated Query</div>
+              <div class="search-query" id="bd-query">Click filters above or enter details to generate a search query...</div>
+            </div>
+
+            <div class="search-actions">
+              <button class="btn btn-primary" onclick="searchGoogle('bd')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                Search Google
+              </button>
+              <button class="btn btn-secondary" onclick="copyQuery('bd')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy
+              </button>
+              <button class="btn btn-secondary" onclick="clearQuery('bd')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Candidate Sourcing -->
+        <div class="xray-card">
+          <div class="xray-header">
+            <div class="xray-icon sourcing">&#128100;</div>
+            <div>
+              <div class="xray-title">Candidate Sourcing</div>
+              <div class="xray-desc">Find passive candidates and recent job changers</div>
+            </div>
+          </div>
+          <div class="xray-body">
+            <div class="search-builder">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Title/Role</label>
+                  <input type="text" class="form-input" id="cs-title" placeholder="e.g., VP Engineering">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Company</label>
+                  <input type="text" class="form-input" id="cs-company" placeholder="e.g., Amazon">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Location</label>
+                  <input type="text" class="form-input" id="cs-location" placeholder="e.g., Seattle">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Skills</label>
+                  <input type="text" class="form-input" id="cs-skills" placeholder="e.g., Python, React">
+                </div>
+              </div>
+            </div>
+
+            <div class="quick-filters">
+              <div class="quick-filters-title">Quick Filters</div>
+              <div class="filter-chips" id="cs-filters">
+                <button class="filter-chip" data-query="started new role">New Role</button>
+                <button class="filter-chip" data-query="open to work">Open to Work</button>
+                <button class="filter-chip" data-query="now at">Recent Move</button>
+                <button class="filter-chip" data-query="former">Former Employee</button>
+                <button class="filter-chip" data-query="promoted">Promoted</button>
+                <button class="filter-chip" data-query="hiring">Actively Hiring</button>
+              </div>
+            </div>
+
+            <div class="search-output">
+              <div class="search-output-label">Generated Query</div>
+              <div class="search-query" id="cs-query">Click filters above or enter details to generate a search query...</div>
+            </div>
+
+            <div class="search-actions">
+              <button class="btn btn-primary" onclick="searchGoogle('cs')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                Search Google
+              </button>
+              <button class="btn btn-secondary" onclick="copyQuery('cs')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy
+              </button>
+              <button class="btn btn-secondary" onclick="clearQuery('cs')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job Postings -->
+        <div class="xray-card">
+          <div class="xray-header">
+            <div class="xray-icon jobs">&#128204;</div>
+            <div>
+              <div class="xray-title">Job Postings</div>
+              <div class="xray-desc">Discover active job openings and hiring intentions</div>
+            </div>
+          </div>
+          <div class="xray-body">
+            <div class="search-builder">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Job Title</label>
+                  <input type="text" class="form-input" id="jp-title" placeholder="e.g., Software Engineer">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Company</label>
+                  <input type="text" class="form-input" id="jp-company" placeholder="e.g., Netflix">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Location</label>
+                  <input type="text" class="form-input" id="jp-location" placeholder="e.g., San Francisco">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Job Board</label>
+                  <select class="form-input" id="jp-board" style="cursor: pointer;">
+                    <option value="">All Boards</option>
+                    <option value="greenhouse">Greenhouse</option>
+                    <option value="lever">Lever</option>
+                    <option value="workday">Workday</option>
+                    <option value="indeed">Indeed</option>
+                    <option value="linkedin">LinkedIn Jobs</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="quick-filters">
+              <div class="quick-filters-title">Quick Filters</div>
+              <div class="filter-chips" id="jp-filters">
+                <button class="filter-chip" data-query="urgently hiring">Urgently Hiring</button>
+                <button class="filter-chip" data-query="remote">Remote</button>
+                <button class="filter-chip" data-query="senior">Senior Level</button>
+                <button class="filter-chip" data-query="manager">Manager</button>
+                <button class="filter-chip" data-query="director">Director+</button>
+                <button class="filter-chip" data-query="contract">Contract</button>
+              </div>
+            </div>
+
+            <div class="search-output">
+              <div class="search-output-label">Generated Query</div>
+              <div class="search-query" id="jp-query">Click filters above or enter details to generate a search query...</div>
+            </div>
+
+            <div class="search-actions">
+              <button class="btn btn-primary" onclick="searchGoogle('jp')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                Search Google
+              </button>
+              <button class="btn btn-secondary" onclick="copyQuery('jp')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy
+              </button>
+              <button class="btn btn-secondary" onclick="clearQuery('jp')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Query History Section -->
+      <div class="xray-card" style="grid-column: 1 / -1;">
+        <div class="xray-header">
+          <div class="xray-icon" style="background: var(--accent-dim); color: var(--accent);">&#128220;</div>
+          <div>
+            <div class="xray-title">Query History</div>
+            <div class="xray-desc">Recently generated searches - click to reuse or delete</div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="clearAllHistory()" style="margin-left: auto;">
+            Clear All
+          </button>
+        </div>
+        <div class="xray-body">
+          <div id="query-history-list" style="display: flex; flex-direction: column; gap: 8px;">
+            <!-- History items will be inserted here -->
+            <div style="text-align: center; padding: 32px; color: var(--text-tertiary); font-size: 13px;">
+              No queries saved yet. Run a search to add to history.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+// ============================================
+// X-RAY SEARCH BUILDER
+// ============================================
+
+// Query generators for each category
+function generateBDQuery() {
+  const company = document.getElementById('bd-company').value.trim();
+  const location = document.getElementById('bd-location').value.trim();
+  const dept = document.getElementById('bd-dept').value.trim();
+
+  const activeFilters = Array.from(document.querySelectorAll('#bd-filters .filter-chip.active'))
+    .map(btn => btn.dataset.query);
+
+  let query = 'site:linkedin.com/posts/';
+
+  if (company) query += ` "${company}"`;
+  if (location) query += ` "${location}"`;
+  if (dept) query += ` "${dept}"`;
+
+  if (activeFilters.length > 0) {
+    query += ` "${activeFilters.join('" OR "')}"`;
+  }
+
+  return query || 'site:linkedin.com/posts/ "we\'re hiring" OR "expanding team"';
+}
+
+function generateCSQuery() {
+  const title = document.getElementById('cs-title').value.trim();
+  const company = document.getElementById('cs-company').value.trim();
+  const location = document.getElementById('cs-location').value.trim();
+  const skills = document.getElementById('cs-skills').value.trim();
+
+  const activeFilters = Array.from(document.querySelectorAll('#cs-filters .filter-chip.active'))
+    .map(btn => btn.dataset.query);
+
+  let query = 'site:linkedin.com/in/';
+
+  if (title) query += ` "${title}"`;
+  if (company) query += ` "${company}"`;
+  if (location) query += ` "${location}"`;
+  if (skills) query += ` "${skills}"`;
+
+  if (activeFilters.length > 0) {
+    query += ` "${activeFilters.join('" OR "')}"`;
+  }
+
+  return query || 'site:linkedin.com/in/ "started new role" OR "open to work"';
+}
+
+function generateJPQuery() {
+  const title = document.getElementById('jp-title').value.trim();
+  const company = document.getElementById('jp-company').value.trim();
+  const location = document.getElementById('jp-location').value.trim();
+  const board = document.getElementById('jp-board').value;
+
+  const activeFilters = Array.from(document.querySelectorAll('#jp-filters .filter-chip.active'))
+    .map(btn => btn.dataset.query);
+
+  // Job board site targeting with parentheses
+  let sites = [];
+  if (board === 'greenhouse') sites.push('site:boards.greenhouse.io');
+  else if (board === 'lever') sites.push('site:jobs.lever.co');
+  else if (board === 'workday') sites.push('site:workday.com');
+  else if (board === 'indeed') sites.push('site:indeed.com/viewjob');
+  else if (board === 'linkedin') sites.push('site:linkedin.com/jobs/view');
+  else {
+    sites = ['site:linkedin.com/jobs/view', 'site:boards.greenhouse.io', 'site:jobs.lever.co'];
+  }
+
+  let query = '(' + sites.join(' OR ') + ')';
+
+  // Add "manager" as default filter if no specific title selected
+  if (title) {
+    query += ` AND "${title}"`;
+  } else {
+    query += ' AND "manager"';
+  }
+
+  if (company) query += ` AND "${company}"`;
+  if (location) query += ` AND "${location}"`;
+
+  if (activeFilters.length > 0) {
+    query += ` AND "${activeFilters.join('" OR "')}"`;
+  }
+
+  return query;
+}
+
+// Update queries in real-time
+function updateQueries() {
+  document.getElementById('bd-query').textContent = generateBDQuery();
+  document.getElementById('cs-query').textContent = generateCSQuery();
+  document.getElementById('jp-query').textContent = generateJPQuery();
+}
+
+// Search on Google
+function searchGoogle(type) {
+  let query;
+  let category;
+  if (type === 'bd') { query = generateBDQuery(); category = 'Business Development'; }
+  else if (type === 'cs') { query = generateCSQuery(); category = 'Candidate Sourcing'; }
+  else if (type === 'jp') { query = generateJPQuery(); category = 'Job Postings'; }
+
+  // Save to history before searching
+  saveQueryToHistory(query, category);
+
+  window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+}
+
+// ============================================
+// QUERY HISTORY
+// ============================================
+const STORAGE_KEY = 'xray-query-history';
+const MAX_HISTORY = 20;
+
+function getQueryHistory() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveQueryHistory(history) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(0, MAX_HISTORY)));
+}
+
+function saveQueryToHistory(query, category) {
+  if (!query || query.includes('...')) return;
+
+  const history = getQueryHistory();
+
+  // Check if this query already exists
+  const exists = history.some(item => item.query === query);
+  if (exists) return;
+
+  const newItem = {
+    id: Date.now(),
+    query: query,
+    category: category,
+    timestamp: new Date().toISOString()
+  };
+
+  history.unshift(newItem);
+  saveQueryHistory(history);
+  renderQueryHistory();
+}
+
+function deleteQueryFromHistory(id) {
+  let history = getQueryHistory();
+  history = history.filter(item => item.id !== id);
+  saveQueryHistory(history);
+  renderQueryHistory();
+}
+
+function clearAllHistory() {
+  if (confirm('Clear all query history?')) {
+    localStorage.removeItem(STORAGE_KEY);
+    renderQueryHistory();
+  }
+}
+
+function rerunQuery(query) {
+  window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+}
+
+function loadQueryToBuilder(query, category) {
+  // Clear all active filters first
+  document.querySelectorAll('.filter-chip').forEach(chip => chip.classList.remove('active'));
+
+  // Clear all inputs
+  ['bd-company', 'bd-location', 'bd-dept', 'cs-title', 'cs-company',
+   'cs-location', 'cs-skills', 'jp-title', 'jp-company', 'jp-location', 'jp-board']
+    .forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+
+  // Update queries
+  updateQueries();
+
+  // Show the query in the output
+  if (category === 'Business Development') {
+    document.getElementById('bd-query').textContent = query;
+  } else if (category === 'Candidate Sourcing') {
+    document.getElementById('cs-query').textContent = query;
+  } else if (category === 'Job Postings') {
+    document.getElementById('jp-query').textContent = query;
+  }
+}
+
+function renderQueryHistory() {
+  const container = document.getElementById('query-history-list');
+  const history = getQueryHistory();
+
+  if (history.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 32px; color: var(--text-tertiary); font-size: 13px;">
+        No queries saved yet. Run a search to add to history.
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = history.map(item => {
+    const date = new Date(item.timestamp);
+    const timeAgo = getTimeAgo(date);
+
+    let categoryColor = 'var(--accent)';
+    if (item.category === 'Business Development') categoryColor = 'var(--purple)';
+    if (item.category === 'Candidate Sourcing') categoryColor = 'var(--green)';
+    if (item.category === 'Job Postings') categoryColor = 'var(--amber)';
+
+    return `
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--bg-base); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+        <div style="width: 8px; height: 8px; border-radius: 50%; background: ${categoryColor}; flex-shrink: 0;"></div>
+        <div style="flex: 1; min-width: 0;">
+          <div style="font-size: 12px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: monospace;">
+            ${escapeHtml(item.query)}
+          </div>
+          <div style="font-size: 11px; color: var(--text-tertiary); margin-top: 2px;">
+            ${item.category} &#8226; ${timeAgo}
+          </div>
+        </div>
+        <div style="display: flex; gap: 6px; flex-shrink: 0;">
+          <button class="btn btn-secondary btn-sm" onclick="deleteQueryFromHistory(${item.id})" title="Delete" style="color: var(--red);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function getTimeAgo(date) {
+  const now = new Date();
+  const diffMs = now - date;
+  const diffMins = Math.floor(diffMs / 60000);
+  const diffHours = Math.floor(diffMs / 3600000);
+  const diffDays = Math.floor(diffMs / 86400000);
+
+  if (diffMins < 1) return 'Just now';
+  if (diffMins < 60) return `${diffMins}m ago`;
+  if (diffHours < 24) return `${diffHours}h ago`;
+  if (diffDays < 7) return `${diffDays}d ago`;
+  return date.toLocaleDateString();
+}
+
+// Copy query to clipboard
+function copyQuery(type) {
+  let query;
+  if (type === 'bd') query = generateBDQuery();
+  else if (type === 'cs') query = generateCSQuery();
+  else if (type === 'jp') query = generateJPQuery();
+
+  navigator.clipboard.writeText(query).then(() => {
+    alert('Query copied to clipboard!');
+  });
+}
+
+// Clear query inputs and revert to default
+function clearQuery(type) {
+  if (type === 'bd') {
+    document.getElementById('bd-company').value = '';
+    document.getElementById('bd-location').value = '';
+    document.getElementById('bd-dept').value = '';
+    document.querySelectorAll('#bd-filters .filter-chip').forEach(chip => chip.classList.remove('active'));
+  } else if (type === 'cs') {
+    document.getElementById('cs-title').value = '';
+    document.getElementById('cs-company').value = '';
+    document.getElementById('cs-location').value = '';
+    document.getElementById('cs-skills').value = '';
+    document.querySelectorAll('#cs-filters .filter-chip').forEach(chip => chip.classList.remove('active'));
+  } else if (type === 'jp') {
+    document.getElementById('jp-title').value = '';
+    document.getElementById('jp-company').value = '';
+    document.getElementById('jp-location').value = '';
+    document.getElementById('jp-board').value = '';
+    document.querySelectorAll('#jp-filters .filter-chip').forEach(chip => chip.classList.remove('active'));
+  }
+  updateQueries();
+}
+
+// ============================================
+// EVENT LISTENERS
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  // Update queries on input changes
+  ['bd-company', 'bd-location', 'bd-dept', 'cs-title', 'cs-company',
+   'cs-location', 'cs-skills', 'jp-title', 'jp-company', 'jp-location', 'jp-board']
+    .forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', updateQueries);
+    });
+
+  // Filter chip toggle
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      chip.classList.toggle('active');
+      updateQueries();
+    });
+  });
+
+  // Theme toggle with localStorage persistence
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('caymus-theme', newTheme);
+  });
+
+  // Initial query generation
+  updateQueries();
+
+  // Render query history
+  renderQueryHistory();
+});
+</script>
+</body>
+</html>

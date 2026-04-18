@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caymus — Business Development</title>
+<script>
+  // Load theme immediately before page renders to prevent flash
+  const savedTheme = localStorage.getItem('caymus-theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     CSS CUSTOM PROPERTIES
+  ============================================ */
+  :root {
+    --bg-base: #0F1115;
+    --bg-elevated: #151922;
+    --bg-overlay: #1A1F2B;
+    --bg-hover: #1E2433;
+    --bg-selected: #1F2A3F;
+
+    --text-primary: #E6EAF2;
+    --text-secondary: #9AA4B2;
+    --text-tertiary: #5A6478;
+    --text-inverse: #0F1115;
+
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-default: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
+
+    --accent: #4F7CFF;
+    --accent-dim: rgba(79,124,255,0.15);
+    --accent-hover: #6B93FF;
+
+    --green: #34C97B;
+    --green-dim: rgba(52,201,123,0.12);
+    --amber: #F5A623;
+    --amber-dim: rgba(245,166,35,0.12);
+    --red: #FF5B5B;
+    --red-dim: rgba(255,91,91,0.12);
+    --purple: #A78BFA;
+    --purple-dim: rgba(167,139,250,0.12);
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.7);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+
+    --sidebar-width: 224px;
+    --topbar-height: 56px;
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-theme="light"] {
+    --bg-base: #F4F5F7;
+    --bg-elevated: #FFFFFF;
+    --bg-overlay: #F0F2F5;
+    --bg-hover: #E8EBF0;
+    --bg-selected: #E0E8FF;
+
+    --text-primary: #111827;
+    --text-secondary: #4B5563;
+    --text-tertiary: #9CA3AF;
+    --text-inverse: #FFFFFF;
+
+    --border-subtle: rgba(0,0,0,0.05);
+    --border-default: rgba(0,0,0,0.09);
+    --border-strong: rgba(0,0,0,0.16);
+
+    --accent: #3B6EF0;
+    --accent-dim: rgba(59,110,240,0.10);
+    --accent-hover: #2A5CE0;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.18);
+  }
+
+  /* ============================================
+     RESET & BASE
+  ============================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 14px; height: 100%; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    height: 100%;
+    overflow: hidden;
+    transition: background 0.25s var(--ease-in-out), color 0.25s var(--ease-in-out);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============================================
+     LAYOUT
+  ============================================ */
+  .app {
+    display: flex;
+    height: 100vh;
+    position: relative;
+  }
+
+  /* ============================================
+     SIDEBAR
+  ============================================ */
+  .sidebar {
+    width: var(--sidebar-width);
+    height: 100%;
+    background: var(--bg-elevated);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 20;
+    transition: width 0.25s var(--ease-out), background 0.25s var(--ease-in-out);
+  }
+
+  .sidebar-logo {
+    height: var(--topbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .logo-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+
+  .logo-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 12px 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+  }
+
+  .sidebar-nav::-webkit-scrollbar { display: none; }
+
+  .nav-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    padding: 12px 10px 6px;
+    white-space: nowrap;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    text-decoration: none;
+  }
+
+  .nav-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+  .nav-item.active {
+    background: var(--accent-dim);
+    color: var(--accent);
+  }
+
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 3px; height: 16px;
+    background: var(--accent);
+    border-radius: 0 3px 3px 0;
+  }
+
+  .nav-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-badge {
+    margin-left: auto;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+
+  .sidebar-footer {
+    padding: 12px 8px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .user-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s;
+    overflow: hidden;
+  }
+
+  .user-card:hover { background: var(--bg-hover); }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .user-info { overflow: hidden; }
+  .user-name { font-size: 12.5px; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+  .user-role { font-size: 11px; color: var(--text-tertiary); white-space: nowrap; }
+
+  /* ============================================
+     MAIN CONTENT
+  ============================================ */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .topbar {
+    height: var(--topbar-height);
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .topbar-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+  }
+
+  .topbar-spacer { flex: 1; }
+
+  /* ============================================
+     CONTENT AREA
+  ============================================ */
+  .content {
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+  }
+
+  .content::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .content::-webkit-scrollbar-track {
+    background: var(--bg-base);
+  }
+
+  .content::-webkit-scrollbar-thumb {
+    background: var(--border-default);
+    border-radius: 4px;
+  }
+
+  .content::-webkit-scrollbar-thumb:hover {
+    background: var(--border-strong);
+  }
+
+  /* ============================================
+     DEVELOPMENT PAGE STYLES
+  ============================================ */
+  .page-header {
+    margin-bottom: 24px;
+  }
+
+  .page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .alert-banner {
+    background: linear-gradient(135deg, var(--purple-dim), var(--accent-dim));
+    border: 1px solid var(--purple);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .alert-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--purple);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .alert-content {
+    flex: 1;
+  }
+
+  .alert-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+
+  .alert-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .insight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+  }
+
+  .insight-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .insight-card:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+  }
+
+  .insight-card.priority {
+    border-color: var(--purple);
+    border-width: 2px;
+  }
+
+  .insight-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .insight-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .insight-icon.purple { background: var(--purple-dim); color: var(--purple); }
+  .insight-icon.green { background: var(--green-dim); color: var(--green); }
+  .insight-icon.amber { background: var(--amber-dim); color: var(--amber); }
+  .insight-icon.red { background: var(--red-dim); color: var(--red); }
+
+  .insight-title-wrap {
+    flex: 1;
+  }
+
+  .insight-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .priority-badge {
+    background: var(--purple);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .insight-subtitle {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+  }
+
+  .insight-body {
+    padding: 20px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  .trigger-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .trigger-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+    background: var(--bg-base);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .trigger-bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .trigger-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .data-source-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .data-source {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: var(--bg-base);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .data-source svg {
+    width: 14px;
+    height: 14px;
+    color: var(--accent);
+  }
+
+  .action-box {
+    background: var(--bg-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-top: 16px;
+  }
+
+  .action-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .action-script {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-style: italic;
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
+  }
+
+  .btn {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .btn-primary:hover { background: var(--accent-hover); }
+
+  .btn-secondary {
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-overlay);
+    color: var(--text-primary);
+  }
+
+  .btn-sm {
+    height: 28px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .btn-purple {
+    background: var(--purple);
+    color: white;
+  }
+
+  .btn-purple:hover {
+    background: var(--purple);
+    filter: brightness(1.1);
+  }
+
+  .search-preview {
+    background: var(--bg-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    margin-top: 12px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+    word-break: break-all;
+  }
+
+  /* ============================================
+     LIGHT THEME IMPROVEMENTS
+  ============================================ */
+  [data-theme="light"] .insight-card {
+    border: 1px solid var(--border-default);
+    box-shadow: var(--shadow-sm);
+  }
+
+  [data-theme="light"] .trigger-item,
+  [data-theme="light"] .data-source,
+  [data-theme="light"] .action-box,
+  [data-theme="light"] .search-preview {
+    border: 1px solid var(--border-default);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .insight-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Leadership Table Styles */
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .leadership-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .leadership-table th {
+    background: var(--bg-overlay);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    border-bottom: 1px solid var(--border-subtle);
+    white-space: nowrap;
+  }
+
+  .leadership-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+  }
+
+  .leadership-table tr:hover td {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+  }
+
+  .leadership-table tr:last-child td { border-bottom: none; }
+
+  .leader-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--purple), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .leader-name {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .leader-title {
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  .leader-company {
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .leader-tenure {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: var(--purple-dim);
+    color: var(--purple);
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .leader-tenure.new {
+    background: var(--green-dim);
+    color: var(--green);
+  }
+
+  .leader-linkedin a {
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .leader-linkedin a:hover { text-decoration: underline; }
+
+  [data-theme="light"] .leadership-table-container {
+    border: 1px solid var(--border-default);
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">C</div>
+      <div class="logo-text">Caymus</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Recruiting</div>
+      <a href="recruiting-dashboard.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="connections.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </span>
+        <span class="nav-label">Connections</span>
+      </a>
+      <a href="pipeline.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </span>
+        <span class="nav-label">Pipeline</span>
+      </a>
+      <a href="sequences.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        <span class="nav-label">Sequences</span>
+      </a>
+      <a href="templates.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </span>
+        <span class="nav-label">Templates</span>
+      </a>
+      <div class="nav-section-label">Discovery</div>
+      <a href="xray.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
+        <span class="nav-label">X-Ray Search</span>
+      </a>
+      <a href="heatmap.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+        </span>
+        <span class="nav-label">Heatmap</span>
+      </a>
+      <a href="development.html" class="nav-item active">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </span>
+        <span class="nav-label">Development</span>
+      </a>
+      <div class="nav-section-label">Analytics</div>
+      <a href="analytics.html" class="nav-item">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </span>
+        <span class="nav-label">Performance</span>
+      </a>
+      <a href="news.html" class="nav-item">
+        <span class="nav-icon">📰</span>
+        <span class="nav-label">Job Market</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="avatar">JD</div>
+        <div class="user-info">
+          <div class="user-name">John Doe</div>
+          <div class="user-role">Recruiter</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Topbar -->
+    <header class="topbar">
+      <h1 class="topbar-title">Business Development</h1>
+      <div class="topbar-spacer"></div>
+      <button class="btn btn-secondary" id="theme-toggle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </header>
+
+    <!-- Content Area -->
+    <div class="content">
+      <!-- Page Header -->
+      <div class="page-header">
+        <h2 class="page-title">Business Development Triggers</h2>
+        <p class="page-subtitle">Discover actionable intelligence from your data to identify new opportunities</p>
+      </div>
+
+      <!-- Alert Banner -->
+      <div class="alert-banner">
+        <div class="alert-icon">&#11088;</div>
+        <div class="alert-content">
+          <div class="alert-title">Leadership Changes = Highest Opportunity</div>
+          <div class="alert-text">New VPs/CTOs/CEOs bring 90-day mandates to "fix hiring" and haven't been burned by bad recruiters yet</div>
+        </div>
+      </div>
+
+      <!-- Insight Cards Grid -->
+      <div class="insight-grid">
+        <!-- Leadership Change Triggers - HIGHEST PRIORITY (Full Width) -->
+        <div class="insight-card priority" style="grid-column: 1 / -1;">
+          <div class="insight-header">
+            <div class="insight-icon purple">&#128081;</div>
+            <div class="insight-title-wrap">
+              <div class="insight-title">
+                Leadership Change Triggers
+                <span class="priority-badge">HIGHEST PRIORITY</span>
+              </div>
+              <div class="insight-subtitle">Flag when target companies hire new VPs/CTOs/CEOs</div>
+            </div>
+          </div>
+          <div class="insight-body">
+            <div class="section-title">Why It Works</div>
+            <div class="trigger-list">
+              <div class="trigger-item">
+                <div class="trigger-bullet"></div>
+                <div class="trigger-text">New leaders bring 90-day mandates to "fix hiring"</div>
+              </div>
+              <div class="trigger-item">
+                <div class="trigger-bullet"></div>
+                <div class="trigger-text">They haven't been burned by bad recruiters yet</div>
+              </div>
+              <div class="trigger-item">
+                <div class="trigger-bullet"></div>
+                <div class="trigger-text">First impression advantage</div>
+              </div>
+            </div>
+
+            <div class="action-box">
+              <div class="action-label">Outreach Script</div>
+              <div class="action-script">
+                "Congrats on the new VP Engineering role! I specialize in technical placements for [Industry]. Would love to learn about your hiring plans..."
+              </div>
+            </div>
+
+            <!-- RECENT LEADERSHIP CHANGES TABLE -->
+            <div class="section-title" style="margin-top: 24px; display: flex; align-items: center; gap: 8px;">
+              Recent Leadership Changes (Last 90 Days)
+              <span id="leadership-count" class="nav-badge" style="margin-left: auto;">Loading...</span>
+            </div>
+            <div class="leadership-table-container" style="background: var(--bg-base); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: hidden;">
+              <div id="leadership-loading" style="padding: 32px; text-align: center; color: var(--text-tertiary);">
+                <div style="width: 32px; height: 32px; border: 3px solid var(--border-subtle); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 12px;"></div>
+                Loading leadership data...
+              </div>
+              <div id="leadership-table-wrapper" style="display: none; max-height: 560px; overflow-y: auto;">
+                <div id="leadership-table">
+                  <!-- Table will be populated here -->
+                </div>
+                <div id="leadership-view-all" style="display: none; padding: 16px; text-align: center; border-top: 1px solid var(--border-subtle); background: var(--bg-elevated);">
+                  <a href="development-leaders.html" class="btn btn-secondary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                    View Full List
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: New BD Modules -->
+      <div class="insight-grid" style="margin-top: 20px;">
+        <!-- Company Hiring Velocity Tracker -->
+        <div class="insight-card">
+          <div class="insight-header">
+            <div class="insight-icon" style="background: var(--green-dim); color: var(--green);">&#128640;</div>
+            <div class="insight-title-wrap">
+              <div class="insight-title">
+                High Velocity Hiring
+                <span class="priority-badge" style="background: var(--green-dim); color: var(--green);">GROWTH SIGNAL</span>
+              </div>
+              <div class="insight-subtitle">Companies with 3+ new hires in 90 days</div>
+            </div>
+          </div>
+          <div class="insight-body">
+            <div class="section-title" style="display: flex; align-items: center; gap: 8px;">
+              Rapid Growth Companies
+              <span id="velocity-count" class="nav-badge" style="margin-left: auto;">Loading...</span>
+            </div>
+            <div id="velocity-table-container" class="leadership-table-container" style="background: var(--bg-base); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: hidden;">
+              <div id="velocity-loading" style="padding: 32px; text-align: center; color: var(--text-tertiary);">
+                <div style="width: 32px; height: 32px; border: 3px solid var(--border-subtle); border-top-color: var(--green); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 12px;"></div>
+                Analyzing hiring velocity...
+              </div>
+              <div id="velocity-table-wrapper" style="display: none; max-height: 400px; overflow-y: auto;">
+                <div id="velocity-table">
+                  <!-- Table populated by JS -->
+                </div>
+                <div id="velocity-view-all" style="display: none; padding: 16px; text-align: center; border-top: 1px solid var(--border-subtle); background: var(--bg-elevated);">
+                  <a href="development-velocity.html" class="btn btn-secondary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                    View Full List
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Talent Movement Heatmap -->
+        <div class="insight-card">
+          <div class="insight-header">
+            <div class="insight-icon" style="background: var(--accent-dim); color: var(--accent);">&#128200;</div>
+            <div class="insight-title-wrap">
+              <div class="insight-title">Talent Movement</div>
+              <div class="insight-subtitle">Where candidates are moving to</div>
+            </div>
+          </div>
+          <div class="insight-body">
+            <div class="section-title" style="display: flex; align-items: center; gap: 8px;">
+              Top Destinations
+              <span id="movement-count" class="nav-badge" style="margin-left: auto;">Loading...</span>
+            </div>
+            <div id="movement-container" style="max-height: 400px; overflow-y: auto;">
+              <div id="movement-loading" style="padding: 32px; text-align: center; color: var(--text-tertiary);">
+                <div style="width: 32px; height: 32px; border: 3px solid var(--border-subtle); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 12px;"></div>
+                Mapping talent flows...
+              </div>
+              <div id="movement-content" style="display: none;">
+                <!-- Content populated by JS -->
+              </div>
+            </div>
+            <div id="movement-view-all" style="display: none; padding: 16px; text-align: center; border-top: 1px solid var(--border-subtle); background: var(--bg-elevated); margin-top: 8px;">
+              <a href="development-movement.html" class="btn btn-secondary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                View Full List
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: Department Expansion & Churn Window -->
+      <div class="insight-grid" style="margin-top: 20px;">
+        <!-- Department-Specific Expansion -->
+        <div class="insight-card">
+          <div class="insight-header">
+            <div class="insight-icon" style="background: var(--purple-dim); color: var(--purple);">&#128188;</div>
+            <div class="insight-title-wrap">
+              <div class="insight-title">Department Expansion</div>
+              <div class="insight-subtitle">Which teams are growing fastest</div>
+            </div>
+          </div>
+          <div class="insight-body">
+            <div class="section-title" style="display: flex; align-items: center; gap: 8px;">
+              Hiring by Department
+              <span id="dept-count" class="nav-badge" style="margin-left: auto;">Loading...</span>
+            </div>
+            <div id="dept-container" style="max-height: 400px; overflow-y: auto;">
+              <div id="dept-loading" style="padding: 32px; text-align: center; color: var(--text-tertiary);">
+                <div style="width: 32px; height: 32px; border: 3px solid var(--border-subtle); border-top-color: var(--purple); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 12px;"></div>
+                Analyzing department growth...
+              </div>
+              <div id="dept-content" style="display: none;">
+                <!-- Content populated by JS -->
+              </div>
+            </div>
+            <div id="dept-view-all" style="display: none; padding: 16px; text-align: center; border-top: 1px solid var(--border-subtle); background: var(--bg-elevated); margin-top: 8px;">
+              <a href="development-departments.html" class="btn btn-secondary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                View Full List
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-3 Year Churn Window -->
+        <div class="insight-card">
+          <div class="insight-header">
+            <div class="insight-icon" style="background: var(--amber-dim); color: var(--amber);">&#9200;</div>
+            <div class="insight-title-wrap">
+              <div class="insight-title">
+                Churn Window
+                <span class="priority-badge" style="background: var(--amber-dim); color: var(--amber);">OPPORTUNITY</span>
+              </div>
+              <div class="insight-subtitle">Candidates in their "looking around" window</div>
+            </div>
+          </div>
+          <div class="insight-body">
+            <div class="section-title" style="display: flex; align-items: center; gap: 8px;">
+              2-3 Year Tenure Candidates
+              <span id="churn-count" class="nav-badge" style="margin-left: auto;">Loading...</span>
+            </div>
+            <div id="churn-table-container" class="leadership-table-container" style="background: var(--bg-base); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: hidden;">
+              <div id="churn-loading" style="padding: 32px; text-align: center; color: var(--text-tertiary);">
+                <div style="width: 32px; height: 32px; border: 3px solid var(--border-subtle); border-top-color: var(--amber); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 12px;"></div>
+                Identifying churn candidates...
+              </div>
+              <div id="churn-table-wrapper" style="display: none; max-height: 400px; overflow-y: auto;">
+                <div id="churn-table">
+                  <!-- Table populated by JS -->
+                </div>
+                <div id="churn-view-all" style="display: none; padding: 16px; text-align: center; border-top: 1px solid var(--border-subtle); background: var(--bg-elevated);">
+                  <a href="development-churn.html" class="btn btn-secondary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                    View Full List
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+// Theme toggle with localStorage persistence
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('caymus-theme', newTheme);
+});
+
+// Open X-Ray Search with leadership query pre-filled
+// ============================================
+// LEADERSHIP CHANGES TABLE
+// ============================================
+
+const EXEC_TITLES = ['vp', 'vice president', 'ceo', 'chief executive', 'cto', 'cio', 'cfo', 'coo', 'cmo', 'chief', 'president', 'director', 'head of', 'founder', 'partner'];
+
+function parseCSV(csvText) {
+  const lines = csvText.split('\n');
+  const headers = parseCSVLine(lines[0]);
+  const results = [];
+
+  for (let i = 1; i < lines.length; i++) {
+    if (!lines[i].trim()) continue;
+    const values = parseCSVLine(lines[i]);
+    const row = {};
+    headers.forEach((header, index) => {
+      row[header] = values[index] || '';
+    });
+    results.push(row);
+  }
+
+  return results;
+}
+
+function parseCSVLine(line) {
+  const values = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === ',' && !inQuotes) {
+      values.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  values.push(current.trim());
+  return values;
+}
+
+function processConnectionsData(rawData) {
+  return rawData.map((row, index) => {
+    const firstName = row['First Name'] || '';
+    const lastName = row['Last Name'] || '';
+    const fullName = `${firstName} ${lastName}`.trim() || row['candidate.name'] || `Candidate ${index + 1}`;
+    const location = row['candidate.location'] || 'Unknown Location';
+    const linkedin = row['candidate.linkedin'] || '';
+
+    // Extract experiences
+    const experiences = [];
+    for (let i = 0; i < 4; i++) {
+      const title = row[`candidate.experiences.${i}.title`] || '';
+      const company = row[`candidate.experiences.${i}.company`] || '';
+      const startDate = row[`candidate.experiences.${i}.startDate`] || '';
+      const endDate = row[`candidate.experiences.${i}.endDate`] || '';
+
+      if (title && company) {
+        experiences.push({ title, company, startDate, endDate });
+      }
+    }
+
+    // Get current role (first experience)
+    const currentRole = experiences[0] || { title: 'Unknown Title', company: 'Unknown Company' };
+
+    return {
+      id: index,
+      name: fullName,
+      firstName,
+      lastName,
+      location,
+      linkedin,
+      experiences,
+      currentRole
+    };
+  });
+}
+
+function isExecutiveTitle(title) {
+  if (!title) return false;
+  const lowerTitle = title.toLowerCase();
+  return EXEC_TITLES.some(execTitle => lowerTitle.includes(execTitle));
+}
+
+function getDaysSinceStart(startDate) {
+  if (!startDate) return null;
+  const start = new Date(startDate);
+  if (isNaN(start.getTime())) return null;
+  const now = new Date();
+  const diffMs = now - start;
+  return Math.floor(diffMs / (1000 * 60 * 60 * 24));
+}
+
+function calculateTenure(startDate, endDate) {
+  if (!startDate) return '-';
+  const start = new Date(startDate);
+  const end = endDate ? new Date(endDate) : new Date();
+  if (isNaN(start.getTime())) return '-';
+
+  const diffMs = end - start;
+  const diffMonths = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30.44));
+  const years = Math.floor(diffMonths / 12);
+  const months = diffMonths % 12;
+
+  if (years > 0 && months > 0) {
+    return `${years} yr ${months} mo`;
+  } else if (years > 0) {
+    return `${years} yr`;
+  } else if (months > 0) {
+    return `${months} mo`;
+  } else {
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    if (days < 30) {
+      return `${days} days`;
+    }
+    return '< 1 mo';
+  }
+}
+
+function loadLeadershipChanges() {
+  fetch('final_pin.csv')
+    .then(response => response.text())
+    .then(csvText => {
+      const rawData = parseCSV(csvText);
+      const connections = processConnectionsData(rawData);
+
+      // Filter for executives with recent start dates (90 days or less)
+      const ninetyDaysAgo = new Date();
+      ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+
+      const leadershipChanges = connections.filter(conn => {
+        const currentRole = conn.currentRole;
+        if (!isExecutiveTitle(currentRole.title)) return false;
+
+        const startDate = currentRole.startDate ? new Date(currentRole.startDate) : null;
+        if (!startDate || isNaN(startDate.getTime())) return false;
+
+        // Must have started within last 90 days and be current role (no end date)
+        return startDate >= ninetyDaysAgo && !currentRole.endDate;
+      }).sort((a, b) => {
+        // Sort by most recent first
+        const dateA = new Date(a.currentRole.startDate);
+        const dateB = new Date(b.currentRole.startDate);
+        return dateB - dateA;
+      });
+
+      renderLeadershipTable(leadershipChanges);
+    })
+    .catch(err => {
+      console.error('Failed to load CSV:', err);
+      document.getElementById('leadership-loading').innerHTML = `
+        <div style="text-align: center; padding: 32px; color: var(--text-tertiary);">
+          <div style="font-size: 24px; margin-bottom: 8px;">&#128683;</div>
+          <div>Failed to load data. Please ensure final_pin.csv exists.</div>
+        </div>
+      `;
+    });
+}
+
+function renderLeadershipTable(leaders) {
+  document.getElementById('leadership-loading').style.display = 'none';
+  document.getElementById('leadership-table-wrapper').style.display = 'block';
+  document.getElementById('leadership-count').textContent = `${leaders.length} found`;
+
+  if (leaders.length === 0) {
+    document.getElementById('leadership-table').innerHTML = `
+      <div style="text-align: center; padding: 32px; color: var(--text-tertiary);">
+        <div style="font-size: 24px; margin-bottom: 8px;">&#128270;</div>
+        <div>No recent leadership changes found in the last 90 days.</div>
+        <div style="font-size: 12px; margin-top: 8px;">Looking for VP, Director, CEO, CTO, C-level positions</div>
+      </div>
+    `;
+    return;
+  }
+
+  // Store full leaders list in sessionStorage for the full list page
+  sessionStorage.setItem('leadershipChanges', JSON.stringify(leaders));
+
+  // Show view all button if more than 20
+  const hasMore = leaders.length > 20;
+  if (hasMore) {
+    document.getElementById('leadership-view-all').style.display = 'block';
+  }
+
+  // Only show first 20 in this view
+  const displayLeaders = leaders.slice(0, 20);
+
+  const tableHTML = `
+    <table class="leadership-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Title</th>
+          <th>Company</th>
+          <th>Location</th>
+          <th>Tenure</th>
+          <th>LinkedIn</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${displayLeaders.map(leader => {
+          const daysSince = getDaysSinceStart(leader.currentRole.startDate);
+          const isVeryNew = daysSince !== null && daysSince < 30;
+          const tenureText = calculateTenure(leader.currentRole.startDate, leader.currentRole.endDate);
+
+          return `
+            <tr>
+              <td>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div class="leader-avatar">${leader.firstName.charAt(0)}${leader.lastName.charAt(0)}</div>
+                  <div>
+                    <div class="leader-name">${leader.name}</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="leader-title">${leader.currentRole.title}</div>
+              </td>
+              <td>
+                <div class="leader-company">${leader.currentRole.company}</div>
+              </td>
+              <td>${leader.location}</td>
+              <td>
+                <span class="leader-tenure ${isVeryNew ? 'new' : ''}">
+                  ${isVeryNew ? '&#127775;' : ''} ${tenureText}
+                </span>
+              </td>
+              <td class="leader-linkedin">
+                ${leader.linkedin ? `
+                  <a href="${leader.linkedin}" target="_blank" title="View Profile">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #0A66C2;">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </a>
+                ` : '-'}
+              </td>
+            </tr>
+          `;
+        }).join('')}
+      </tbody>
+    </table>
+  `;
+
+  document.getElementById('leadership-table').innerHTML = tableHTML;
+}
+
+// ============================================
+// MODULE 1: COMPANY HIRING VELOCITY TRACKER
+// ============================================
+function analyzeHiringVelocity(connections) {
+  const ninetyDaysAgo = new Date();
+  ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+
+  // Group by company and count recent hires
+  const companyHires = {};
+
+  connections.forEach(conn => {
+    const company = conn.currentRole?.company;
+    const startDate = conn.currentRole?.startDate ? new Date(conn.currentRole.startDate) : null;
+
+    if (company && company !== 'Unknown Company' && startDate && !isNaN(startDate.getTime())) {
+      if (startDate >= ninetyDaysAgo) {
+        if (!companyHires[company]) {
+          companyHires[company] = { count: 0, recentHires: [] };
+        }
+        companyHires[company].count++;
+        companyHires[company].recentHires.push({
+          name: conn.name,
+          title: conn.currentRole.title,
+          startDate: conn.currentRole.startDate
+        });
+      }
+    }
+  });
+
+  // Filter for companies with 3+ hires and sort by count
+  return Object.entries(companyHires)
+    .filter(([_, data]) => data.count >= 3)
+    .sort((a, b) => b[1].count - a[1].count)
+    .slice(0, 10); // Top 10
+}
+
+function renderVelocityTable(companies) {
+  document.getElementById('velocity-loading').style.display = 'none';
+  document.getElementById('velocity-table-wrapper').style.display = 'block';
+  document.getElementById('velocity-count').textContent = `${companies.length} companies`;
+
+  // Store data for full list page
+  sessionStorage.setItem('velocityData', JSON.stringify(companies));
+
+  // Show view all button
+  document.getElementById('velocity-view-all').style.display = 'block';
+
+  if (companies.length === 0) {
+    document.getElementById('velocity-table').innerHTML = `
+      <div style="text-align: center; padding: 32px; color: var(--text-tertiary);">
+        <div style="font-size: 24px; margin-bottom: 8px;">&#128269;</div>
+        <div>No high-velocity hiring detected.</div>
+        <div style="font-size: 12px; margin-top: 8px;">Looking for companies with 3+ hires in the last 90 days</div>
+      </div>
+    `;
+    return;
+  }
+
+  const tableHTML = `
+    <table class="leadership-table">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>New Hires</th>
+          <th>Latest Roles</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${companies.map(([company, data]) => {
+          const recentTitles = data.recentHires.slice(0, 2).map(h => h.title).join(', ');
+          const moreCount = data.count > 2 ? `+${data.count - 2} more` : '';
+          return `
+            <tr>
+              <td><div class="leader-company" style="font-weight: 600;">${company}</div></td>
+              <td>
+                <span style="background: var(--green-dim); color: var(--green); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">
+                  ${data.count} hires
+                </span>
+              </td>
+              <td><div style="font-size: 12px; color: var(--text-secondary);">${recentTitles} ${moreCount}</div></td>
+            </tr>
+          `;
+        }).join('')}
+      </tbody>
+    </table>
+  `;
+
+  document.getElementById('velocity-table').innerHTML = tableHTML;
+}
+
+// ============================================
+// MODULE 2: TALENT MOVEMENT HEATMAP
+// ============================================
+function analyzeTalentMovement(connections) {
+  const destinations = {};
+
+  connections.forEach(conn => {
+    const company = conn.currentRole?.company;
+    if (company && company !== 'Unknown Company') {
+      if (!destinations[company]) {
+        destinations[company] = { count: 0, titles: [] };
+      }
+      destinations[company].count++;
+      destinations[company].titles.push(conn.currentRole?.title);
+    }
+  });
+
+  // Sort by count and take top 15
+  return Object.entries(destinations)
+    .sort((a, b) => b[1].count - a[1].count)
+    .slice(0, 15);
+}
+
+function renderTalentMovement(destinations) {
+  document.getElementById('movement-loading').style.display = 'none';
+  document.getElementById('movement-content').style.display = 'block';
+  document.getElementById('movement-count').textContent = `${destinations.length} destinations`;
+
+  // Store data for full list page
+  sessionStorage.setItem('movementData', JSON.stringify(destinations));
+
+  // Show view all button
+  document.getElementById('movement-view-all').style.display = 'block';
+
+  if (destinations.length === 0) {
+    document.getElementById('movement-content').innerHTML = `
+      <div style="text-align: center; padding: 32px; color: var(--text-tertiary);">
+        <div style="font-size: 24px; margin-bottom: 8px;">&#128269;</div>
+        <div>No talent movement data available.</div>
+      </div>
+    `;
+    return;
+  }
+
+  const maxCount = destinations[0][1].count;
+
+  const contentHTML = `
+    <div style="padding: 16px;">
+      ${destinations.map(([company, data], index) => {
+        const percentage = (data.count / maxCount) * 100;
+        const topTitle = data.titles.slice(0, 3).join(', ');
+        return `
+          <div style="margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <div style="font-weight: 600; color: var(--text-primary);">${index + 1}. ${company}</div>
+              <div style="font-size: 12px; color: var(--accent); font-weight: 600;">${data.count} hires</div>
+            </div>
+            <div style="background: var(--bg-hover); border-radius: 4px; height: 8px; overflow: hidden; margin-bottom: 6px;">
+              <div style="background: linear-gradient(90deg, var(--accent), var(--accent-hover)); height: 100%; width: ${percentage}%; border-radius: 4px; transition: width 0.3s ease;"></div>
+            </div>
+            <div style="font-size: 11px; color: var(--text-tertiary);">${topTitle}${data.titles.length > 3 ? '...' : ''}</div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  document.getElementById('movement-content').innerHTML = contentHTML;
+}
+
+// ============================================
+// MODULE 3: DEPARTMENT-SPECIFIC EXPANSION
+// ============================================
+function analyzeDepartmentExpansion(connections) {
+  const deptKeywords = {
+    'Engineering': ['engineer', 'engineering', 'developer', 'dev', 'technical', 'architect', 'sre', 'infrastructure', 'platform'],
+    'Sales': ['sales', 'account executive', 'ae', 'sdr', 'bdr', 'business development', 'revenue'],
+    'Marketing': ['marketing', 'growth', 'demand gen', 'content', 'brand', 'product marketing'],
+    'Product': ['product manager', 'product management', 'pm', 'product owner'],
+    'Design': ['designer', 'design', 'ux', 'ui', 'product design', 'creative'],
+    'Data': ['data scientist', 'data analyst', 'data engineer', 'analytics', 'bi ', 'business intelligence'],
+    'HR/People': ['hr', 'human resources', 'people', 'talent', 'recruiter', 'recruiting'],
+    'Finance': ['finance', 'accounting', 'financial', 'controller', 'fp&a'],
+    'Operations': ['operations', 'ops', 'supply chain', 'logistics'],
+    'Customer Success': ['customer success', 'csm', 'support', 'onboarding']
+  };
+
+  const deptCounts = {};
+  const ninetyDaysAgo = new Date();
+  ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+
+  // Initialize departments
+  Object.keys(deptKeywords).forEach(dept => {
+    deptCounts[dept] = { total: 0, recent: 0 };
+  });
+  deptCounts['Other'] = { total: 0, recent: 0 };
+
+  connections.forEach(conn => {
+    const title = conn.currentRole?.title?.toLowerCase() || '';
+    const startDate = conn.currentRole?.startDate ? new Date(conn.currentRole.startDate) : null;
+    const isRecent = startDate && !isNaN(startDate.getTime()) && startDate >= ninetyDaysAgo;
+
+    let matched = false;
+    for (const [dept, keywords] of Object.entries(deptKeywords)) {
+      if (keywords.some(kw => title.includes(kw))) {
+        deptCounts[dept].total++;
+        if (isRecent) deptCounts[dept].recent++;
+        matched = true;
+        break;
+      }
+    }
+
+    if (!matched) {
+      deptCounts['Other'].total++;
+      if (isRecent) deptCounts['Other'].recent++;
+    }
+  });
+
+  // Sort by recent hires
+  return Object.entries(deptCounts)
+    .filter(([_, data]) => data.total > 0)
+    .sort((a, b) => b[1].recent - a[1].recent);
+}
+
+function renderDepartmentExpansion(departments) {
+  document.getElementById('dept-loading').style.display = 'none';
+  document.getElementById('dept-content').style.display = 'block';
+  document.getElementById('dept-count').textContent = `${departments.length} departments`;
+
+  // Store data for full list page
+  sessionStorage.setItem('departmentData', JSON.stringify(departments));
+
+  // Show view all button
+  document.getElementById('dept-view-all').style.display = 'block';
+
+  const maxRecent = Math.max(...departments.map(d => d[1].recent), 1);
+
+  const contentHTML = `
+    <div style="padding: 16px;">
+      ${departments.map(([dept, data]) => {
+        const percentage = data.recent > 0 ? (data.recent / maxRecent) * 100 : 0;
+        return `
+          <div style="margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <div style="font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+                ${dept}
+                ${data.recent > 0 ? `<span style="background: var(--purple-dim); color: var(--purple); padding: 2px 8px; border-radius: 12px; font-size: 10px;">+${data.recent} new</span>` : ''}
+              </div>
+              <div style="font-size: 12px; color: var(--text-secondary);">${data.total} total</div>
+            </div>
+            <div style="background: var(--bg-hover); border-radius: 4px; height: 8px; overflow: hidden;">
+              <div style="background: linear-gradient(90deg, var(--purple), var(--purple-dim)); height: 100%; width: ${percentage}%; border-radius: 4px;"></div>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  document.getElementById('dept-content').innerHTML = contentHTML;
+}
+
+// ============================================
+// MODULE 4: 2-3 YEAR CHURN WINDOW
+// ============================================
+function analyzeChurnWindow(connections) {
+  const twoYearsAgo = new Date();
+  twoYearsAgo.setFullYear(twoYearsAgo.getFullYear() - 2);
+  const threeYearsAgo = new Date();
+  threeYearsAgo.setFullYear(threeYearsAgo.getFullYear() - 3);
+
+  return connections.filter(conn => {
+    const startDate = conn.currentRole?.startDate ? new Date(conn.currentRole.startDate) : null;
+    if (!startDate || isNaN(startDate.getTime())) return false;
+
+    // Started 2-3 years ago and still in role (no end date)
+    return startDate >= threeYearsAgo && startDate <= twoYearsAgo && !conn.currentRole?.endDate;
+  }).sort((a, b) => {
+    // Sort by start date (oldest first - closest to 3 years)
+    return new Date(a.currentRole.startDate) - new Date(b.currentRole.startDate);
+  });
+}
+
+function renderChurnTable(candidates) {
+  document.getElementById('churn-loading').style.display = 'none';
+  document.getElementById('churn-table-wrapper').style.display = 'block';
+  document.getElementById('churn-count').textContent = `${candidates.length} candidates`;
+
+  // Store data for full list page
+  sessionStorage.setItem('churnData', JSON.stringify(candidates));
+
+  // Show view all button if more than 15
+  if (candidates.length > 15) {
+    document.getElementById('churn-view-all').style.display = 'block';
+  }
+
+  if (candidates.length === 0) {
+    document.getElementById('churn-table').innerHTML = `
+      <div style="text-align: center; padding: 32px; color: var(--text-tertiary);">
+        <div style="font-size: 24px; margin-bottom: 8px;">&#128269;</div>
+        <div>No candidates in the 2-3 year churn window.</div>
+        <div style="font-size: 12px; margin-top: 8px;">Looking for people who started 2-3 years ago and haven't moved</div>
+      </div>
+    `;
+    return;
+  }
+
+  const displayCandidates = candidates.slice(0, 15); // Show top 15
+
+  const tableHTML = `
+    <table class="leadership-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Title</th>
+          <th>Company</th>
+          <th>Tenure</th>
+          <th>LinkedIn</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${displayCandidates.map(candidate => {
+          const tenureText = calculateTenure(candidate.currentRole.startDate, candidate.currentRole.endDate);
+          return `
+            <tr>
+              <td>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div class="leader-avatar" style="background: var(--amber-dim); color: var(--amber);">${candidate.firstName.charAt(0)}${candidate.lastName.charAt(0)}</div>
+                  <div class="leader-name">${candidate.name}</div>
+                </div>
+              </td>
+              <td><div class="leader-title">${candidate.currentRole.title}</div></td>
+              <td><div class="leader-company">${candidate.currentRole.company}</div></td>
+              <td>
+                <span class="leader-tenure" style="background: var(--amber-dim); color: var(--amber);">
+                  &#9200; ${tenureText}
+                </span>
+              </td>
+              <td class="leader-linkedin">
+                ${candidate.linkedin ? `
+                  <a href="${candidate.linkedin}" target="_blank" title="View Profile">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #0A66C2;">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </a>
+                ` : '-'}
+              </td>
+            </tr>
+          `;
+        }).join('')}
+      </tbody>
+    </table>
+  `;
+
+  document.getElementById('churn-table').innerHTML = tableHTML;
+}
+
+// Load leadership data on page load
+document.addEventListener('DOMContentLoaded', () => {
+  loadLeadershipChanges();
+  loadAllBDModules();
+});
+
+// ============================================
+// UNIFIED DATA LOADER FOR ALL BD MODULES
+// ============================================
+function loadAllBDModules() {
+  fetch('final_pin.csv')
+    .then(response => response.text())
+    .then(csvText => {
+      const rawData = parseCSV(csvText);
+      const connections = processConnectionsData(rawData);
+
+      // Module 1: Hiring Velocity
+      const velocityData = analyzeHiringVelocity(connections);
+      renderVelocityTable(velocityData);
+
+      // Module 2: Talent Movement
+      const movementData = analyzeTalentMovement(connections);
+      renderTalentMovement(movementData);
+
+      // Module 3: Department Expansion
+      const deptData = analyzeDepartmentExpansion(connections);
+      renderDepartmentExpansion(deptData);
+
+      // Module 4: Churn Window
+      const churnData = analyzeChurnWindow(connections);
+      renderChurnTable(churnData);
+    })
+    .catch(err => {
+      console.error('Failed to load BD modules:', err);
+    });
+}
+</script>
+</body>
+</html>
