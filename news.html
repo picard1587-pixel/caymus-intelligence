@@ -880,6 +880,174 @@
         </div>
       </div>
 
+      <!-- Duplicate: Government & News Feeds -->
+      <div class="content-grid" style="margin-top: 20px;">
+        <div>
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">📰 Government & News Feeds (Copy)</span>
+              <div class="tabs">
+                <button class="tab active" onclick="switchTab2('government')">Gov</button>
+                <button class="tab" onclick="switchTab2('news')">News</button>
+                <button class="tab" onclick="switchTab2('layoffs')">Layoffs</button>
+              </div>
+            </div>
+            <div class="panel-body">
+              <!-- Government Tab -->
+              <div id="tab2-government" class="tab-content active">
+                <div class="feed-list">
+                  <div class="feed-item" onclick="window.open('https://www.bls.gov/jlt/', '_blank')">
+                    <div class="feed-title">BLS Job Openings and Labor Turnover Survey (JOLTS)</div>
+                    <div class="feed-meta">
+                      <span class="feed-source bls">BLS</span>
+                      <span>Monthly data on job openings, hires, and separations</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.bls.gov/ces/', '_blank')">
+                    <div class="feed-title">Current Employment Statistics (CES) - Nonfarm Payroll</div>
+                    <div class="feed-meta">
+                      <span class="feed-source bls">BLS</span>
+                      <span>National employment, hours, and earnings by industry</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.bls.gov/lau/', '_blank')">
+                    <div class="feed-title">Local Area Unemployment Statistics (LAUS)</div>
+                    <div class="feed-meta">
+                      <span class="feed-source bls">BLS</span>
+                      <span>State and metropolitan area employment data</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.dol.gov/newsroom/releases', '_blank')">
+                    <div class="feed-title">Department of Labor News Releases</div>
+                    <div class="feed-meta">
+                      <span class="feed-source dol">DOL</span>
+                      <span>Official statements on employment laws, wages, and workforce</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.federalreserve.gov/releases/g17/current/', '_blank')">
+                    <div class="feed-title">Federal Reserve Industrial Production and Capacity Utilization</div>
+                    <div class="feed-meta">
+                      <span class="feed-source fed">Fed</span>
+                      <span>Economic indicators affecting employment</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.census.gov/economic-indicators', '_blank')">
+                    <div class="feed-title">U.S. Census Bureau Economic Indicators</div>
+                    <div class="feed-meta">
+                      <span class="feed-source fed">Census</span>
+                      <span>Business formation, retail trade, construction spending</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.bls.gov/opub/ted/', '_blank')">
+                    <div class="feed-title">The Economics Daily (TED) - BLS Blog</div>
+                    <div class="feed-meta">
+                      <span class="feed-source bls">BLS</span>
+                      <span>Daily economic analysis and charts</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.bls.gov/regions/', '_blank')">
+                    <div class="feed-title">BLS Regional Economic Analysis</div>
+                    <div class="feed-meta">
+                      <span class="feed-source bls">BLS</span>
+                      <span>Regional and state-specific labor market data</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- News Tab -->
+              <div id="tab2-news" class="tab-content">
+                <div class="feed-list">
+                  <div class="feed-item" onclick="window.open('https://www.bloomberg.com/news/los', '_blank')">
+                    <div class="feed-title">Bloomberg Layoffs and Restructuring News</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">Bloomberg</span>
+                      <span>Corporate restructuring and workforce changes</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.cnbc.com/layoffs/', '_blank')">
+                    <div class="feed-title">CNBC Layoff Tracker</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">CNBC</span>
+                      <span>Tech and corporate layoffs coverage</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.wsj.com/news/economy', '_blank')">
+                    <div class="feed-title">WSJ Economy & Jobs Coverage</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">WSJ</span>
+                      <span>Economic analysis and labor market reporting</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.reuters.com/business/jobs/', '_blank')">
+                    <div class="feed-title">Reuters Jobs & Employment News</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">Reuters</span>
+                      <span>Global employment trends and analysis</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://techcrunch.com/category/startups/', '_blank')">
+                    <div class="feed-title">TechCrunch Startup Hiring Tracker</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">TechCrunch</span>
+                      <span>Startup funding and hiring announcements</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Layoffs Tab -->
+              <div id="tab2-layoffs" class="tab-content">
+                <div class="feed-list">
+                  <div class="feed-item" onclick="window.open('https://layoffs.fyi/', '_blank')">
+                    <div class="feed-title">Layoffs.fyi - Tech Layoff Tracker</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">Tracker</span>
+                      <span>Comprehensive database of tech layoffs since COVID-19</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.thelayoff.com/', '_blank')">
+                    <div class="feed-title">TheLayoff.com - Anonymous Reports</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">Community</span>
+                      <span>User-submitted layoff rumors and reports</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.challengergray.com/press/category/challenger-job-cut-report/', '_blank')">
+                    <div class="feed-title">Challenger, Gray & Christmas - Job Cut Reports</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">Research</span>
+                      <span>Monthly report on announced corporate layoffs</span>
+                    </div>
+                  </div>
+
+                  <div class="feed-item" onclick="window.open('https://www.linkedin.com/news/topics/layoffs/', '_blank')">
+                    <div class="feed-title">LinkedIn News - Layoffs</div>
+                    <div class="feed-meta">
+                      <span class="feed-source news">LinkedIn</span>
+                      <span>Professional network layoff discussions</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Top Hiring Companies -->
       <div class="panel" style="margin-bottom: 24px;">
         <div class="panel-header">
@@ -1065,11 +1233,26 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
 
 // Tab switching
 function switchTab(tabName) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  const clickedTab = event.target;
+  const parentPanel = clickedTab.closest('.panel');
 
-  event.target.classList.add('active');
-  document.getElementById(`tab-${tabName}`).classList.add('active');
+  parentPanel.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  parentPanel.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+  clickedTab.classList.add('active');
+  parentPanel.querySelector(`#tab-${tabName}`).classList.add('active');
+}
+
+// Tab switching for duplicate panel
+function switchTab2(tabName) {
+  const clickedTab = event.target;
+  const parentPanel = clickedTab.closest('.panel');
+
+  parentPanel.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  parentPanel.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+  clickedTab.classList.add('active');
+  parentPanel.querySelector(`#tab2-${tabName}`).classList.add('active');
 }
 
 // Companies data
