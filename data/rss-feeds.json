@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-04-22T16:00:13.872Z"
+      "fetched": "2026-04-22T18:54:54.209Z"
     },
     {
       "title": "Amazon CEO takes aim at Nvidia, Intel, Starlink, more in annual shareholder letter",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-04-22T16:00:13.873Z"
+      "fetched": "2026-04-22T18:54:54.210Z"
     },
     {
       "title": "Snap is cutting 1,000 jobs, 16% of its workforce",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-22T16:00:16.511Z"
+      "fetched": "2026-04-22T18:54:55.714Z"
     },
     {
       "title": "Amazon says it is laying off 16,000 employees",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-22T16:00:16.512Z"
+      "fetched": "2026-04-22T18:54:55.716Z"
     },
     {
       "title": "AI CEOs transformed Davos into a tech conference",
@@ -49,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-22T16:00:16.512Z"
+      "fetched": "2026-04-22T18:54:55.716Z"
     },
     {
       "title": "Tokenmaxxing, OpenAI’s shopping spree, and the AI Anxiety Gap",
@@ -59,7 +59,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-22T16:00:17.007Z"
+      "fetched": "2026-04-22T18:54:55.733Z"
     },
     {
       "title": "Are we tokenmaxxing our way to nowhere?",
@@ -69,7 +69,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-22T16:00:17.007Z"
+      "fetched": "2026-04-22T18:54:55.733Z"
     },
     {
       "title": "Factory hits $1.5B valuation to build AI coding for enterprises",
@@ -79,17 +79,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-22T16:00:17.008Z"
-    },
-    {
-      "title": "From the Startup Battlefield stage to the International Space Station: geCKo Materials built a sticky product",
-      "link": "https://techcrunch.com/2026/04/16/from-the-startup-battlefield-stage-to-the-international-space-station-gecko-materials-built-a-sticky-product/",
-      "description": "This week on Build Mode, Isabelle Johannessen speaks with Capella Kerst, founder and CEO of geCKo Materials.",
-      "date": "Apr 16",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "executive",
-      "fetched": "2026-04-22T16:00:17.008Z"
+      "fetched": "2026-04-22T18:54:55.733Z"
     }
   ],
   "funding": [
@@ -101,7 +91,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-22T16:00:16.511Z"
+      "fetched": "2026-04-22T18:54:55.714Z"
     },
     {
       "title": "Meta reportedly considering layoffs that could affect 20% of the company",
@@ -111,17 +101,27 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-22T16:00:16.511Z"
+      "fetched": "2026-04-22T18:54:55.714Z"
     },
     {
-      "title": "Cathie Woods’ ARK makes its first lead investment in startup Lucra — and it isn’t AI",
+      "title": "Cathie Wood’s ARK makes its first lead investment in startup Lucra — and it isn’t AI",
       "link": "https://techcrunch.com/2026/04/22/cathie-woods-ark-makes-its-first-lead-investment-in-startup-lucra-and-it-isnt-ai/",
-      "description": "Lucra offers corporate loyalty programs reimagined as interactive eSports. But winning ARK as a lead wasn't easy.",
+      "description": "Lucra offers corporate loyalty programs reimagined as interactive esports. But winning ARK as a lead wasn't easy.",
       "date": "Apr 22",
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-22T16:00:17.006Z"
+      "fetched": "2026-04-22T18:54:55.732Z"
+    },
+    {
+      "title": "AI is spitting out more potential drugs than ever. This startup wants to figure out which ones matter.",
+      "link": "https://techcrunch.com/2026/04/22/ai-is-spitting-out-more-potential-drugs-than-ever-this-start-up-wants-to-figure-out-which-ones-matter/",
+      "description": "10x Science has raised a $4.8 million seed round to help pharmaceutical researchers understand complex molecules.",
+      "date": "Apr 22",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-04-22T18:54:55.732Z"
     },
     {
       "title": "AI research lab NeoCognition lands $40M seed to build agents that learn like humans",
@@ -131,7 +131,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-22T16:00:17.007Z"
+      "fetched": "2026-04-22T18:54:55.732Z"
     },
     {
       "title": "Loop raises $95M to build supply chain AI that predicts disruptions",
@@ -141,7 +141,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-22T16:00:17.007Z"
+      "fetched": "2026-04-22T18:54:55.733Z"
     },
     {
       "title": "Upscale AI in talks to raise at $2B valuation, says report",
@@ -151,17 +151,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-22T16:00:17.008Z"
-    },
-    {
-      "title": "Slash, a Ramp competitor founded by teenagers, raises $100M at $1.4B valuation",
-      "link": "https://techcrunch.com/2026/04/16/slash-a-ramp-competitor-founded-by-teenagers-raises-100m-at-1-4b-valuation/",
-      "description": "Five years later the founders, now 24 years old, say their startup has achieved $300 million in annualized revenue.",
-      "date": "Apr 16",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-04-22T16:00:17.008Z"
+      "fetched": "2026-04-22T18:54:55.733Z"
     }
   ],
   "layoffs": [
@@ -173,7 +163,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-22T16:00:16.511Z"
+      "fetched": "2026-04-22T18:54:55.714Z"
     },
     {
       "title": "Digg lays off staff and shuts down app as company retools",
@@ -183,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-22T16:00:16.512Z"
+      "fetched": "2026-04-22T18:54:55.715Z"
     },
     {
       "title": "Atlassian follows Block’s footsteps and cuts staff in the name of AI",
@@ -193,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-22T16:00:16.512Z"
+      "fetched": "2026-04-22T18:54:55.715Z"
     },
     {
       "title": "eBay to lay off 800 staff",
@@ -203,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-22T16:00:16.512Z"
+      "fetched": "2026-04-22T18:54:55.715Z"
     },
     {
       "title": "Lucid Motors slashes 12% of its workforce as it seeks profitability",
@@ -213,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-22T16:00:16.512Z"
+      "fetched": "2026-04-22T18:54:55.715Z"
     },
     {
       "title": "AI layoffs or ‘AI-washing’?",
@@ -223,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-22T16:00:16.512Z"
+      "fetched": "2026-04-22T18:54:55.715Z"
     },
     {
       "title": "Pinterest layoffs impact 15% of staff as resources redirected to AI",
@@ -233,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-22T16:00:16.512Z"
+      "fetched": "2026-04-22T18:54:55.716Z"
     }
   ]
 }
