@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-04-23T16:24:18.586Z"
+      "fetched": "2026-04-23T18:52:11.753Z"
     },
     {
       "title": "Amazon CEO takes aim at Nvidia, Intel, Starlink, more in annual shareholder letter",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-04-23T16:24:18.587Z"
+      "fetched": "2026-04-23T18:52:11.753Z"
     },
     {
       "title": "Snap is cutting 1,000 jobs, 16% of its workforce",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-23T16:24:20.149Z"
+      "fetched": "2026-04-23T18:52:11.995Z"
     },
     {
       "title": "Amazon says it is laying off 16,000 employees",
@@ -39,27 +39,17 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-23T16:24:20.150Z"
+      "fetched": "2026-04-23T18:52:11.996Z"
     },
     {
-      "title": "AI CEOs transformed Davos into a tech conference",
-      "link": "https://techcrunch.com/podcast/ai-ceos-transformed-davos-into-a-tech-conference/",
-      "description": "The World Economic Forum&#8217;s annual meeting in Davos&#160;felt different this year, and not just because Meta and Salesforce took over storefronts on the main promenade.&#160;AI dominated the conv",
-      "date": "Jan 23",
-      "source": "TechCrunch Layoffs",
-      "category": "layoffs",
-      "relevance": "executive",
-      "fetched": "2026-04-23T16:24:20.151Z"
-    },
-    {
-      "title": "Tokenmaxxing, OpenAI’s shopping spree, and the AI Anxiety Gap",
-      "link": "https://techcrunch.com/podcast/tokenmaxxing-openais-shopping-spree-and-the-ai-anxiety-gap/",
-      "description": "The gap between AI insiders and everyone else&#160;is widening, and the spending, suspicion, and even new vocabulary are starting to show it. While OpenAI is busy buying up everything from&#160;financ",
-      "date": "Apr 17",
+      "title": "Era raises $11M to build a software platform for AI gadgets",
+      "link": "https://techcrunch.com/2026/04/23/era-computer-raises-11m-to-build-a-software-platform-for-ai-gadgets/",
+      "description": "Era thinks that we will see many form factors of AI hardware, including glasses, rings, and pendants.",
+      "date": "Apr 23",
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-23T16:24:20.173Z"
+      "fetched": "2026-04-23T18:52:12.006Z"
     }
   ],
   "funding": [
@@ -71,7 +61,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-23T16:24:20.149Z"
+      "fetched": "2026-04-23T18:52:11.995Z"
     },
     {
       "title": "Meta reportedly considering layoffs that could affect 20% of the company",
@@ -81,7 +71,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-23T16:24:20.149Z"
+      "fetched": "2026-04-23T18:52:11.996Z"
     },
     {
       "title": "Fusion doesn’t have a normal startup timeline, and investors are fine with that",
@@ -91,7 +81,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-23T16:24:20.171Z"
+      "fetched": "2026-04-23T18:52:12.006Z"
     },
     {
       "title": "How SpaceX preempted a $2B fundraise with a $60B buyout offer",
@@ -101,7 +91,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-23T16:24:20.171Z"
+      "fetched": "2026-04-23T18:52:12.006Z"
     },
     {
       "title": "Fusion power may not be sci-fi. Just ask the people who sunk $5B into it.",
@@ -111,7 +101,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-23T16:24:20.172Z"
+      "fetched": "2026-04-23T18:52:12.007Z"
     },
     {
       "title": "Cathie Wood’s ARK makes its first lead investment in startup Lucra — and it isn’t AI",
@@ -121,7 +111,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-23T16:24:20.172Z"
+      "fetched": "2026-04-23T18:52:12.007Z"
     },
     {
       "title": "AI is spitting out more potential drugs than ever. This startup wants to figure out which ones matter.",
@@ -131,7 +121,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-23T16:24:20.172Z"
+      "fetched": "2026-04-23T18:52:12.007Z"
     },
     {
       "title": "AI research lab NeoCognition lands $40M seed to build agents that learn like humans",
@@ -141,10 +131,20 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-23T16:24:20.172Z"
+      "fetched": "2026-04-23T18:52:12.007Z"
     }
   ],
   "layoffs": [
+    {
+      "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
+      "link": "https://techcrunch.com/2026/04/23/meta-job-cuts-10-percent-8000-employees/",
+      "description": "According to an internal memo, Meta plans to begin its sweeping layoffs on May 20.",
+      "date": "Apr 23",
+      "source": "TechCrunch Layoffs",
+      "category": "layoffs",
+      "relevance": "layoffs",
+      "fetched": "2026-04-23T18:52:11.995Z"
+    },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
       "link": "https://techcrunch.com/2026/04/21/redwood-materials-lays-off-10-in-restructuring-to-chase-energy-storage-business/",
@@ -153,7 +153,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-23T16:24:20.148Z"
+      "fetched": "2026-04-23T18:52:11.995Z"
     },
     {
       "title": "Digg lays off staff and shuts down app as company retools",
@@ -163,7 +163,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-23T16:24:20.149Z"
+      "fetched": "2026-04-23T18:52:11.996Z"
     },
     {
       "title": "Atlassian follows Block’s footsteps and cuts staff in the name of AI",
@@ -173,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-23T16:24:20.149Z"
+      "fetched": "2026-04-23T18:52:11.996Z"
     },
     {
       "title": "eBay to lay off 800 staff",
@@ -183,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-23T16:24:20.150Z"
+      "fetched": "2026-04-23T18:52:11.996Z"
     },
     {
       "title": "Lucid Motors slashes 12% of its workforce as it seeks profitability",
@@ -193,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-23T16:24:20.150Z"
+      "fetched": "2026-04-23T18:52:11.996Z"
     },
     {
       "title": "AI layoffs or ‘AI-washing’?",
@@ -203,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-23T16:24:20.150Z"
+      "fetched": "2026-04-23T18:52:11.996Z"
     },
     {
       "title": "Pinterest layoffs impact 15% of staff as resources redirected to AI",
@@ -213,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-23T16:24:20.150Z"
+      "fetched": "2026-04-23T18:52:11.996Z"
     }
   ]
 }
