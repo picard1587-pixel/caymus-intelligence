@@ -9,17 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-04-24T15:56:31.697Z"
-    },
-    {
-      "title": "Amazon CEO takes aim at Nvidia, Intel, Starlink, more in annual shareholder letter",
-      "link": "https://techcrunch.com/2026/04/09/amazon-ceo-takes-aim-at-nvidia-intel-starlink-more-in-annual-shareholder-letter/",
-      "description": "Andy Jassy's annual shareholder letter reads something like a diss track to a wide range of competitors as he defends spending $200 billion in capex.",
-      "date": "Apr 9",
-      "source": "TechCrunch Leadership",
-      "category": "executive",
-      "relevance": "executive",
-      "fetched": "2026-04-24T15:56:31.697Z"
+      "fetched": "2026-04-24T18:34:21.904Z"
     },
     {
       "title": "Redwood Materials loses COO amid layoffs, restructuring",
@@ -29,7 +19,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-24T15:56:31.840Z"
+      "fetched": "2026-04-24T18:34:22.084Z"
     },
     {
       "title": "Snap is cutting 1,000 jobs, 16% of its workforce",
@@ -39,7 +29,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-24T15:56:31.841Z"
+      "fetched": "2026-04-24T18:34:22.084Z"
     },
     {
       "title": "Amazon says it is laying off 16,000 employees",
@@ -49,7 +39,17 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-24T15:56:31.842Z"
+      "fetched": "2026-04-24T18:34:22.085Z"
+    },
+    {
+      "title": "Apple’s new CEO, and why Elon Musk wants to buy Cursor for $60B",
+      "link": "https://techcrunch.com/podcast/apples-new-ceo-and-why-elon-musk-wants-to-buy-cursor-for-60b/",
+      "description": "A new era is on the way for Apple as Tim Cook plans to step down from his CEO role in September,&#160;handing the reins to hardware chief John Ternus.&#160;&#160; Ternus may be inheriting one of the m",
+      "date": "Apr 24",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "executive",
+      "fetched": "2026-04-24T18:34:22.098Z"
     },
     {
       "title": "Uber CTO Praveen Neppalli Naga joins stacked StrictlyVC SF lineup for April 30 event",
@@ -59,7 +59,17 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-24T15:56:31.853Z"
+      "fetched": "2026-04-24T18:34:22.098Z"
+    },
+    {
+      "title": "Tim Cook is stepping down. What happens to Apple now?",
+      "link": "https://techcrunch.com/video/tim-cook-is-stepping-down-what-happens-to-apple-now/",
+      "description": "Tim Cook plans to step down from his CEO role in September, handing the reins to hardware chief John Ternus.   Ternus may be inheriting one of the most durable businesses in tech, but&#160;he’s&#160;a",
+      "date": "Apr 24",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "executive",
+      "fetched": "2026-04-24T18:34:22.098Z"
     },
     {
       "title": "Era raises $11M to build a software platform for AI gadgets",
@@ -69,10 +79,20 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-24T15:56:31.853Z"
+      "fetched": "2026-04-24T18:34:22.099Z"
     }
   ],
   "funding": [
+    {
+      "title": "Google to invest up to $40B in Anthropic in cash and compute",
+      "link": "https://techcrunch.com/2026/04/24/google-to-invest-up-to-40b-in-anthropic-in-cash-and-compute/",
+      "description": "Google plans up to $40B investment in Anthropic as AI rivals race to secure massive compute capacity, following the limited release of its powerful, cybersecurity-focused Mythos model.",
+      "date": "Apr 24",
+      "source": "TechCrunch Leadership",
+      "category": "executive",
+      "relevance": "funding",
+      "fetched": "2026-04-24T18:34:21.903Z"
+    },
     {
       "title": "What founders can learn from Anjuna’s layoffs and recovery",
       "link": "https://techcrunch.com/2026/04/09/what-founders-can-learn-from-anjunas-layoffs-and-recovery/",
@@ -81,7 +101,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-24T15:56:31.841Z"
+      "fetched": "2026-04-24T18:34:22.085Z"
     },
     {
       "title": "Meta reportedly considering layoffs that could affect 20% of the company",
@@ -91,7 +111,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-24T15:56:31.842Z"
+      "fetched": "2026-04-24T18:34:22.085Z"
     },
     {
       "title": "Fusion doesn’t have a normal startup timeline, and investors are fine with that",
@@ -101,7 +121,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-24T15:56:31.853Z"
+      "fetched": "2026-04-24T18:34:22.099Z"
     },
     {
       "title": "How SpaceX preempted a $2B fundraise with a $60B buyout offer",
@@ -111,7 +131,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-24T15:56:31.854Z"
+      "fetched": "2026-04-24T18:34:22.099Z"
     },
     {
       "title": "Fusion power may not be sci-fi. Just ask the people who sunk $5B into it.",
@@ -121,7 +141,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-24T15:56:31.854Z"
+      "fetched": "2026-04-24T18:34:22.100Z"
     },
     {
       "title": "Cathie Wood’s ARK makes its first lead investment in startup Lucra — and it isn’t AI",
@@ -131,7 +151,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-24T15:56:31.854Z"
+      "fetched": "2026-04-24T18:34:22.100Z"
     },
     {
       "title": "AI is spitting out more potential drugs than ever. This startup wants to figure out which ones matter.",
@@ -141,17 +161,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-24T15:56:31.854Z"
-    },
-    {
-      "title": "AI research lab NeoCognition lands $40M seed to build agents that learn like humans",
-      "link": "https://techcrunch.com/2026/04/21/ai-research-lab-neocognition-lands-40m-seed-to-build-agents-that-learn-like-humans/",
-      "description": "Founded by an OSU researcher, the startup is developing AI agents that can become experts in any domain.",
-      "date": "Apr 21",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-04-24T15:56:31.854Z"
+      "fetched": "2026-04-24T18:34:22.100Z"
     }
   ],
   "layoffs": [
@@ -163,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-24T15:56:31.841Z"
+      "fetched": "2026-04-24T18:34:22.084Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -173,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-24T15:56:31.841Z"
+      "fetched": "2026-04-24T18:34:22.084Z"
     },
     {
       "title": "Digg lays off staff and shuts down app as company retools",
@@ -183,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-24T15:56:31.842Z"
+      "fetched": "2026-04-24T18:34:22.085Z"
     },
     {
       "title": "Atlassian follows Block’s footsteps and cuts staff in the name of AI",
@@ -193,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-24T15:56:31.842Z"
+      "fetched": "2026-04-24T18:34:22.085Z"
     },
     {
       "title": "eBay to lay off 800 staff",
@@ -203,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-24T15:56:31.842Z"
+      "fetched": "2026-04-24T18:34:22.085Z"
     },
     {
       "title": "Lucid Motors slashes 12% of its workforce as it seeks profitability",
@@ -213,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-24T15:56:31.842Z"
+      "fetched": "2026-04-24T18:34:22.085Z"
     },
     {
       "title": "AI layoffs or ‘AI-washing’?",
@@ -223,7 +233,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-24T15:56:31.842Z"
+      "fetched": "2026-04-24T18:34:22.085Z"
     }
   ]
 }
