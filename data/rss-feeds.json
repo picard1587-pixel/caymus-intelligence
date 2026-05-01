@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-04-30T21:44:38.378Z"
+      "fetched": "2026-05-01T01:48:06.672Z"
     },
     {
       "title": "Redwood Materials loses COO amid layoffs, restructuring",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-30T21:44:38.705Z"
+      "fetched": "2026-05-01T01:48:06.875Z"
     },
     {
       "title": "Snap is cutting 1,000 jobs, 16% of its workforce",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-30T21:44:38.705Z"
+      "fetched": "2026-05-01T01:48:06.876Z"
     },
     {
       "title": "Amazon says it is laying off 16,000 employees",
@@ -39,7 +39,17 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-30T21:44:38.706Z"
+      "fetched": "2026-05-01T01:48:06.877Z"
+    },
+    {
+      "title": "Y Combinator alum Skio sells for $105M cash, only raised $8M, founder says",
+      "link": "https://techcrunch.com/2026/04/30/y-combinator-alum-skio-sells-for-105m-cash-only-raised-8m-founder-says/",
+      "description": "Subscription billing fintech Skio sold to its competitor Recharge in what was a healthy exit, according to its founder and former CEO.",
+      "date": "Apr 30",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "executive",
+      "fetched": "2026-05-01T01:48:06.885Z"
     },
     {
       "title": "FDA approval, fundraising, and the reality of building in healthcare according to BioticsAI founder",
@@ -49,7 +59,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-30T21:44:38.722Z"
+      "fetched": "2026-05-01T01:48:06.886Z"
     },
     {
       "title": "Parallel Web Systems hits $2B valuation five months after its last big raise",
@@ -59,7 +69,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-30T21:44:38.722Z"
+      "fetched": "2026-05-01T01:48:06.886Z"
     },
     {
       "title": "Firestorm Labs raises $82M to take drone factories into the field",
@@ -69,7 +79,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-30T21:44:38.723Z"
+      "fetched": "2026-05-01T01:48:06.886Z"
     },
     {
       "title": "BCI startup Neurable looks to license its ‘mind-reading’ tech for consumer wearables",
@@ -79,7 +89,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-04-30T21:44:38.723Z"
+      "fetched": "2026-05-01T01:48:06.887Z"
     }
   ],
   "funding": [
@@ -91,7 +101,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-04-30T21:44:38.376Z"
+      "fetched": "2026-05-01T01:48:06.670Z"
     },
     {
       "title": "What founders can learn from Anjuna’s layoffs and recovery",
@@ -101,7 +111,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-30T21:44:38.705Z"
+      "fetched": "2026-05-01T01:48:06.876Z"
     },
     {
       "title": "Meta reportedly considering layoffs that could affect 20% of the company",
@@ -111,7 +121,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-30T21:44:38.706Z"
+      "fetched": "2026-05-01T01:48:06.876Z"
     },
     {
       "title": "SpaceX backer 137 Ventures raises $700M for two growth-stage funds",
@@ -121,7 +131,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-30T21:44:38.722Z"
+      "fetched": "2026-05-01T01:48:06.886Z"
     },
     {
       "title": "Bill Gurley, Jack Altman back startup Pursuit, which helps companies sell to government",
@@ -131,7 +141,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-30T21:44:38.723Z"
+      "fetched": "2026-05-01T01:48:06.886Z"
     },
     {
       "title": "Why Tokyo is the most important tech destination of 2026",
@@ -141,7 +151,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-30T21:44:38.723Z"
+      "fetched": "2026-05-01T01:48:06.887Z"
     },
     {
       "title": "India’s Snabbit seeks fresh funding at a $400M valuation, sources say",
@@ -151,17 +161,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-04-30T21:44:38.724Z"
-    },
-    {
-      "title": "Two college kids raise a $5.1 million pre-seed to build an AI social network in iMessage",
-      "link": "https://techcrunch.com/2026/04/24/two-college-kids-raise-a-5-1-million-pre-seed-to-build-an-ai-social-network-in-imessage/",
-      "description": "Series, a social networking app that's grown popular on college campuses, announced a $5.1 million pre-seed round from some big names in tech.",
-      "date": "Apr 24",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-04-30T21:44:38.724Z"
+      "fetched": "2026-05-01T01:48:06.887Z"
     }
   ],
   "layoffs": [
@@ -173,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-30T21:44:38.705Z"
+      "fetched": "2026-05-01T01:48:06.875Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -183,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-30T21:44:38.705Z"
+      "fetched": "2026-05-01T01:48:06.876Z"
     },
     {
       "title": "Digg lays off staff and shuts down app as company retools",
@@ -193,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-30T21:44:38.706Z"
+      "fetched": "2026-05-01T01:48:06.876Z"
     },
     {
       "title": "Atlassian follows Block’s footsteps and cuts staff in the name of AI",
@@ -203,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-30T21:44:38.706Z"
+      "fetched": "2026-05-01T01:48:06.876Z"
     },
     {
       "title": "eBay to lay off 800 staff",
@@ -213,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-30T21:44:38.706Z"
+      "fetched": "2026-05-01T01:48:06.876Z"
     },
     {
       "title": "Lucid Motors slashes 12% of its workforce as it seeks profitability",
@@ -223,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-30T21:44:38.706Z"
+      "fetched": "2026-05-01T01:48:06.876Z"
     },
     {
       "title": "AI layoffs or ‘AI-washing’?",
@@ -233,7 +233,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-04-30T21:44:38.706Z"
+      "fetched": "2026-05-01T01:48:06.877Z"
     }
   ]
 }
