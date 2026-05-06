@@ -4,12 +4,12 @@
     {
       "title": "Peter Sarlin’s QuTwo reaches $380M valuation in angel round",
       "link": "https://techcrunch.com/2026/05/05/peter-sarlins-qutwo-reaches-380m-valuation-in-angel-round/",
-      "description": "QyTw0, the Finnish AI lab founded by former AMD Silo AI CEO Peter Sarlin, is now valued at €325 million (approximately $380 million) after raising a €25 million angel round ($29 million). It's a sign ",
+      "description": "QuTwo, the Finnish AI lab founded by former AMD Silo AI CEO Peter Sarlin, is now valued at €325 million (approximately $380 million) after raising a €25 million angel round ($29 million). It's a sign ",
       "date": "May 6",
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-05-06T13:24:12.547Z"
+      "fetched": "2026-05-06T16:22:29.734Z"
     },
     {
       "title": "Redwood Materials loses COO amid layoffs, restructuring",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T13:24:12.746Z"
+      "fetched": "2026-05-06T16:22:30.003Z"
     },
     {
       "title": "Snap is cutting 1,000 jobs, 16% of its workforce",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T13:24:12.747Z"
+      "fetched": "2026-05-06T16:22:30.003Z"
     },
     {
       "title": "Marc Lore says that AI will soon enable anyone open a restaurant",
@@ -39,7 +39,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T13:24:12.758Z"
+      "fetched": "2026-05-06T16:22:30.019Z"
     },
     {
       "title": "Y Combinator alum Skio sells for $105M cash, only raised $8M, founder says",
@@ -49,7 +49,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T13:24:12.759Z"
+      "fetched": "2026-05-06T16:22:30.020Z"
     },
     {
       "title": "FDA approval, fundraising, and the reality of building in healthcare according to BioticsAI founder",
@@ -59,20 +59,20 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T13:24:12.759Z"
-    },
-    {
-      "title": "Parallel Web Systems hits $2B valuation five months after its last big raise",
-      "link": "https://techcrunch.com/2026/04/29/parallel-web-systems-hits-2b-valuation-five-months-after-its-last-big-raise/",
-      "description": "The AI agent-tool startup founded by former Twitter CEO Parag Agrawal has raised $100 million, led by Sequoia, months after raising a previous $100 million.",
-      "date": "Apr 29",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "executive",
-      "fetched": "2026-05-06T13:24:12.759Z"
+      "fetched": "2026-05-06T16:22:30.020Z"
     }
   ],
   "funding": [
+    {
+      "title": "Ethos raises $22.75M from a16z for its expert network with voice onboarding",
+      "link": "https://techcrunch.com/2026/05/06/ethos-raises-22-75m-from-a16z-for-its-expert-network-with-voice-onboarding/",
+      "description": "Ethos says it is onboarding 35,000 experts per week.",
+      "date": "May 6",
+      "source": "TechCrunch Leadership",
+      "category": "executive",
+      "relevance": "funding",
+      "fetched": "2026-05-06T16:22:29.734Z"
+    },
     {
       "title": "Sierra raises $950M as the race to own enterprise AI gets serious",
       "link": "https://techcrunch.com/2026/05/04/sierra-raises-950m-as-the-race-to-own-enterprise-ai-gets-serious/",
@@ -81,7 +81,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-06T13:24:12.547Z"
+      "fetched": "2026-05-06T16:22:29.735Z"
     },
     {
       "title": "Google to invest up to $40B in Anthropic in cash and compute",
@@ -91,7 +91,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-06T13:24:12.548Z"
+      "fetched": "2026-05-06T16:22:29.735Z"
     },
     {
       "title": "What founders can learn from Anjuna’s layoffs and recovery",
@@ -101,7 +101,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-06T13:24:12.747Z"
+      "fetched": "2026-05-06T16:22:30.003Z"
     },
     {
       "title": "Meta reportedly considering layoffs that could affect 20% of the company",
@@ -111,7 +111,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-06T13:24:12.747Z"
+      "fetched": "2026-05-06T16:22:30.004Z"
     },
     {
       "title": "Katie Haun raises $1B for new venture funds",
@@ -121,7 +121,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-06T13:24:12.758Z"
+      "fetched": "2026-05-06T16:22:30.019Z"
     },
     {
       "title": "SpaceX backer 137 Ventures raises $700M for two growth-stage funds",
@@ -131,17 +131,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-06T13:24:12.759Z"
-    },
-    {
-      "title": "Bill Gurley, Jack Altman back startup Pursuit, which helps companies sell to government",
-      "link": "https://techcrunch.com/2026/04/29/bill-gurley-jack-altman-back-startup-pursuit-which-helps-companies-sell-to-government/",
-      "description": "On Wednesday, Pursuit announced a $22 million Series A round led by Mike Rosengarten, the co-founder of OpenGov, with big-name VCs participating.",
-      "date": "Apr 29",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-05-06T13:24:12.759Z"
+      "fetched": "2026-05-06T16:22:30.020Z"
     }
   ],
   "layoffs": [
@@ -153,7 +143,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T13:24:12.746Z"
+      "fetched": "2026-05-06T16:22:30.003Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -163,7 +153,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T13:24:12.746Z"
+      "fetched": "2026-05-06T16:22:30.003Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -173,7 +163,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T13:24:12.746Z"
+      "fetched": "2026-05-06T16:22:30.003Z"
     },
     {
       "title": "Digg lays off staff and shuts down app as company retools",
@@ -183,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T13:24:12.747Z"
+      "fetched": "2026-05-06T16:22:30.004Z"
     },
     {
       "title": "Atlassian follows Block’s footsteps and cuts staff in the name of AI",
@@ -193,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T13:24:12.747Z"
+      "fetched": "2026-05-06T16:22:30.004Z"
     },
     {
       "title": "eBay to lay off 800 staff",
@@ -203,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T13:24:12.747Z"
+      "fetched": "2026-05-06T16:22:30.004Z"
     },
     {
       "title": "Lucid Motors slashes 12% of its workforce as it seeks profitability",
@@ -213,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T13:24:12.747Z"
+      "fetched": "2026-05-06T16:22:30.004Z"
     },
     {
       "title": "AI layoffs or ‘AI-washing’?",
@@ -223,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T13:24:12.748Z"
+      "fetched": "2026-05-06T16:22:30.004Z"
     },
     {
       "title": "India’s first GenAI unicorn shifts to cloud services as AI model ambitions face reality",
@@ -233,7 +223,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T13:24:12.758Z"
+      "fetched": "2026-05-06T16:22:30.019Z"
     }
   ]
 }
