@@ -2,16 +2,6 @@
   "local": [],
   "executive": [
     {
-      "title": "Peter Sarlin’s QuTwo reaches $380M valuation in angel round",
-      "link": "https://techcrunch.com/2026/05/05/peter-sarlins-qutwo-reaches-380m-valuation-in-angel-round/",
-      "description": "QuTwo, the Finnish AI lab founded by former AMD Silo AI CEO Peter Sarlin, is now valued at €325 million (approximately $380 million) after raising a €25 million angel round ($29 million). It's a sign ",
-      "date": "May 6",
-      "source": "TechCrunch Leadership",
-      "category": "executive",
-      "relevance": "executive",
-      "fetched": "2026-05-06T16:22:29.734Z"
-    },
-    {
       "title": "Redwood Materials loses COO amid layoffs, restructuring",
       "link": "https://techcrunch.com/2026/04/23/redwood-materials-loses-coo-amid-layoffs-restructuring/",
       "description": "Former Tesla executive Chris Lister is retiring, and at least three other VPs have left Redwood around the recent restructuring, TechCrunch has learned.",
@@ -19,7 +9,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T16:22:30.003Z"
+      "fetched": "2026-05-06T19:17:36.317Z"
     },
     {
       "title": "Snap is cutting 1,000 jobs, 16% of its workforce",
@@ -29,17 +19,17 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T16:22:30.003Z"
+      "fetched": "2026-05-06T19:17:36.318Z"
     },
     {
-      "title": "Marc Lore says that AI will soon enable anyone open a restaurant",
+      "title": "Marc Lore says that AI will soon enable anyone to open a restaurant",
       "link": "https://techcrunch.com/2026/05/05/marc-lore-says-that-ai-will-soon-enable-anyone-open-a-restaurant/",
       "description": "Wonder wants to turn its robotic kitchens into AI-powered “restaurant factories,” letting anyone spin up a virtual food brand with a prompt.",
       "date": "May 6",
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T16:22:30.019Z"
+      "fetched": "2026-05-06T19:17:36.337Z"
     },
     {
       "title": "Y Combinator alum Skio sells for $105M cash, only raised $8M, founder says",
@@ -49,7 +39,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T16:22:30.020Z"
+      "fetched": "2026-05-06T19:17:36.338Z"
     },
     {
       "title": "FDA approval, fundraising, and the reality of building in healthcare according to BioticsAI founder",
@@ -59,7 +49,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T16:22:30.020Z"
+      "fetched": "2026-05-06T19:17:36.339Z"
     }
   ],
   "funding": [
@@ -71,7 +61,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-06T16:22:29.734Z"
+      "fetched": "2026-05-06T19:17:36.120Z"
     },
     {
       "title": "Sierra raises $950M as the race to own enterprise AI gets serious",
@@ -81,7 +71,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-06T16:22:29.735Z"
+      "fetched": "2026-05-06T19:17:36.121Z"
     },
     {
       "title": "Google to invest up to $40B in Anthropic in cash and compute",
@@ -91,7 +81,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-06T16:22:29.735Z"
+      "fetched": "2026-05-06T19:17:36.122Z"
     },
     {
       "title": "What founders can learn from Anjuna’s layoffs and recovery",
@@ -101,7 +91,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-06T16:22:30.003Z"
+      "fetched": "2026-05-06T19:17:36.318Z"
     },
     {
       "title": "Meta reportedly considering layoffs that could affect 20% of the company",
@@ -111,7 +101,27 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-06T16:22:30.004Z"
+      "fetched": "2026-05-06T19:17:36.318Z"
+    },
+    {
+      "title": "DeepSeek could hit $45B valuation from its first investment round",
+      "link": "https://techcrunch.com/2026/05/06/deepseek-could-hit-45b-valuation-from-its-first-investment-round/",
+      "description": "The Chinese AI lab came to prominence in early 2025 after launching a large language model that trained on a fraction of the compute power and at a fraction of the cost of the big U.S. models like tho",
+      "date": "May 6",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-05-06T19:17:36.336Z"
+    },
+    {
+      "title": "Khosla-backed robotics startup Genesis AI has gone full stack, demo shows",
+      "link": "https://techcrunch.com/2026/05/06/khosla-backed-robotics-startup-genesis-ai-has-gone-full-stack-demo-shows/",
+      "description": "Genesis AI, a startup that raised a $105 million seed round to build foundational AI for robotics, has unveiled its first model, GENE-26.5, but also a demo showcasing a set of robotic hands performing",
+      "date": "May 6",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-05-06T19:17:36.336Z"
     },
     {
       "title": "Katie Haun raises $1B for new venture funds",
@@ -121,17 +131,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-06T16:22:30.019Z"
-    },
-    {
-      "title": "SpaceX backer 137 Ventures raises $700M for two growth-stage funds",
-      "link": "https://techcrunch.com/2026/04/30/spacex-backer-137-ventures-raises-700m-for-two-growth-stage-funds/",
-      "description": "VC firm 137 Ventures has raised over $700 million to back growth-stage startups. Its portfolio includes SpaceX, Anduril, Hadrian.",
-      "date": "Apr 30",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-05-06T16:22:30.020Z"
+      "fetched": "2026-05-06T19:17:36.337Z"
     }
   ],
   "layoffs": [
@@ -143,7 +143,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T16:22:30.003Z"
+      "fetched": "2026-05-06T19:17:36.317Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -153,7 +153,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T16:22:30.003Z"
+      "fetched": "2026-05-06T19:17:36.317Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -163,7 +163,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T16:22:30.003Z"
+      "fetched": "2026-05-06T19:17:36.318Z"
     },
     {
       "title": "Digg lays off staff and shuts down app as company retools",
@@ -173,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T16:22:30.004Z"
+      "fetched": "2026-05-06T19:17:36.318Z"
     },
     {
       "title": "Atlassian follows Block’s footsteps and cuts staff in the name of AI",
@@ -183,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T16:22:30.004Z"
+      "fetched": "2026-05-06T19:17:36.319Z"
     },
     {
       "title": "eBay to lay off 800 staff",
@@ -193,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T16:22:30.004Z"
+      "fetched": "2026-05-06T19:17:36.319Z"
     },
     {
       "title": "Lucid Motors slashes 12% of its workforce as it seeks profitability",
@@ -203,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T16:22:30.004Z"
+      "fetched": "2026-05-06T19:17:36.319Z"
     },
     {
       "title": "AI layoffs or ‘AI-washing’?",
@@ -213,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T16:22:30.004Z"
+      "fetched": "2026-05-06T19:17:36.319Z"
     },
     {
       "title": "India’s first GenAI unicorn shifts to cloud services as AI model ambitions face reality",
@@ -223,7 +223,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T16:22:30.019Z"
+      "fetched": "2026-05-06T19:17:36.337Z"
     }
   ]
 }
