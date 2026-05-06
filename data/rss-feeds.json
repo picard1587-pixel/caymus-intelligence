@@ -9,7 +9,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T19:17:36.317Z"
+      "fetched": "2026-05-06T21:50:09.728Z"
     },
     {
       "title": "Snap is cutting 1,000 jobs, 16% of its workforce",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T19:17:36.318Z"
+      "fetched": "2026-05-06T21:50:09.728Z"
     },
     {
       "title": "Marc Lore says that AI will soon enable anyone to open a restaurant",
@@ -29,7 +29,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T19:17:36.337Z"
+      "fetched": "2026-05-06T21:50:10.145Z"
     },
     {
       "title": "Y Combinator alum Skio sells for $105M cash, only raised $8M, founder says",
@@ -39,7 +39,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T19:17:36.338Z"
+      "fetched": "2026-05-06T21:50:10.146Z"
     },
     {
       "title": "FDA approval, fundraising, and the reality of building in healthcare according to BioticsAI founder",
@@ -49,7 +49,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-06T19:17:36.339Z"
+      "fetched": "2026-05-06T21:50:10.146Z"
     }
   ],
   "funding": [
@@ -61,7 +61,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-06T19:17:36.120Z"
+      "fetched": "2026-05-06T21:50:08.603Z"
     },
     {
       "title": "Sierra raises $950M as the race to own enterprise AI gets serious",
@@ -71,7 +71,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-06T19:17:36.121Z"
+      "fetched": "2026-05-06T21:50:08.604Z"
     },
     {
       "title": "Google to invest up to $40B in Anthropic in cash and compute",
@@ -81,7 +81,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-06T19:17:36.122Z"
+      "fetched": "2026-05-06T21:50:08.605Z"
     },
     {
       "title": "What founders can learn from Anjuna’s layoffs and recovery",
@@ -91,7 +91,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-06T19:17:36.318Z"
+      "fetched": "2026-05-06T21:50:09.728Z"
     },
     {
       "title": "Meta reportedly considering layoffs that could affect 20% of the company",
@@ -101,7 +101,17 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-06T19:17:36.318Z"
+      "fetched": "2026-05-06T21:50:09.728Z"
+    },
+    {
+      "title": "Insurance startup Corgi hits $1.3B valuation 4 months after its Series A",
+      "link": "https://techcrunch.com/2026/05/06/insurance-startup-corgi-hits-1-3b-valuation-4-months-after-its-series-a/",
+      "description": "Corgi announced on Wednesday a $160 million Series B, led by TCV, valuing the startup at $1.3 billion.",
+      "date": "May 6",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-05-06T21:50:10.144Z"
     },
     {
       "title": "DeepSeek could hit $45B valuation from its first investment round",
@@ -111,7 +121,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-06T19:17:36.336Z"
+      "fetched": "2026-05-06T21:50:10.144Z"
     },
     {
       "title": "Khosla-backed robotics startup Genesis AI has gone full stack, demo shows",
@@ -121,7 +131,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-06T19:17:36.336Z"
+      "fetched": "2026-05-06T21:50:10.144Z"
     },
     {
       "title": "Katie Haun raises $1B for new venture funds",
@@ -131,7 +141,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-06T19:17:36.337Z"
+      "fetched": "2026-05-06T21:50:10.145Z"
     }
   ],
   "layoffs": [
@@ -143,7 +153,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T19:17:36.317Z"
+      "fetched": "2026-05-06T21:50:09.728Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -153,7 +163,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T19:17:36.317Z"
+      "fetched": "2026-05-06T21:50:09.728Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -163,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T19:17:36.318Z"
+      "fetched": "2026-05-06T21:50:09.728Z"
     },
     {
       "title": "Digg lays off staff and shuts down app as company retools",
@@ -173,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T19:17:36.318Z"
+      "fetched": "2026-05-06T21:50:09.729Z"
     },
     {
       "title": "Atlassian follows Block’s footsteps and cuts staff in the name of AI",
@@ -183,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T19:17:36.319Z"
+      "fetched": "2026-05-06T21:50:09.729Z"
     },
     {
       "title": "eBay to lay off 800 staff",
@@ -193,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T19:17:36.319Z"
+      "fetched": "2026-05-06T21:50:09.729Z"
     },
     {
       "title": "Lucid Motors slashes 12% of its workforce as it seeks profitability",
@@ -203,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T19:17:36.319Z"
+      "fetched": "2026-05-06T21:50:09.729Z"
     },
     {
       "title": "AI layoffs or ‘AI-washing’?",
@@ -213,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T19:17:36.319Z"
+      "fetched": "2026-05-06T21:50:09.729Z"
     },
     {
       "title": "India’s first GenAI unicorn shifts to cloud services as AI model ambitions face reality",
@@ -223,7 +233,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-06T19:17:36.337Z"
+      "fetched": "2026-05-06T21:50:10.145Z"
     }
   ]
 }
