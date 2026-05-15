@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-05-15T16:45:50.223Z"
+      "fetched": "2026-05-15T19:12:39.130Z"
     },
     {
       "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-15T16:45:50.433Z"
+      "fetched": "2026-05-15T19:12:39.353Z"
     },
     {
       "title": "Redwood Materials loses COO amid layoffs, restructuring",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-15T16:45:50.433Z"
+      "fetched": "2026-05-15T19:12:39.354Z"
     },
     {
       "title": "Snap is cutting 1,000 jobs, 16% of its workforce",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-15T16:45:50.434Z"
+      "fetched": "2026-05-15T19:12:39.354Z"
     },
     {
       "title": "Introducing the 6 stages at TechCrunch Disrupt 2026 — built for today’s tougher startup market",
@@ -49,7 +49,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-15T16:45:50.449Z"
+      "fetched": "2026-05-15T19:12:39.692Z"
     },
     {
       "title": "Live only at TechCrunch Disrupt 2026: Why most founders are already behind on raising a Series A in 2027",
@@ -59,10 +59,20 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-15T16:45:50.450Z"
+      "fetched": "2026-05-15T19:12:39.692Z"
     }
   ],
   "funding": [
+    {
+      "title": "Meridian Ventures launched a $35M fund with a focus on MBA-deferred founders",
+      "link": "https://techcrunch.com/2026/05/15/meridian-ventures-launched-35m-fund-to-back-mba-deferred-founders/",
+      "description": "This new fund will back founders building enterprise technology in the United States. Meridian is agnostic, co-founder Devon Gethers said, noting that the firm has already invested in companies in fin",
+      "date": "May 15",
+      "source": "TechCrunch Leadership",
+      "category": "executive",
+      "relevance": "funding",
+      "fetched": "2026-05-15T19:12:39.130Z"
+    },
     {
       "title": "Ethos raises $22.75M from a16z for its expert network with voice onboarding",
       "link": "https://techcrunch.com/2026/05/06/ethos-raises-22-75m-from-a16z-for-its-expert-network-with-voice-onboarding/",
@@ -71,7 +81,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-15T16:45:50.223Z"
+      "fetched": "2026-05-15T19:12:39.130Z"
     },
     {
       "title": "Sierra raises $950M as the race to own enterprise AI gets serious",
@@ -81,7 +91,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-15T16:45:50.224Z"
+      "fetched": "2026-05-15T19:12:39.131Z"
     },
     {
       "title": "Google to invest up to $40B in Anthropic in cash and compute",
@@ -91,7 +101,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-15T16:45:50.224Z"
+      "fetched": "2026-05-15T19:12:39.131Z"
     },
     {
       "title": "What founders can learn from Anjuna’s layoffs and recovery",
@@ -101,7 +111,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-15T16:45:50.434Z"
+      "fetched": "2026-05-15T19:12:39.354Z"
     },
     {
       "title": "Meta reportedly considering layoffs that could affect 20% of the company",
@@ -111,17 +121,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-15T16:45:50.434Z"
-    },
-    {
-      "title": "Meridian Ventures launched $35M fund to back MBA-deferred founders",
-      "link": "https://techcrunch.com/2026/05/15/meridian-ventures-launched-35m-fund-to-back-mba-deferred-founders/",
-      "description": "Meridian Ventures, the venture firm founded by Devon Gethers and Karlton Haney, announced on Friday the raise of a $35 million second fund to back pre-seed and seed-stage companies founded by those wh",
-      "date": "May 15",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-05-15T16:45:50.449Z"
+      "fetched": "2026-05-15T19:12:39.354Z"
     },
     {
       "title": "Lovable just backed a company that’s looking to bring vibe coding to hardware",
@@ -131,7 +131,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-15T16:45:50.449Z"
+      "fetched": "2026-05-15T19:12:39.691Z"
     },
     {
       "title": "Two weeks left: Startup Battlefield 200 applications close May 27",
@@ -141,7 +141,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-15T16:45:50.449Z"
+      "fetched": "2026-05-15T19:12:39.692Z"
     },
     {
       "title": "Anduril raises $5B, doubles valuation to $61B",
@@ -151,7 +151,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-15T16:45:50.449Z"
+      "fetched": "2026-05-15T19:12:39.692Z"
     },
     {
       "title": "Riding an AI rally, Robinhood preps second retail venture IPO",
@@ -161,7 +161,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-15T16:45:50.450Z"
+      "fetched": "2026-05-15T19:12:39.692Z"
     }
   ],
   "layoffs": [
@@ -173,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-15T16:45:50.433Z"
+      "fetched": "2026-05-15T19:12:39.353Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -183,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-15T16:45:50.433Z"
+      "fetched": "2026-05-15T19:12:39.354Z"
     },
     {
       "title": "Coinbase to lay off 14% of staff as part of broader restructuring",
@@ -193,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-15T16:45:50.433Z"
+      "fetched": "2026-05-15T19:12:39.354Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -203,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-15T16:45:50.434Z"
+      "fetched": "2026-05-15T19:12:39.354Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -213,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-15T16:45:50.434Z"
+      "fetched": "2026-05-15T19:12:39.354Z"
     },
     {
       "title": "Digg lays off staff and shuts down app as company retools",
@@ -223,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-15T16:45:50.434Z"
+      "fetched": "2026-05-15T19:12:39.354Z"
     },
     {
       "title": "Atlassian follows Block’s footsteps and cuts staff in the name of AI",
@@ -233,7 +233,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-15T16:45:50.434Z"
+      "fetched": "2026-05-15T19:12:39.354Z"
     }
   ]
 }
