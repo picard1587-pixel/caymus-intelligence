@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-05-19T11:52:38.217Z"
+      "fetched": "2026-05-19T14:28:51.694Z"
     },
     {
       "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-19T11:52:39.189Z"
+      "fetched": "2026-05-19T14:28:52.450Z"
     },
     {
       "title": "Redwood Materials loses COO amid layoffs, restructuring",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-19T11:52:39.190Z"
+      "fetched": "2026-05-19T14:28:52.450Z"
     },
     {
       "title": "Snap is cutting 1,000 jobs, 16% of its workforce",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-19T11:52:39.190Z"
+      "fetched": "2026-05-19T14:28:52.451Z"
     },
     {
       "title": "Introducing the 6 stages at TechCrunch Disrupt 2026 — built for today’s tougher startup market",
@@ -49,7 +49,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-19T11:52:39.213Z"
+      "fetched": "2026-05-19T14:28:52.461Z"
     }
   ],
   "funding": [
@@ -61,7 +61,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-19T11:52:38.216Z"
+      "fetched": "2026-05-19T14:28:51.694Z"
     },
     {
       "title": "Ethos raises $22.75M from a16z for its expert network with voice onboarding",
@@ -71,7 +71,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-19T11:52:38.217Z"
+      "fetched": "2026-05-19T14:28:51.694Z"
     },
     {
       "title": "Sierra raises $950M as the race to own enterprise AI gets serious",
@@ -81,7 +81,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-19T11:52:38.217Z"
+      "fetched": "2026-05-19T14:28:51.695Z"
     },
     {
       "title": "Google to invest up to $40B in Anthropic in cash and compute",
@@ -91,7 +91,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-19T11:52:38.218Z"
+      "fetched": "2026-05-19T14:28:51.695Z"
     },
     {
       "title": "What founders can learn from Anjuna’s layoffs and recovery",
@@ -101,7 +101,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-19T11:52:39.190Z"
+      "fetched": "2026-05-19T14:28:52.451Z"
     },
     {
       "title": "Meta reportedly considering layoffs that could affect 20% of the company",
@@ -111,7 +111,27 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-19T11:52:39.190Z"
+      "fetched": "2026-05-19T14:28:52.451Z"
+    },
+    {
+      "title": "Forget the feed: Status AI raises $17M to turn social media into interactive entertainment",
+      "link": "https://techcrunch.com/2026/05/19/gamified-social-media-network-status-announces-17m-funding-to-help-usher-in-new-era-of-social-networking/",
+      "description": "Interactive social media site Status  announced Tuesday $17 million in combined seed and Series A funding, with investors including General Catalyst, YC, LightShed Ventures, and Abstract.",
+      "date": "May 19",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-05-19T14:28:52.461Z"
+    },
+    {
+      "title": "Stilta raises $10.5M from a16z and YC to help companies rediscover the patents they forgot they had",
+      "link": "https://techcrunch.com/2026/05/19/legal-tech-announced-stilta-announces-10m-seed-backed-by-yc-and-a16z-months-after-launch/",
+      "description": "Stilta announced Tuesday a $10 million seed round led by Andreessen Horowitz. Other investors in the round include YC and operators from companies like OpenAI, Legora, and Lovable.",
+      "date": "May 19",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-05-19T14:28:52.461Z"
     },
     {
       "title": "Marketing operating system Nectar Social raises $30M Series A led by Menlo",
@@ -121,7 +141,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-19T11:52:39.212Z"
+      "fetched": "2026-05-19T14:28:52.461Z"
     },
     {
       "title": "Lovable just backed a company that’s looking to bring vibe coding to hardware",
@@ -131,27 +151,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-19T11:52:39.213Z"
-    },
-    {
-      "title": "Two weeks left: Startup Battlefield 200 applications close May 27",
-      "link": "https://techcrunch.com/2026/05/14/two-weeks-left-startup-battlefield-200-applications-close-may-27/",
-      "description": "Your shot at VC access, global visibility, TechCrunch coverage, and $100K equity-free funding is running out. Deadline to apply is May 27. Apply now.",
-      "date": "May 14",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-05-19T11:52:39.213Z"
-    },
-    {
-      "title": "Anduril raises $5B, doubles valuation to $61B",
-      "link": "https://techcrunch.com/2026/05/13/anduril-raises-5b-doubles-valuation-to-61b/",
-      "description": "After achieving $2.2 billion in revenue in 2025, the defense tech startup has raised another massive round, led by Thrive and a16z, it says.",
-      "date": "May 13",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-05-19T11:52:39.213Z"
+      "fetched": "2026-05-19T14:28:52.461Z"
     }
   ],
   "layoffs": [
@@ -163,7 +163,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-19T11:52:39.190Z"
+      "fetched": "2026-05-19T14:28:52.450Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -173,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-19T11:52:39.190Z"
+      "fetched": "2026-05-19T14:28:52.450Z"
     },
     {
       "title": "Coinbase to lay off 14% of staff as part of broader restructuring",
@@ -183,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-19T11:52:39.190Z"
+      "fetched": "2026-05-19T14:28:52.450Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -193,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-19T11:52:39.190Z"
+      "fetched": "2026-05-19T14:28:52.450Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -203,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-19T11:52:39.190Z"
+      "fetched": "2026-05-19T14:28:52.450Z"
     },
     {
       "title": "Digg lays off staff and shuts down app as company retools",
@@ -213,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-19T11:52:39.190Z"
+      "fetched": "2026-05-19T14:28:52.451Z"
     },
     {
       "title": "Atlassian follows Block’s footsteps and cuts staff in the name of AI",
@@ -223,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-19T11:52:39.190Z"
+      "fetched": "2026-05-19T14:28:52.451Z"
     }
   ]
 }
