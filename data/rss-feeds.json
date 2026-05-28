@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-05-28T17:54:08.177Z"
+      "fetched": "2026-05-28T20:01:03.203Z"
     },
     {
       "title": "Jensen Huang says he’s found a ‘brand new’ $200B market for Nvidia",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-05-28T17:54:08.177Z"
+      "fetched": "2026-05-28T20:01:03.203Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-05-28T17:54:08.177Z"
+      "fetched": "2026-05-28T20:01:03.203Z"
     },
     {
       "title": "Cloudflare says AI made 1,100 jobs obsolete, even as revenue hit a record high",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-05-28T17:54:08.178Z"
+      "fetched": "2026-05-28T20:01:03.204Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -49,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-28T17:54:08.894Z"
+      "fetched": "2026-05-28T20:01:03.993Z"
     },
     {
       "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
@@ -59,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-28T17:54:08.894Z"
+      "fetched": "2026-05-28T20:01:03.993Z"
     },
     {
       "title": "Redwood Materials loses COO amid layoffs, restructuring",
@@ -69,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-28T17:54:08.895Z"
+      "fetched": "2026-05-28T20:01:03.994Z"
     },
     {
       "title": "Snap is cutting 1,000 jobs, 16% of its workforce",
@@ -79,7 +79,17 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-28T17:54:08.895Z"
+      "fetched": "2026-05-28T20:01:03.994Z"
+    },
+    {
+      "title": "H1 secures $40M from CVS, proving SaaS startups can still attract investment",
+      "link": "https://techcrunch.com/2026/05/28/h1-secures-40m-from-cvs-proving-saas-startups-can-still-attract-investment/",
+      "description": "CEO Ariel Katz argues that while AI can replicate workflow SaaS, it can't copy H1’s unique doctor data.",
+      "date": "May 28",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "executive",
+      "fetched": "2026-05-28T20:01:04.009Z"
     },
     {
       "title": "2 days left: Lock in ticket savings of up to $410 to TechCrunch Disrupt 2026",
@@ -89,7 +99,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-05-28T17:54:09.236Z"
+      "fetched": "2026-05-28T20:01:04.010Z"
     }
   ],
   "funding": [
@@ -101,7 +111,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-28T17:54:08.177Z"
+      "fetched": "2026-05-28T20:01:03.204Z"
     },
     {
       "title": "Ethos raises $22.75M from a16z for its expert network with voice onboarding",
@@ -111,7 +121,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-28T17:54:08.178Z"
+      "fetched": "2026-05-28T20:01:03.204Z"
     },
     {
       "title": "Sierra raises $950M as the race to own enterprise AI gets serious",
@@ -121,7 +131,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-05-28T17:54:08.178Z"
+      "fetched": "2026-05-28T20:01:03.204Z"
     },
     {
       "title": "What founders can learn from Anjuna’s layoffs and recovery",
@@ -131,7 +141,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-28T17:54:08.895Z"
+      "fetched": "2026-05-28T20:01:03.994Z"
     },
     {
       "title": "Meta reportedly considering layoffs that could affect 20% of the company",
@@ -141,17 +151,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-28T17:54:08.895Z"
-    },
-    {
-      "title": "Corgi announces $106M raise at $2.6B valuation — double what it was worth three weeks ago",
-      "link": "https://techcrunch.com/2026/05/28/corgi-announces-106m-raise-at-2-6b-valuation-three-weeks-after-160m-series-b/",
-      "description": "Insurance tech Corgi announced today an $106 million Series B1 raise, valuing the company at $2.6 billion, just three weeks after announcing a $160 million Series B.",
-      "date": "May 28",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-05-28T17:54:09.236Z"
+      "fetched": "2026-05-28T20:01:03.994Z"
     },
     {
       "title": "Triomics nabs $22M to bring oncology-specific AI to cancer centers",
@@ -161,7 +161,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-28T17:54:09.236Z"
+      "fetched": "2026-05-28T20:01:04.010Z"
     },
     {
       "title": "AI coding startup Cognition raises $1B at $25B pre-money valuation",
@@ -171,7 +171,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-28T17:54:09.237Z"
+      "fetched": "2026-05-28T20:01:04.010Z"
     },
     {
       "title": "Startup Battlefield 200 applications close today: Nominate a founder or submit your startup",
@@ -181,7 +181,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-28T17:54:09.237Z"
+      "fetched": "2026-05-28T20:01:04.010Z"
     },
     {
       "title": "Airbnb-backed WeRoad raises $58M to take its group travel platform to the US",
@@ -191,7 +191,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-05-28T17:54:09.237Z"
+      "fetched": "2026-05-28T20:01:04.011Z"
     }
   ],
   "layoffs": [
@@ -203,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-28T17:54:08.894Z"
+      "fetched": "2026-05-28T20:01:03.993Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -213,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-28T17:54:08.895Z"
+      "fetched": "2026-05-28T20:01:03.994Z"
     },
     {
       "title": "Coinbase to lay off 14% of staff as part of broader restructuring",
@@ -223,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-28T17:54:08.895Z"
+      "fetched": "2026-05-28T20:01:03.994Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -233,7 +233,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-28T17:54:08.895Z"
+      "fetched": "2026-05-28T20:01:03.994Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -243,7 +243,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-28T17:54:08.895Z"
+      "fetched": "2026-05-28T20:01:03.994Z"
     },
     {
       "title": "Digg lays off staff and shuts down app as company retools",
@@ -253,17 +253,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-05-28T17:54:08.895Z"
-    },
-    {
-      "title": "What ClickUp’s mass layoff tells us about the future of work",
-      "link": "https://techcrunch.com/2026/05/25/what-clickups-mass-layoff-tells-us-about-the-future-of-work/",
-      "description": "The nine-year-old startup is replacing hundreds of employees with thousands of AI agents.",
-      "date": "May 25",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "layoffs",
-      "fetched": "2026-05-28T17:54:09.237Z"
+      "fetched": "2026-05-28T20:01:03.994Z"
     }
   ]
 }
