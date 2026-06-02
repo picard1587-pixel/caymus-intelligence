@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-06-02T12:32:04.797Z"
+      "fetched": "2026-06-02T18:28:44.898Z"
     },
     {
       "title": "Jensen Huang says he’s found a ‘brand new’ $200B market for Nvidia",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-06-02T12:32:04.798Z"
+      "fetched": "2026-06-02T18:28:44.899Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-06-02T12:32:04.798Z"
+      "fetched": "2026-06-02T18:28:44.899Z"
     },
     {
       "title": "Cloudflare says AI made 1,100 jobs obsolete, even as revenue hit a record high",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-06-02T12:32:04.798Z"
+      "fetched": "2026-06-02T18:28:44.899Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -49,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-02T12:32:05.024Z"
+      "fetched": "2026-06-02T18:28:46.122Z"
     },
     {
       "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
@@ -59,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-02T12:32:05.024Z"
+      "fetched": "2026-06-02T18:28:46.122Z"
     },
     {
       "title": "Redwood Materials loses COO amid layoffs, restructuring",
@@ -69,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-02T12:32:05.025Z"
+      "fetched": "2026-06-02T18:28:46.123Z"
     },
     {
       "title": "Snap is cutting 1,000 jobs, 16% of its workforce",
@@ -79,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-02T12:32:05.025Z"
+      "fetched": "2026-06-02T18:28:46.123Z"
     },
     {
       "title": "Defense tech darling Mach Industries hits $1.8B valuation, a 4x jump in a year",
@@ -89,7 +89,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-02T12:32:05.039Z"
+      "fetched": "2026-06-02T18:28:46.142Z"
     },
     {
       "title": "Making sense of the debate over AI psychosis",
@@ -99,10 +99,20 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-02T12:32:05.040Z"
+      "fetched": "2026-06-02T18:28:46.142Z"
     }
   ],
   "funding": [
+    {
+      "title": "OpenAI launches new Codex tools for white-collar work",
+      "link": "https://techcrunch.com/2026/06/02/openai-launches-new-codex-tools-for-white-collar-work/",
+      "description": "OpenAI released a set of six plug-ins aimed at specific jobs: data analytics, creative production, sales, product design, equity investing, and investment banking. Available from within the Codex app,",
+      "date": "Jun 2",
+      "source": "TechCrunch Leadership",
+      "category": "executive",
+      "relevance": "funding",
+      "fetched": "2026-06-02T18:28:44.898Z"
+    },
     {
       "title": "Meridian Ventures launched a $35M fund with a focus on MBA-deferred founders",
       "link": "https://techcrunch.com/2026/05/15/meridian-ventures-launched-35m-fund-to-back-mba-deferred-founders/",
@@ -111,7 +121,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-06-02T12:32:04.798Z"
+      "fetched": "2026-06-02T18:28:44.899Z"
     },
     {
       "title": "Ethos raises $22.75M from a16z for its expert network with voice onboarding",
@@ -121,7 +131,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-06-02T12:32:04.798Z"
+      "fetched": "2026-06-02T18:28:44.899Z"
     },
     {
       "title": "Sierra raises $950M as the race to own enterprise AI gets serious",
@@ -131,7 +141,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-06-02T12:32:04.798Z"
+      "fetched": "2026-06-02T18:28:44.899Z"
     },
     {
       "title": "What founders can learn from Anjuna’s layoffs and recovery",
@@ -141,7 +151,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-06-02T12:32:05.025Z"
+      "fetched": "2026-06-02T18:28:46.123Z"
     },
     {
       "title": "Meta reportedly considering layoffs that could affect 20% of the company",
@@ -151,27 +161,47 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-06-02T12:32:05.025Z"
+      "fetched": "2026-06-02T18:28:46.123Z"
     },
     {
-      "title": "Unastella, a South Korean rocket startup that launched from home, raises $24M",
-      "link": "https://techcrunch.com/2026/06/01/unastella-a-south-korean-rocket-startup-that-launched-from-home-raises-24m/",
-      "description": "The Seoul-based rocket startup is developing its own launch vehicles and engines.",
-      "date": "Jun 1",
+      "title": "Ex-Anduril engineer raises $42M to build the Amazon of composite parts",
+      "link": "https://techcrunch.com/2026/06/02/ex-anduril-engineer-raises-42m-to-build-the-amazon-of-composite-parts/",
+      "description": "Layup Parts co-founder Zack Eakin has drawn on a motorsports background, and his experience working for Palmer Luckey and Elon Musk, to tackle making faster, cheaper, and better composites.",
+      "date": "Jun 2",
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-06-02T12:32:05.040Z"
+      "fetched": "2026-06-02T18:28:46.141Z"
     },
     {
-      "title": "After Nvidia’s $20B not-acqui-hire, AI chip startup Groq reportedly raising $650M",
-      "link": "https://techcrunch.com/2026/05/29/after-nvidias-20b-not-acqui-hire-ai-chip-startup-groq-reportedly-raising-650m/",
-      "description": "Chipmaker Groq is looking to raise $650 million in internal funding as it pivots from hardware to focus more on AI inference, the process of refining the way AI models respond to prompted requests, pe",
-      "date": "May 29",
+      "title": "Focused Energy raises whopping $240M Series A for laser-powered fusion tech",
+      "link": "https://techcrunch.com/2026/06/02/focused-energy-raises-whopping-240m-series-a-for-laser-powered-fusion-tech/",
+      "description": "Another fusion startup has raised another a massive round to make this type of power a reality.",
+      "date": "Jun 2",
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-06-02T12:32:05.040Z"
+      "fetched": "2026-06-02T18:28:46.141Z"
+    },
+    {
+      "title": "Board, the new game startup from Mirror founder Brynn Putnam, raises $20M, has already sold thousands",
+      "link": "https://techcrunch.com/2026/06/02/board-the-new-game-startup-from-mirror-founder-brynn-putnam-raises-20m-has-already-sold-thousands/",
+      "description": "Board, the startup building what it calls \"together tech\" designed to bring people into the same room, has closed a Series A led by Union Square Ventures.",
+      "date": "Jun 2",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-06-02T18:28:46.141Z"
+    },
+    {
+      "title": "ZeroDrift raises $10M to protect AI models from themselves",
+      "link": "https://techcrunch.com/2026/06/02/zerodrift-raises-10-million-to-protect-ai-models-from-themselves/",
+      "description": "A new AI compliance service sits between AI models and end users to flag and replace any messages that might present a compliance problem.",
+      "date": "Jun 2",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-06-02T18:28:46.141Z"
     }
   ],
   "layoffs": [
@@ -183,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-02T12:32:05.024Z"
+      "fetched": "2026-06-02T18:28:46.122Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -193,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-02T12:32:05.025Z"
+      "fetched": "2026-06-02T18:28:46.122Z"
     },
     {
       "title": "Coinbase to lay off 14% of staff as part of broader restructuring",
@@ -203,7 +233,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-02T12:32:05.025Z"
+      "fetched": "2026-06-02T18:28:46.123Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -213,7 +243,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-02T12:32:05.025Z"
+      "fetched": "2026-06-02T18:28:46.123Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -223,7 +253,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-02T12:32:05.025Z"
+      "fetched": "2026-06-02T18:28:46.123Z"
     },
     {
       "title": "Digg lays off staff and shuts down app as company retools",
@@ -233,7 +263,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-02T12:32:05.025Z"
+      "fetched": "2026-06-02T18:28:46.123Z"
     }
   ]
 }
