@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-06-10T12:11:50.005Z"
+      "fetched": "2026-06-10T17:48:27.003Z"
     },
     {
       "title": "Jensen Huang says he’s found a ‘brand new’ $200B market for Nvidia",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-06-10T12:11:50.006Z"
+      "fetched": "2026-06-10T17:48:27.003Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-06-10T12:11:50.006Z"
+      "fetched": "2026-06-10T17:48:27.003Z"
     },
     {
       "title": "Cloudflare says AI made 1,100 jobs obsolete, even as revenue hit a record high",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-06-10T12:11:50.006Z"
+      "fetched": "2026-06-10T17:48:27.004Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -49,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-10T12:11:50.812Z"
+      "fetched": "2026-06-10T17:48:27.160Z"
     },
     {
       "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
@@ -59,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-10T12:11:50.812Z"
+      "fetched": "2026-06-10T17:48:27.160Z"
     },
     {
       "title": "Redwood Materials loses COO amid layoffs, restructuring",
@@ -69,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-10T12:11:50.813Z"
+      "fetched": "2026-06-10T17:48:27.161Z"
     },
     {
       "title": "Snap is cutting 1,000 jobs, 16% of its workforce",
@@ -79,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-10T12:11:50.813Z"
+      "fetched": "2026-06-10T17:48:27.162Z"
     },
     {
       "title": "Startup Battlefield 200 applications officially close in 3 days",
@@ -89,10 +89,20 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-10T12:11:50.824Z"
+      "fetched": "2026-06-10T17:48:27.179Z"
     }
   ],
   "funding": [
+    {
+      "title": "Jedify raises $24M to help companies arm AI agents with context on their business",
+      "link": "https://techcrunch.com/2026/06/10/jedify-raises-24m-to-help-companies-arm-ai-agents-with-context-on-their-business/",
+      "description": "The funding round was led by Norwest, with participation from S Capital VC, Cerca Partners, and Oceans Ventures. Snowflake Ventures also participated as a strategic investor.",
+      "date": "Jun 10",
+      "source": "TechCrunch Leadership",
+      "category": "executive",
+      "relevance": "funding",
+      "fetched": "2026-06-10T17:48:27.002Z"
+    },
     {
       "title": "OpenAI launches new Codex tools for white-collar work",
       "link": "https://techcrunch.com/2026/06/02/openai-launches-new-codex-tools-for-white-collar-work/",
@@ -101,7 +111,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-06-10T12:11:50.005Z"
+      "fetched": "2026-06-10T17:48:27.003Z"
     },
     {
       "title": "Meridian Ventures launched a $35M fund with a focus on MBA-deferred founders",
@@ -111,7 +121,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-06-10T12:11:50.006Z"
+      "fetched": "2026-06-10T17:48:27.003Z"
     },
     {
       "title": "Ethos raises $22.75M from a16z for its expert network with voice onboarding",
@@ -121,7 +131,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-06-10T12:11:50.006Z"
+      "fetched": "2026-06-10T17:48:27.004Z"
     },
     {
       "title": "What founders can learn from Anjuna’s layoffs and recovery",
@@ -131,7 +141,37 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-06-10T12:11:50.813Z"
+      "fetched": "2026-06-10T17:48:27.162Z"
+    },
+    {
+      "title": "Zest launches a restaurant discovery app powered by where people actually eat",
+      "link": "https://techcrunch.com/2026/06/10/zest-launches-a-restaurant-discovery-app-powered-by-where-people-actually-eat/",
+      "description": "Backed by Alexis Ohanian’s 776 and Kindred Ventures, Zest uses transaction data and AI to generate restaurant recommendations based on users’ real dining habits and the places they frequent.",
+      "date": "Jun 10",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-06-10T17:48:27.177Z"
+    },
+    {
+      "title": "Datadog veterans launch AI coding startup Niteshift on a bet against Big AI lock-in",
+      "link": "https://techcrunch.com/2026/06/10/datadog-veterans-launch-ai-coding-startup-niteshift-on-a-bet-against-big-ai-lock-in/",
+      "description": "AI coding agent startup Niteshift has raised a $7 million seed round from a who's who of angels. It's betting companies will want power over, not lock-in with model makers.",
+      "date": "Jun 10",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-06-10T17:48:27.178Z"
+    },
+    {
+      "title": "Warner Music acquires AI attribution startup Sureel AI",
+      "link": "https://techcrunch.com/2026/06/10/warner-music-acquires-ai-attribution-startup-sureel-ai/",
+      "description": "Through the acquisition, WMG aims to better track when its artists' work is used in AI-generated content or for training AI models.",
+      "date": "Jun 10",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-06-10T17:48:27.178Z"
     },
     {
       "title": "Evotrex raises $30M to build the RV that doesn’t need a charging station",
@@ -141,7 +181,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-06-10T12:11:50.823Z"
+      "fetched": "2026-06-10T17:48:27.178Z"
     },
     {
       "title": "Defense tech, AI, and fundraising take center stage at StrictlyVC Los Angeles on June 18",
@@ -151,27 +191,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-06-10T12:11:50.824Z"
-    },
-    {
-      "title": "Helion, the Sam Altman-backed fusion startup, raises $465M to build a power plant for Microsoft",
-      "link": "https://techcrunch.com/2026/06/04/helion-the-sam-altman-backed-fusion-startup-raises-465m-to-build-a-power-plant-for-microsoft/",
-      "description": "Fusion startup Helion is racing to complete a power plant for Microsoft by 2028. A fresh infusion of cash should help with that.",
-      "date": "Jun 4",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-06-10T12:11:50.824Z"
-    },
-    {
-      "title": "Coralogix raises $200M on bet that someone needs to watch the AI agents",
-      "link": "https://techcrunch.com/2026/06/03/coralogix-raises-200m-in-race-to-build-the-monitoring-layer-for-ai-agents/",
-      "description": "Coralogix is among a growing number of infrastructure firms betting that as AI systems move into production, demand will rise for tools that can monitor their behavior, troubleshoot failures, and prov",
-      "date": "Jun 3",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-06-10T12:11:50.825Z"
+      "fetched": "2026-06-10T17:48:27.179Z"
     }
   ],
   "layoffs": [
@@ -183,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-10T12:11:50.812Z"
+      "fetched": "2026-06-10T17:48:27.160Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -193,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-10T12:11:50.813Z"
+      "fetched": "2026-06-10T17:48:27.161Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -203,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-10T12:11:50.813Z"
+      "fetched": "2026-06-10T17:48:27.161Z"
     },
     {
       "title": "Coinbase to lay off 14% of staff as part of broader restructuring",
@@ -213,7 +233,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-10T12:11:50.813Z"
+      "fetched": "2026-06-10T17:48:27.161Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -223,7 +243,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-10T12:11:50.813Z"
+      "fetched": "2026-06-10T17:48:27.161Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -233,7 +253,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-10T12:11:50.813Z"
+      "fetched": "2026-06-10T17:48:27.161Z"
     }
   ]
 }
