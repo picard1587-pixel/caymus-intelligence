@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-06-23T11:50:08.918Z"
+      "fetched": "2026-06-23T14:15:34.129Z"
     },
     {
       "title": "SpaceX files to go public, and the math requires a little faith",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-06-23T11:50:08.919Z"
+      "fetched": "2026-06-23T14:15:34.131Z"
     },
     {
       "title": "Jensen Huang says he’s found a ‘brand new’ $200B market for Nvidia",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-06-23T11:50:08.919Z"
+      "fetched": "2026-06-23T14:15:34.131Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -39,17 +39,17 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-06-23T11:50:08.919Z"
+      "fetched": "2026-06-23T14:15:34.131Z"
     },
     {
-      "title": "The running list: major tech layoffs in 2026 where employers cited AI",
+      "title": "The running list: Major tech layoffs in 2026 where employers cited AI",
       "link": "https://techcrunch.com/2026/06/22/the-running-list-major-tech-layoffs-in-2026-where-employers-cited-ai/",
       "description": "A running look — in reverse chronological order — at the bigger tech companies that have announced significant layoffs this year with AI as a stated factor.",
       "date": "Jun 23",
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-23T11:50:09.080Z"
+      "fetched": "2026-06-23T14:15:35.381Z"
     },
     {
       "title": "Lucid Motors’ new CEO cuts 18% of staff to ‘simplify the company’",
@@ -59,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-23T11:50:09.080Z"
+      "fetched": "2026-06-23T14:15:35.381Z"
     },
     {
       "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
@@ -69,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-23T11:50:09.080Z"
+      "fetched": "2026-06-23T14:15:35.382Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -79,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-23T11:50:09.080Z"
+      "fetched": "2026-06-23T14:15:35.382Z"
     },
     {
       "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
@@ -89,7 +89,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-23T11:50:09.080Z"
+      "fetched": "2026-06-23T14:15:35.382Z"
     },
     {
       "title": "Cloudflare says AI made 1,100 jobs obsolete, even as revenue hit a record high",
@@ -99,10 +99,20 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-06-23T11:50:09.081Z"
+      "fetched": "2026-06-23T14:15:35.383Z"
     }
   ],
   "funding": [
+    {
+      "title": "Fika Jobs raises $4M to build a video-first hiring platform where AI agents interview candidates",
+      "link": "https://techcrunch.com/2026/06/23/fika-jobs-raises-4m-to-build-a-video-first-hiring-platform-where-ai-agents-interview-candidates/",
+      "description": "Stockholm-based startup Fika Jobs is building a video-first hiring platform that combines AI interview agents with short-form video profiles, creating something that feels like a cross between LinkedI",
+      "date": "Jun 23",
+      "source": "TechCrunch Leadership",
+      "category": "executive",
+      "relevance": "funding",
+      "fetched": "2026-06-23T14:15:34.129Z"
+    },
     {
       "title": "Jedify raises $24M to help companies arm AI agents with context on their business",
       "link": "https://techcrunch.com/2026/06/10/jedify-raises-24m-to-help-companies-arm-ai-agents-with-context-on-their-business/",
@@ -111,7 +121,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-06-23T11:50:08.919Z"
+      "fetched": "2026-06-23T14:15:34.130Z"
     },
     {
       "title": "OpenAI launches new Codex tools for white-collar work",
@@ -121,17 +131,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-06-23T11:50:08.919Z"
-    },
-    {
-      "title": "Meridian Ventures launched a $35M fund with a focus on MBA-deferred founders",
-      "link": "https://techcrunch.com/2026/05/15/meridian-ventures-launched-35m-fund-to-back-mba-deferred-founders/",
-      "description": "This new fund will back founders building enterprise technology in the United States. Meridian is agnostic, co-founder Devon Gethers said, noting that the firm has already invested in companies in fin",
-      "date": "May 15",
-      "source": "TechCrunch Leadership",
-      "category": "executive",
-      "relevance": "funding",
-      "fetched": "2026-06-23T11:50:08.920Z"
+      "fetched": "2026-06-23T14:15:34.130Z"
     },
     {
       "title": "What founders can learn from Anjuna’s layoffs and recovery",
@@ -141,27 +141,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-06-23T11:50:09.081Z"
-    },
-    {
-      "title": "Pramaana Labs raises $27M seed round from Khosla Ventures to bring formal verification to AI",
-      "link": "https://techcrunch.com/2026/06/17/pramaana-labs-raises-27-million-seed-round-from-khosla-ventures-to-bring-formal-verification-to-ai/",
-      "description": "Pramaana will focus on highly sensitive verticals like law, drug discovery, and tax preparation — where errors can be costly and reliability is at a premium.",
-      "date": "Jun 17",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-06-23T11:50:09.091Z"
-    },
-    {
-      "title": "DeepL acquires Mixhalo for live-event audio streaming and translation",
-      "link": "https://techcrunch.com/2026/06/17/deepl-acquires-mixhalo-for-live-event-audio-streaming-and-translation/",
-      "description": "With this acquisition, DeepL is opening an office in San Francisco to expand its U.S. business.",
-      "date": "Jun 17",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-06-23T11:50:09.091Z"
+      "fetched": "2026-06-23T14:15:35.384Z"
     }
   ],
   "layoffs": [
@@ -173,7 +153,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-23T11:50:09.080Z"
+      "fetched": "2026-06-23T14:15:35.382Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -183,7 +163,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-23T11:50:09.080Z"
+      "fetched": "2026-06-23T14:15:35.383Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -193,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-23T11:50:09.081Z"
+      "fetched": "2026-06-23T14:15:35.383Z"
     },
     {
       "title": "Coinbase to lay off 14% of staff as part of broader restructuring",
@@ -203,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-23T11:50:09.081Z"
+      "fetched": "2026-06-23T14:15:35.383Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -213,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-23T11:50:09.081Z"
+      "fetched": "2026-06-23T14:15:35.384Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -223,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-06-23T11:50:09.081Z"
+      "fetched": "2026-06-23T14:15:35.384Z"
     }
   ]
 }
