@@ -2,6 +2,16 @@
   "local": [],
   "executive": [
     {
+      "title": "SK Hynix raises $26.5B in the biggest foreign IPO in US history, is urged to build new US fabs",
+      "link": "https://techcrunch.com/2026/07/10/sk-hynix-raises-26-5b-in-the-biggest-foreign-ipo-in-us-history-is-urged-to-build-new-us-fabs/",
+      "description": "The AI chip boom just produced its biggest Wall Street moment yet. Now SK Hynix and Samsung are being asked to build U.S. factories.",
+      "date": "Jul 10",
+      "source": "TechCrunch Leadership",
+      "category": "executive",
+      "relevance": "executive",
+      "fetched": "2026-07-10T19:12:00.144Z"
+    },
+    {
       "title": "Chamath Palihapitiya raises $135M Series A for his AI coding startup, takes CEO role",
       "link": "https://techcrunch.com/2026/06/29/chamath-palihapitiya-raises-135m-series-a-for-his-ai-coding-startup-takes-ceo-role/",
       "description": "VCs remain thirsty to fund AI coding startups. This one, founded by investor Chamath Palihapitiya, is no exception.",
@@ -9,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-07-10T16:49:05.710Z"
+      "fetched": "2026-07-10T19:12:00.145Z"
     },
     {
       "title": "Amazon hopes to challenge Nvidia more directly by selling its AI chips",
@@ -19,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-07-10T16:49:05.711Z"
+      "fetched": "2026-07-10T19:12:00.146Z"
     },
     {
       "title": "Every major tech layoff in 2026 that has name-checked AI",
@@ -29,7 +39,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-07-10T16:49:06.463Z"
+      "fetched": "2026-07-10T19:12:00.352Z"
     },
     {
       "title": "Lucid Motors’ new CEO cuts 18% of staff to ‘simplify the company’",
@@ -39,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-07-10T16:49:06.463Z"
+      "fetched": "2026-07-10T19:12:00.352Z"
     },
     {
       "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
@@ -49,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-07-10T16:49:06.463Z"
+      "fetched": "2026-07-10T19:12:00.352Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -59,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-07-10T16:49:06.463Z"
+      "fetched": "2026-07-10T19:12:00.353Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -69,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-07-10T16:49:06.463Z"
+      "fetched": "2026-07-10T19:12:00.353Z"
     },
     {
       "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
@@ -79,7 +89,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-07-10T16:49:06.463Z"
+      "fetched": "2026-07-10T19:12:00.353Z"
     },
     {
       "title": "Cloudflare says AI made 1,100 jobs obsolete, even as revenue hit a record high",
@@ -89,17 +99,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-07-10T16:49:06.463Z"
-    },
-    {
-      "title": "Redwood Materials loses COO amid layoffs, restructuring",
-      "link": "https://techcrunch.com/2026/04/23/redwood-materials-loses-coo-amid-layoffs-restructuring/",
-      "description": "Former Tesla executive Chris Lister is retiring, and at least three other VPs have left Redwood around the recent restructuring, TechCrunch has learned.",
-      "date": "Apr 23",
-      "source": "TechCrunch Layoffs",
-      "category": "layoffs",
-      "relevance": "executive",
-      "fetched": "2026-07-10T16:49:06.463Z"
+      "fetched": "2026-07-10T19:12:00.353Z"
     }
   ],
   "funding": [
@@ -111,7 +111,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-07-10T16:49:05.710Z"
+      "fetched": "2026-07-10T19:12:00.145Z"
     },
     {
       "title": "Amazon ups India bet with fresh $13B AI infrastructure investment",
@@ -121,7 +121,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-07-10T16:49:05.710Z"
+      "fetched": "2026-07-10T19:12:00.145Z"
     },
     {
       "title": "Fika Jobs raises $4M to build a video-first hiring platform where AI agents interview candidates",
@@ -131,7 +131,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-07-10T16:49:05.711Z"
+      "fetched": "2026-07-10T19:12:00.146Z"
     },
     {
       "title": "Jedify raises $24M to help companies arm AI agents with context on their business",
@@ -141,7 +141,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-07-10T16:49:05.711Z"
+      "fetched": "2026-07-10T19:12:00.146Z"
     },
     {
       "title": "What founders can learn from Anjuna’s layoffs and recovery",
@@ -151,7 +151,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-07-10T16:49:06.464Z"
+      "fetched": "2026-07-10T19:12:00.354Z"
     },
     {
       "title": "Oratomic raises $300M to build a viable quantum computer that needs only 20K qubits",
@@ -161,7 +161,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-07-10T16:49:06.485Z"
+      "fetched": "2026-07-10T19:12:00.368Z"
     },
     {
       "title": "Charles Hudson shares the common mistakes he’s seen after investing in 500+ startups",
@@ -171,7 +171,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-07-10T16:49:06.485Z"
+      "fetched": "2026-07-10T19:12:00.368Z"
     },
     {
       "title": "Popular open source AI developer tool Ollama raises $65M, grows to nearly 9M users",
@@ -181,7 +181,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-07-10T16:49:06.485Z"
+      "fetched": "2026-07-10T19:12:00.368Z"
     },
     {
       "title": "Lovable reportedly in talks to double its valuation to $13.2B",
@@ -191,7 +191,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-07-10T16:49:06.486Z"
+      "fetched": "2026-07-10T19:12:00.368Z"
     },
     {
       "title": "Prime Intellect raises $130M Series A to help enterprises build their own AI agents",
@@ -201,7 +201,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-07-10T16:49:06.486Z"
+      "fetched": "2026-07-10T19:12:00.368Z"
     }
   ],
   "layoffs": [
@@ -213,7 +213,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "layoffs",
-      "fetched": "2026-07-10T16:49:05.710Z"
+      "fetched": "2026-07-10T19:12:00.145Z"
     },
     {
       "title": "AI was supposed to kill engineering jobs, but new data suggests they’re the most resilient",
@@ -223,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-07-10T16:49:06.463Z"
+      "fetched": "2026-07-10T19:12:00.352Z"
     },
     {
       "title": "As OpenAI files for IPO, Sam Altman’s eye-scanning company is doing layoffs, report says",
@@ -233,7 +233,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-07-10T16:49:06.463Z"
+      "fetched": "2026-07-10T19:12:00.352Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -243,7 +243,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-07-10T16:49:06.463Z"
+      "fetched": "2026-07-10T19:12:00.353Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -253,7 +253,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-07-10T16:49:06.463Z"
+      "fetched": "2026-07-10T19:12:00.353Z"
     },
     {
       "title": "Coinbase to lay off 14% of staff as part of broader restructuring",
@@ -263,7 +263,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-07-10T16:49:06.463Z"
+      "fetched": "2026-07-10T19:12:00.353Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -273,7 +273,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-07-10T16:49:06.464Z"
+      "fetched": "2026-07-10T19:12:00.354Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -283,7 +283,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-07-10T16:49:06.464Z"
+      "fetched": "2026-07-10T19:12:00.354Z"
     }
   ]
 }
