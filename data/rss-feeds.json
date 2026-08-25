@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-08-25T12:21:34.449Z"
+      "fetched": "2026-08-25T15:30:53.028Z"
     },
     {
       "title": "Zuckerberg says Meta’s enterprise AI opportunity extends beyond agents",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-08-25T12:21:34.449Z"
+      "fetched": "2026-08-25T15:30:53.028Z"
     },
     {
       "title": "After shocking quarter, IBM insists that AI isn’t killing the mainframe",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-08-25T12:21:34.450Z"
+      "fetched": "2026-08-25T15:30:53.028Z"
     },
     {
       "title": "Monday.com is the latest tech company to blame AI for layoffs — here are 20 others",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-08-25T12:21:35.333Z"
+      "fetched": "2026-08-25T15:30:53.735Z"
     },
     {
       "title": "Lucid Motors’ new CEO cuts 18% of staff to ‘simplify the company’",
@@ -49,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-08-25T12:21:35.334Z"
+      "fetched": "2026-08-25T15:30:53.735Z"
     },
     {
       "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
@@ -59,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-08-25T12:21:35.334Z"
+      "fetched": "2026-08-25T15:30:53.735Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -69,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-08-25T12:21:35.334Z"
+      "fetched": "2026-08-25T15:30:53.735Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -79,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-08-25T12:21:35.334Z"
+      "fetched": "2026-08-25T15:30:53.735Z"
     },
     {
       "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
@@ -89,7 +89,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-08-25T12:21:35.334Z"
+      "fetched": "2026-08-25T15:30:53.735Z"
     },
     {
       "title": "Cloudflare says AI made 1,100 jobs obsolete, even as revenue hit a record high",
@@ -99,7 +99,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-08-25T12:21:35.334Z"
+      "fetched": "2026-08-25T15:30:53.736Z"
     }
   ],
   "funding": [
@@ -111,7 +111,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-08-25T12:21:34.449Z"
+      "fetched": "2026-08-25T15:30:53.027Z"
     },
     {
       "title": "Encore AI raises $30M to build AI agents that learn from customer calls",
@@ -121,7 +121,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-08-25T12:21:34.449Z"
+      "fetched": "2026-08-25T15:30:53.028Z"
     },
     {
       "title": "ServiceNow bets $40 million on Indian banking software specialist to expand its financial services push",
@@ -131,7 +131,27 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-08-25T12:21:34.450Z"
+      "fetched": "2026-08-25T15:30:53.028Z"
+    },
+    {
+      "title": "Self-driving truck startup Gatik raises $200M following PepsiCo deal",
+      "link": "https://techcrunch.com/2026/08/25/self-driving-truck-startup-gatik-raises-200m-following-pepsico-deal/",
+      "description": "The funding, Gatik's largest so far, was led by Qatar Investment Authority and Koch Disruptive Technologies.",
+      "date": "Aug 25",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-08-25T15:30:54.070Z"
+    },
+    {
+      "title": "Accel-backed Keenable is indexing the web for AI agents",
+      "link": "https://techcrunch.com/2026/08/25/accel-backed-keenable-is-indexing-the-web-for-ai-agents/",
+      "description": "Now exiting stealth mode with a $26 million seed round, Keenable has been building a vast web search index for AI agents.",
+      "date": "Aug 25",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-08-25T15:30:54.070Z"
     },
     {
       "title": "Two years after launch, Walmart’s Flipkart is closing in on India’s quick-commerce leaders",
@@ -141,7 +161,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-08-25T12:21:35.351Z"
+      "fetched": "2026-08-25T15:30:54.071Z"
     },
     {
       "title": "Starcloud raises $250 million for orbital data centers as launch options dry up",
@@ -151,7 +171,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-08-25T12:21:35.352Z"
+      "fetched": "2026-08-25T15:30:54.071Z"
     },
     {
       "title": "The DOJ is investigating a16z. What does this mean for venture capital?",
@@ -161,7 +181,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-08-25T12:21:35.352Z"
+      "fetched": "2026-08-25T15:30:54.071Z"
     }
   ],
   "layoffs": [
@@ -173,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-08-25T12:21:35.334Z"
+      "fetched": "2026-08-25T15:30:53.735Z"
     },
     {
       "title": "As OpenAI files for IPO, Sam Altman’s eye-scanning company is doing layoffs, report says",
@@ -183,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-08-25T12:21:35.334Z"
+      "fetched": "2026-08-25T15:30:53.735Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -193,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-08-25T12:21:35.334Z"
+      "fetched": "2026-08-25T15:30:53.736Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -203,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-08-25T12:21:35.334Z"
+      "fetched": "2026-08-25T15:30:53.736Z"
     },
     {
       "title": "Coinbase to lay off 14% of staff as part of broader restructuring",
@@ -213,7 +233,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-08-25T12:21:35.334Z"
+      "fetched": "2026-08-25T15:30:53.736Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -223,7 +243,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-08-25T12:21:35.335Z"
+      "fetched": "2026-08-25T15:30:53.736Z"
     },
     {
       "title": "Redwood Materials lays off 10% in restructuring to chase energy storage business",
@@ -233,7 +253,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-08-25T12:21:35.335Z"
+      "fetched": "2026-08-25T15:30:53.736Z"
     }
   ]
 }
