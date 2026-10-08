@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-08T09:35:56.733Z"
+      "fetched": "2026-10-08T18:03:29.023Z"
     },
     {
       "title": "Meta launches enterprise AI platform, hires MongoDB CEO to lead new initiative",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-08T09:35:56.733Z"
+      "fetched": "2026-10-08T18:03:29.023Z"
     },
     {
       "title": "Palo Alto Networks paid $500M for Thrive-backed Console, sources say",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-08T09:35:56.734Z"
+      "fetched": "2026-10-08T18:03:29.024Z"
     },
     {
       "title": "Monday.com is the latest tech company to blame AI for layoffs — here are 20 others",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-08T09:35:56.882Z"
+      "fetched": "2026-10-08T18:03:30.409Z"
     },
     {
       "title": "Lucid Motors’ new CEO cuts 18% of staff to ‘simplify the company’",
@@ -49,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-08T09:35:56.882Z"
+      "fetched": "2026-10-08T18:03:30.409Z"
     },
     {
       "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
@@ -59,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-08T09:35:56.882Z"
+      "fetched": "2026-10-08T18:03:30.409Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -69,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-08T09:35:56.883Z"
+      "fetched": "2026-10-08T18:03:30.409Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -79,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-08T09:35:56.883Z"
+      "fetched": "2026-10-08T18:03:30.409Z"
     },
     {
       "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
@@ -89,7 +89,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-08T09:35:56.883Z"
+      "fetched": "2026-10-08T18:03:30.410Z"
     },
     {
       "title": "Cloudflare says AI made 1,100 jobs obsolete, even as revenue hit a record high",
@@ -99,7 +99,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-08T09:35:56.883Z"
+      "fetched": "2026-10-08T18:03:30.410Z"
     }
   ],
   "funding": [
@@ -111,7 +111,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-08T09:35:56.732Z"
+      "fetched": "2026-10-08T18:03:29.023Z"
     },
     {
       "title": "Databricks buys Row Zero and is scouting for more startups to acquire",
@@ -121,7 +121,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-08T09:35:56.733Z"
+      "fetched": "2026-10-08T18:03:29.023Z"
     },
     {
       "title": "Ema raises $77M as AI starts eating into enterprise software and services",
@@ -131,7 +131,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-08T09:35:56.733Z"
+      "fetched": "2026-10-08T18:03:29.024Z"
     },
     {
       "title": "Wonderful more than doubles its valuation to $5B in under 6 months",
@@ -141,7 +141,27 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-08T09:35:56.734Z"
+      "fetched": "2026-10-08T18:03:29.024Z"
+    },
+    {
+      "title": "China’s Manus raises over $500M in first funding round since split with Meta",
+      "link": "https://techcrunch.com/2026/10/08/chinas-manus-raises-over-500m-in-first-funding-round-since-split-with-meta/",
+      "description": "Boyu Capital and IDG Capital led the funding round, and existing shareholders Tencent, HSG (formerly known as Sequoia China), ZhenFund, and others also participated.",
+      "date": "Oct 8",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-10-08T18:03:30.429Z"
+    },
+    {
+      "title": "Vesta raises $30M to bring swarms of agents to mortgage lenders",
+      "link": "https://techcrunch.com/2026/10/08/vesta-raises-30m-as-lenders-adopt-ai-agents/",
+      "description": "Vesta, an AI-native software startup that helps lenders originate mortgages, announced a $30 million round led by Conversion Capital.",
+      "date": "Oct 8",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-10-08T18:03:30.430Z"
     },
     {
       "title": "Healthleap raises $38M for its AI that flags hospital patients who may need a closer look",
@@ -151,7 +171,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-08T09:35:56.900Z"
+      "fetched": "2026-10-08T18:03:30.430Z"
     },
     {
       "title": "Bloom raises $3.6M to become the ‘Alibaba’ of American manufacturing",
@@ -161,7 +181,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-08T09:35:56.900Z"
+      "fetched": "2026-10-08T18:03:30.430Z"
     },
     {
       "title": "Get hands-on: The full lineup of interactive roundtables at TechCrunch Disrupt 2026",
@@ -171,17 +191,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-08T09:35:56.900Z"
-    },
-    {
-      "title": "Furientis lands $25M from Benchmark to mass-produce low-cost missile interceptors",
-      "link": "https://techcrunch.com/2026/10/06/furientis-lands-25m-from-benchmark-to-mass-produce-low-cost-missile-interceptors/",
-      "description": "The storied Silicon Valley firm makes its first pure defense investment.",
-      "date": "Oct 6",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-10-08T09:35:56.901Z"
+      "fetched": "2026-10-08T18:03:30.430Z"
     }
   ],
   "layoffs": [
@@ -193,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-08T09:35:56.882Z"
+      "fetched": "2026-10-08T18:03:30.409Z"
     },
     {
       "title": "As OpenAI files for IPO, Sam Altman’s eye-scanning company is doing layoffs, report says",
@@ -203,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-08T09:35:56.882Z"
+      "fetched": "2026-10-08T18:03:30.409Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -213,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-08T09:35:56.883Z"
+      "fetched": "2026-10-08T18:03:30.410Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -223,7 +233,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-08T09:35:56.883Z"
+      "fetched": "2026-10-08T18:03:30.410Z"
     },
     {
       "title": "Coinbase to lay off 14% of staff as part of broader restructuring",
@@ -233,7 +243,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-08T09:35:56.883Z"
+      "fetched": "2026-10-08T18:03:30.410Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -243,7 +253,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-08T09:35:56.884Z"
+      "fetched": "2026-10-08T18:03:30.410Z"
     }
   ]
 }
