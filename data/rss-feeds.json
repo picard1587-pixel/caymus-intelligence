@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-07T18:01:27.306Z"
+      "fetched": "2026-10-08T00:30:38.825Z"
     },
     {
       "title": "Meta launches enterprise AI platform, hires MongoDB CEO to lead new initiative",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-07T18:01:27.306Z"
+      "fetched": "2026-10-08T00:30:38.825Z"
     },
     {
       "title": "Palo Alto Networks paid $500M for Thrive-backed Console, sources say",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-07T18:01:27.307Z"
+      "fetched": "2026-10-08T00:30:38.825Z"
     },
     {
       "title": "Monday.com is the latest tech company to blame AI for layoffs — here are 20 others",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-07T18:01:27.601Z"
+      "fetched": "2026-10-08T00:30:40.199Z"
     },
     {
       "title": "Lucid Motors’ new CEO cuts 18% of staff to ‘simplify the company’",
@@ -49,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-07T18:01:27.602Z"
+      "fetched": "2026-10-08T00:30:40.199Z"
     },
     {
       "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
@@ -59,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-07T18:01:27.602Z"
+      "fetched": "2026-10-08T00:30:40.199Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -69,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-07T18:01:27.602Z"
+      "fetched": "2026-10-08T00:30:40.199Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -79,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-07T18:01:27.602Z"
+      "fetched": "2026-10-08T00:30:40.199Z"
     },
     {
       "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
@@ -89,7 +89,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-07T18:01:27.602Z"
+      "fetched": "2026-10-08T00:30:40.199Z"
     },
     {
       "title": "Cloudflare says AI made 1,100 jobs obsolete, even as revenue hit a record high",
@@ -99,10 +99,20 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-07T18:01:27.602Z"
+      "fetched": "2026-10-08T00:30:40.199Z"
     }
   ],
   "funding": [
+    {
+      "title": "Nous Research confirms it hit $1.5B valuation, launches AI agents for business users",
+      "link": "https://techcrunch.com/2026/10/07/nous-research-confirms-it-hit-1-5b-valuation-launches-ai-agents-for-business-users/",
+      "description": "The developer of Hermes Agent raised a $90 million Series B.",
+      "date": "Oct 7",
+      "source": "TechCrunch Leadership",
+      "category": "executive",
+      "relevance": "funding",
+      "fetched": "2026-10-08T00:30:38.824Z"
+    },
     {
       "title": "Databricks buys Row Zero and is scouting for more startups to acquire",
       "link": "https://techcrunch.com/2026/09/24/databricks-buys-row-zero-and-is-scouting-for-more-startups-to-acquire/",
@@ -111,7 +121,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-07T18:01:27.306Z"
+      "fetched": "2026-10-08T00:30:38.825Z"
     },
     {
       "title": "Ema raises $77M as AI starts eating into enterprise software and services",
@@ -121,7 +131,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-07T18:01:27.306Z"
+      "fetched": "2026-10-08T00:30:38.825Z"
     },
     {
       "title": "Wonderful more than doubles its valuation to $5B in under 6 months",
@@ -131,7 +141,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-07T18:01:27.307Z"
+      "fetched": "2026-10-08T00:30:38.825Z"
     },
     {
       "title": "Healthleap raises $38M for its AI that flags hospital patients who may need a closer look",
@@ -141,7 +151,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-07T18:01:27.616Z"
+      "fetched": "2026-10-08T00:30:40.215Z"
     },
     {
       "title": "Bloom raises $3.6M to become the ‘Alibaba’ of American manufacturing",
@@ -151,7 +161,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-07T18:01:27.616Z"
+      "fetched": "2026-10-08T00:30:40.215Z"
     },
     {
       "title": "Get hands-on: The full lineup of interactive roundtables at TechCrunch Disrupt 2026",
@@ -161,7 +171,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-07T18:01:27.616Z"
+      "fetched": "2026-10-08T00:30:40.215Z"
     },
     {
       "title": "Furientis lands $25M from Benchmark to mass-produce low-cost missile interceptors",
@@ -171,17 +181,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-07T18:01:27.617Z"
-    },
-    {
-      "title": "Flai’s AI dealership software is booking 50,000 appointments per month",
-      "link": "https://techcrunch.com/2026/10/06/flais-ai-dealership-software-is-booking-50000-appointments-per-month/",
-      "description": "Flai's revenue has grown 20x in a year, and the company just closed a $27 million Series A funding round.",
-      "date": "Oct 6",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-10-07T18:01:27.617Z"
+      "fetched": "2026-10-08T00:30:40.215Z"
     }
   ],
   "layoffs": [
@@ -193,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-07T18:01:27.602Z"
+      "fetched": "2026-10-08T00:30:40.199Z"
     },
     {
       "title": "As OpenAI files for IPO, Sam Altman’s eye-scanning company is doing layoffs, report says",
@@ -203,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-07T18:01:27.602Z"
+      "fetched": "2026-10-08T00:30:40.199Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -213,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-07T18:01:27.602Z"
+      "fetched": "2026-10-08T00:30:40.199Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -223,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-07T18:01:27.602Z"
+      "fetched": "2026-10-08T00:30:40.199Z"
     },
     {
       "title": "Coinbase to lay off 14% of staff as part of broader restructuring",
@@ -233,7 +233,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-07T18:01:27.602Z"
+      "fetched": "2026-10-08T00:30:40.200Z"
     },
     {
       "title": "Meta to cut 10% of jobs, or 8,000 employees, report says",
@@ -243,7 +243,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-07T18:01:27.603Z"
+      "fetched": "2026-10-08T00:30:40.200Z"
     }
   ]
 }
