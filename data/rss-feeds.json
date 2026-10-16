@@ -2,6 +2,16 @@
   "local": [],
   "executive": [
     {
+      "title": "Replit’s CEO says the future of work is the ‘self-driving company’",
+      "link": "https://techcrunch.com/2026/10/16/replits-ceo-says-the-future-of-work-is-the-self-driving-company/",
+      "description": "Replit CEO Amjad Masad envisions a future of “self-driving companies,” where AI agents handle day-to-day tasks and people focus on higher-level decisions.",
+      "date": "Oct 16",
+      "source": "TechCrunch Leadership",
+      "category": "executive",
+      "relevance": "executive",
+      "fetched": "2026-10-16T13:34:44.331Z"
+    },
+    {
       "title": "SK Hynix bargains for chip equipment exports to its China facility in return for building a factory in US",
       "link": "https://techcrunch.com/2026/10/15/sk-hynix-bargains-for-chip-equipment-exports-to-its-china-facility-in-return-for-building-a-factory-in-us/",
       "description": "SK Hynix’s Solidigm is reportedly seeking U.S. approval to send more chipmaking equipment to China as it weighs building a new NAND chip factory in America.",
@@ -9,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-16T07:34:49.369Z"
+      "fetched": "2026-10-16T13:34:44.331Z"
     },
     {
       "title": "Last 24 hours: Exhibit at TechCrunch Disrupt 2026 and reach 10,000+ tech leaders",
@@ -19,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-16T07:34:49.370Z"
+      "fetched": "2026-10-16T13:34:44.331Z"
     },
     {
       "title": "Meta launches enterprise AI platform, hires MongoDB CEO to lead new initiative",
@@ -29,7 +39,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-16T07:34:49.370Z"
+      "fetched": "2026-10-16T13:34:44.332Z"
     },
     {
       "title": "Surveillance company Flock cuts staff as privacy backlash grows",
@@ -39,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-16T07:34:50.165Z"
+      "fetched": "2026-10-16T13:34:45.449Z"
     },
     {
       "title": "Monday.com is the latest tech company to blame AI for layoffs — here are 20 others",
@@ -49,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-16T07:34:50.166Z"
+      "fetched": "2026-10-16T13:34:45.449Z"
     },
     {
       "title": "Lucid Motors’ new CEO cuts 18% of staff to ‘simplify the company’",
@@ -59,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-16T07:34:50.166Z"
+      "fetched": "2026-10-16T13:34:45.449Z"
     },
     {
       "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
@@ -69,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-16T07:34:50.166Z"
+      "fetched": "2026-10-16T13:34:45.449Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -79,7 +89,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-16T07:34:50.166Z"
+      "fetched": "2026-10-16T13:34:45.449Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -89,17 +99,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-16T07:34:50.166Z"
-    },
-    {
-      "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
-      "link": "https://techcrunch.com/2026/05/14/cisco-cuts-nearly-4000-jobs-to-spend-more-on-ai-reports-record-quarterly-revenue/",
-      "description": "This is Cisco's latest layoff in recent years, while the company's chief executive touts record revenue and growth.",
-      "date": "May 14",
-      "source": "TechCrunch Layoffs",
-      "category": "layoffs",
-      "relevance": "executive",
-      "fetched": "2026-10-16T07:34:50.166Z"
+      "fetched": "2026-10-16T13:34:45.449Z"
     }
   ],
   "funding": [
@@ -111,7 +111,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-16T07:34:49.370Z"
+      "fetched": "2026-10-16T13:34:44.331Z"
     },
     {
       "title": "Cloudflare acquires Deno to improve its Workers programming model",
@@ -121,7 +121,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-16T07:34:49.370Z"
+      "fetched": "2026-10-16T13:34:44.331Z"
     },
     {
       "title": "Nous Research confirms it hit $1.5B valuation, launches AI agents for business users",
@@ -131,7 +131,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-16T07:34:49.370Z"
+      "fetched": "2026-10-16T13:34:44.331Z"
     },
     {
       "title": "Databricks buys Row Zero and is scouting for more startups to acquire",
@@ -141,7 +141,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-16T07:34:49.370Z"
+      "fetched": "2026-10-16T13:34:44.332Z"
     },
     {
       "title": "Ema raises $77M as AI starts eating into enterprise software and services",
@@ -151,7 +151,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-16T07:34:49.370Z"
+      "fetched": "2026-10-16T13:34:44.332Z"
     },
     {
       "title": "Ramp reaches $60B valuation as it pushes deeper into AI",
@@ -161,7 +161,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-16T07:34:50.195Z"
+      "fetched": "2026-10-16T13:34:45.480Z"
     }
   ],
   "layoffs": [
@@ -173,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-16T07:34:50.166Z"
+      "fetched": "2026-10-16T13:34:45.449Z"
     },
     {
       "title": "As OpenAI files for IPO, Sam Altman’s eye-scanning company is doing layoffs, report says",
@@ -183,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-16T07:34:50.166Z"
+      "fetched": "2026-10-16T13:34:45.449Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -193,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-16T07:34:50.166Z"
+      "fetched": "2026-10-16T13:34:45.449Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -203,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-16T07:34:50.166Z"
+      "fetched": "2026-10-16T13:34:45.449Z"
     },
     {
       "title": "Coinbase to lay off 14% of staff as part of broader restructuring",
@@ -213,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-16T07:34:50.166Z"
+      "fetched": "2026-10-16T13:34:45.449Z"
     }
   ]
 }
