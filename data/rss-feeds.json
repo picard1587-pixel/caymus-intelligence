@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-22T18:54:13.966Z"
+      "fetched": "2026-10-22T23:43:25.210Z"
     },
     {
       "title": "SK Hynix bargains for chip equipment exports to its China facility in return for building a factory in US",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-22T18:54:13.966Z"
+      "fetched": "2026-10-22T23:43:25.210Z"
     },
     {
       "title": "Last 24 hours: Exhibit at TechCrunch Disrupt 2026 and reach 10,000+ tech leaders",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-22T18:54:13.967Z"
+      "fetched": "2026-10-22T23:43:25.211Z"
     },
     {
       "title": "Meta launches enterprise AI platform, hires MongoDB CEO to lead new initiative",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-22T18:54:13.967Z"
+      "fetched": "2026-10-22T23:43:25.211Z"
     },
     {
       "title": "Automattic begins layoffs following board upheaval and executive departures",
@@ -49,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-22T18:54:15.689Z"
+      "fetched": "2026-10-22T23:43:26.624Z"
     },
     {
       "title": "Surveillance company Flock cuts staff as privacy backlash grows",
@@ -59,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-22T18:54:15.690Z"
+      "fetched": "2026-10-22T23:43:26.624Z"
     },
     {
       "title": "Monday.com is the latest tech company to blame AI for layoffs — here are 20 others",
@@ -69,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-22T18:54:15.690Z"
+      "fetched": "2026-10-22T23:43:26.625Z"
     },
     {
       "title": "Lucid Motors’ new CEO cuts 18% of staff to ‘simplify the company’",
@@ -79,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-22T18:54:15.690Z"
+      "fetched": "2026-10-22T23:43:26.625Z"
     },
     {
       "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
@@ -89,7 +89,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-22T18:54:15.691Z"
+      "fetched": "2026-10-22T23:43:26.625Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -99,7 +99,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-22T18:54:15.691Z"
+      "fetched": "2026-10-22T23:43:26.625Z"
     }
   ],
   "funding": [
@@ -111,7 +111,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-22T18:54:13.966Z"
+      "fetched": "2026-10-22T23:43:25.210Z"
     },
     {
       "title": "Cloudflare acquires Deno to improve its Workers programming model",
@@ -121,7 +121,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-22T18:54:13.966Z"
+      "fetched": "2026-10-22T23:43:25.210Z"
     },
     {
       "title": "Nous Research confirms it hit $1.5B valuation, launches AI agents for business users",
@@ -131,7 +131,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-22T18:54:13.967Z"
+      "fetched": "2026-10-22T23:43:25.211Z"
     },
     {
       "title": "Databricks buys Row Zero and is scouting for more startups to acquire",
@@ -141,7 +141,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-22T18:54:13.967Z"
+      "fetched": "2026-10-22T23:43:25.211Z"
     },
     {
       "title": "Ema raises $77M as AI starts eating into enterprise software and services",
@@ -151,7 +151,27 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-22T18:54:13.967Z"
+      "fetched": "2026-10-22T23:43:25.211Z"
+    },
+    {
+      "title": "Warhound raises $200M to engineer war dogs and arm them with Anduril gear",
+      "link": "https://techcrunch.com/2026/10/22/ben-lamm-raises-200m-for-warhound-to-engineer-war-dogs-and-arm-them-with-anduril-gear/",
+      "description": "Warhound, the brainchild of Ben Lamm and Palmer Luckey, emerges from stealth to genetically engineer dogs for military and law enforcement.",
+      "date": "Oct 22",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-10-22T23:43:26.644Z"
+    },
+    {
+      "title": "The secret to fast startup growth isn’t early sales, top names in tech say",
+      "link": "https://techcrunch.com/2026/10/22/the-secret-to-fast-startup-growth-isnt-early-sales-top-names-in-tech-say/",
+      "description": "At this year’s Disrupt, Lovable GTM lead Luke Arno, Polsia's Ben Broca, and Theory Ventures’ Tomasz Tunguz gave founders some tips on how to achieve true sales success in the first 90 days.",
+      "date": "Oct 22",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-10-22T23:43:26.644Z"
     },
     {
       "title": "Investors break down how founders can raise a Series A today",
@@ -161,7 +181,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-22T18:54:15.716Z"
+      "fetched": "2026-10-22T23:43:26.644Z"
     },
     {
       "title": "Year-old AI lab Flapping Airplanes raises $1B at a $6B valuation",
@@ -171,7 +191,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-22T18:54:15.716Z"
+      "fetched": "2026-10-22T23:43:26.644Z"
     },
     {
       "title": "Legal AI startup Legora raises $550M Series E at $8.8B valuation",
@@ -181,27 +201,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-22T18:54:15.716Z"
-    },
-    {
-      "title": "Blacksmith hits unicorn valuation after Sequoia leads Series C",
-      "link": "https://techcrunch.com/2026/10/21/blacksmith-hits-unicorn-valuation-after-sequoia-leads-series-c/",
-      "description": "Blacksmith, a platform that lets companies build and test AI code more effectively, just announced a $66 million Series C round led by Sequoia that values the company at $1 billion.",
-      "date": "Oct 21",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-10-22T18:54:15.716Z"
-    },
-    {
-      "title": "Mach9 raises $34M after pivoting to AI CAD software",
-      "link": "https://techcrunch.com/2026/10/21/mach9-raises-34m-after-pivoting-to-ai-cad-software/",
-      "description": "The startup initially set out to build better, faster, and cheaper surveying hardware in 2021.",
-      "date": "Oct 21",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-10-22T18:54:15.716Z"
+      "fetched": "2026-10-22T23:43:26.644Z"
     }
   ],
   "layoffs": [
@@ -213,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-22T18:54:15.690Z"
+      "fetched": "2026-10-22T23:43:26.625Z"
     },
     {
       "title": "As OpenAI files for IPO, Sam Altman’s eye-scanning company is doing layoffs, report says",
@@ -223,7 +223,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-22T18:54:15.691Z"
+      "fetched": "2026-10-22T23:43:26.625Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -233,7 +233,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-22T18:54:15.691Z"
+      "fetched": "2026-10-22T23:43:26.625Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -243,7 +243,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-22T18:54:15.692Z"
+      "fetched": "2026-10-22T23:43:26.626Z"
     }
   ]
 }
