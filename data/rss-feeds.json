@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-28T17:29:57.238Z"
+      "fetched": "2026-10-28T21:56:34.123Z"
     },
     {
       "title": "SK Hynix bargains for chip equipment exports to its China facility in return for building a factory in US",
@@ -19,27 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-10-28T17:29:57.238Z"
-    },
-    {
-      "title": "Last 24 hours: Exhibit at TechCrunch Disrupt 2026 and reach 10,000+ tech leaders",
-      "link": "https://techcrunch.com/2026/10/02/last-24-hours-exhibit-at-techcrunch-disrupt-2026-and-reach-10000-tech-leaders/",
-      "description": "Today is the last day to book your exhibit table at TechCrunch Disrupt 2026. From October 13–15, 10,000+ founders, investors, operators, and tech leaders will arrive at San Francisco’s Moscone West lo",
-      "date": "Oct 2",
-      "source": "TechCrunch Leadership",
-      "category": "executive",
-      "relevance": "executive",
-      "fetched": "2026-10-28T17:29:57.239Z"
-    },
-    {
-      "title": "Meta launches enterprise AI platform, hires MongoDB CEO to lead new initiative",
-      "link": "https://techcrunch.com/2026/09/28/meta-launches-enterprise-ai-platform-hires-mongodb-ceo-to-lead-new-initiative/",
-      "description": "Meta says it will focus on bringing its full technology stack, including Muse, Meta Business Agent, Muse API, Muse Code, and more to businesses and developers.",
-      "date": "Sep 28",
-      "source": "TechCrunch Leadership",
-      "category": "executive",
-      "relevance": "executive",
-      "fetched": "2026-10-28T17:29:57.239Z"
+      "fetched": "2026-10-28T21:56:34.123Z"
     },
     {
       "title": "Automattic begins layoffs following board upheaval and executive departures",
@@ -49,7 +29,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-28T17:29:58.092Z"
+      "fetched": "2026-10-28T21:56:35.364Z"
     },
     {
       "title": "Surveillance company Flock cuts staff as privacy backlash grows",
@@ -59,7 +39,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-28T17:29:58.092Z"
+      "fetched": "2026-10-28T21:56:35.364Z"
     },
     {
       "title": "Monday.com is the latest tech company to blame AI for layoffs — here are 20 others",
@@ -69,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-28T17:29:58.093Z"
+      "fetched": "2026-10-28T21:56:35.364Z"
     },
     {
       "title": "Lucid Motors’ new CEO cuts 18% of staff to ‘simplify the company’",
@@ -79,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-28T17:29:58.093Z"
+      "fetched": "2026-10-28T21:56:35.365Z"
     },
     {
       "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
@@ -89,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-28T17:29:58.093Z"
+      "fetched": "2026-10-28T21:56:35.365Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -99,7 +79,27 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-10-28T17:29:58.093Z"
+      "fetched": "2026-10-28T21:56:35.365Z"
+    },
+    {
+      "title": "Intuit to lay off over 3,000 employees to refocus on AI",
+      "link": "https://techcrunch.com/2026/05/20/intuit-to-lay-off-over-3000-employees-to-refocus-on-ai/",
+      "description": "In a memo to employees, CEO Sasan Goodarzi said the layoffs are meant to reduce complexity, simplify the company's corporate structure, and deliver better AI products.",
+      "date": "May 20",
+      "source": "TechCrunch Layoffs",
+      "category": "layoffs",
+      "relevance": "executive",
+      "fetched": "2026-10-28T21:56:35.365Z"
+    },
+    {
+      "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
+      "link": "https://techcrunch.com/2026/05/14/cisco-cuts-nearly-4000-jobs-to-spend-more-on-ai-reports-record-quarterly-revenue/",
+      "description": "This is Cisco's latest layoff in recent years, while the company's chief executive touts record revenue and growth.",
+      "date": "May 14",
+      "source": "TechCrunch Layoffs",
+      "category": "layoffs",
+      "relevance": "executive",
+      "fetched": "2026-10-28T21:56:35.365Z"
     }
   ],
   "funding": [
@@ -111,7 +111,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-28T17:29:57.239Z"
+      "fetched": "2026-10-28T21:56:34.123Z"
     },
     {
       "title": "Cloudflare acquires Deno to improve its Workers programming model",
@@ -121,7 +121,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-28T17:29:57.239Z"
+      "fetched": "2026-10-28T21:56:34.123Z"
     },
     {
       "title": "Nous Research confirms it hit $1.5B valuation, launches AI agents for business users",
@@ -131,7 +131,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-10-28T17:29:57.239Z"
+      "fetched": "2026-10-28T21:56:34.124Z"
     },
     {
       "title": "Re:Build, which spun out Slate Auto, raises $2.1B",
@@ -141,7 +141,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-28T17:29:58.136Z"
+      "fetched": "2026-10-28T21:56:35.395Z"
     },
     {
       "title": "Disruptive raises $10B fund to make big bets on at least 10 companies",
@@ -151,7 +151,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-28T17:29:58.136Z"
+      "fetched": "2026-10-28T21:56:35.395Z"
     },
     {
       "title": "VCs, Superhuman Mail founder share red flags about product-market fit",
@@ -161,7 +161,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-28T17:29:58.136Z"
+      "fetched": "2026-10-28T21:56:35.396Z"
     },
     {
       "title": "Warhound raises $200M to engineer war dogs and arm them with Anduril gear",
@@ -171,17 +171,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-10-28T17:29:58.137Z"
-    },
-    {
-      "title": "The secret to fast startup growth isn’t early sales, top names in tech say",
-      "link": "https://techcrunch.com/2026/10/22/the-secret-to-fast-startup-growth-isnt-early-sales-top-names-in-tech-say/",
-      "description": "At this year’s Disrupt, Lovable GTM lead Luke Arno, Polsia's Ben Broca, and Theory Ventures’ Tomasz Tunguz gave founders some tips on how to achieve true sales success in the first 90 days.",
-      "date": "Oct 22",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-10-28T17:29:58.137Z"
+      "fetched": "2026-10-28T21:56:35.396Z"
     }
   ],
   "layoffs": [
@@ -193,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-28T17:29:58.093Z"
+      "fetched": "2026-10-28T21:56:35.364Z"
     },
     {
       "title": "As OpenAI files for IPO, Sam Altman’s eye-scanning company is doing layoffs, report says",
@@ -203,7 +193,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-28T17:29:58.093Z"
+      "fetched": "2026-10-28T21:56:35.365Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -213,7 +203,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-28T17:29:58.093Z"
+      "fetched": "2026-10-28T21:56:35.365Z"
     },
     {
       "title": "Truecaller slashes 70 jobs amid declining ad sales",
@@ -223,7 +213,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-10-28T17:29:58.094Z"
+      "fetched": "2026-10-28T21:56:35.366Z"
     }
   ]
 }
