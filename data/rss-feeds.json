@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-11-03T10:11:33.802Z"
+      "fetched": "2026-11-03T18:43:49.579Z"
     },
     {
       "title": "Replit’s CEO says the future of work is the ‘self-driving company’",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-11-03T10:11:33.803Z"
+      "fetched": "2026-11-03T18:43:49.580Z"
     },
     {
       "title": "SK Hynix bargains for chip equipment exports to its China facility in return for building a factory in US",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-11-03T10:11:33.803Z"
+      "fetched": "2026-11-03T18:43:49.580Z"
     },
     {
       "title": "Automattic begins layoffs following board upheaval and executive departures",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-03T10:11:34.041Z"
+      "fetched": "2026-11-03T18:43:50.688Z"
     },
     {
       "title": "Surveillance company Flock cuts staff as privacy backlash grows",
@@ -49,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-03T10:11:34.041Z"
+      "fetched": "2026-11-03T18:43:50.689Z"
     },
     {
       "title": "Monday.com is the latest tech company to blame AI for layoffs — here are 20 others",
@@ -59,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-03T10:11:34.042Z"
+      "fetched": "2026-11-03T18:43:50.689Z"
     },
     {
       "title": "Lucid Motors’ new CEO cuts 18% of staff to ‘simplify the company’",
@@ -69,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-03T10:11:34.042Z"
+      "fetched": "2026-11-03T18:43:50.689Z"
     },
     {
       "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
@@ -79,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-03T10:11:34.042Z"
+      "fetched": "2026-11-03T18:43:50.689Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -89,7 +89,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-03T10:11:34.042Z"
+      "fetched": "2026-11-03T18:43:50.690Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -99,7 +99,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-03T10:11:34.043Z"
+      "fetched": "2026-11-03T18:43:50.690Z"
     }
   ],
   "funding": [
@@ -111,7 +111,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-11-03T10:11:33.802Z"
+      "fetched": "2026-11-03T18:43:49.578Z"
     },
     {
       "title": "Omen AI adds liquid know-how in $16 million Aquatic Labs acquisition",
@@ -121,27 +121,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-11-03T10:11:34.066Z"
-    },
-    {
-      "title": "Agent identity startup Mintive lands Cowboy Ventures, Coatue, angels Jeff Dean, Andrej Karpathy",
-      "link": "https://techcrunch.com/2026/10/29/agent-identity-startup-mintive-lands-cowboy-ventures-coatue-angels-jeff-dean-andrej-karpathy/",
-      "description": "Mintive was founded by two engineers who have been working on AI for decades through Google Brain and Coursera. It's platform promises to help IT easily control enterprise agents.",
-      "date": "Oct 29",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-11-03T10:11:34.067Z"
-    },
-    {
-      "title": "Upwind raises $400M after walking away from Datadog acquisition offer",
-      "link": "https://techcrunch.com/2026/10/28/upwind-raises-400m-after-walking-away-from-datadog-acquisition-offer/",
-      "description": "The cloud security startup raised a Series C at a $3.8B valuation, instead of selling itself for the same price.",
-      "date": "Oct 28",
-      "source": "TechCrunch TC",
-      "category": "layoffs",
-      "relevance": "funding",
-      "fetched": "2026-11-03T10:11:34.068Z"
+      "fetched": "2026-11-03T18:43:50.743Z"
     }
   ],
   "layoffs": [
@@ -153,7 +133,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-03T10:11:34.041Z"
+      "fetched": "2026-11-03T18:43:50.688Z"
     },
     {
       "title": "AI was supposed to kill engineering jobs, but new data suggests they’re the most resilient",
@@ -163,7 +143,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-03T10:11:34.042Z"
+      "fetched": "2026-11-03T18:43:50.689Z"
     },
     {
       "title": "As OpenAI files for IPO, Sam Altman’s eye-scanning company is doing layoffs, report says",
@@ -173,7 +153,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-03T10:11:34.042Z"
+      "fetched": "2026-11-03T18:43:50.689Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -183,7 +163,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-03T10:11:34.043Z"
+      "fetched": "2026-11-03T18:43:50.690Z"
     }
   ]
 }
