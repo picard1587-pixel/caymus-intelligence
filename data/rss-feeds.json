@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-11-02T20:56:06.602Z"
+      "fetched": "2026-11-03T02:42:39.135Z"
     },
     {
       "title": "Replit’s CEO says the future of work is the ‘self-driving company’",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-11-02T20:56:06.603Z"
+      "fetched": "2026-11-03T02:42:39.136Z"
     },
     {
       "title": "SK Hynix bargains for chip equipment exports to its China facility in return for building a factory in US",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-11-02T20:56:06.603Z"
+      "fetched": "2026-11-03T02:42:39.136Z"
     },
     {
       "title": "Automattic begins layoffs following board upheaval and executive departures",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-02T20:56:06.767Z"
+      "fetched": "2026-11-03T02:42:39.379Z"
     },
     {
       "title": "Surveillance company Flock cuts staff as privacy backlash grows",
@@ -49,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-02T20:56:06.768Z"
+      "fetched": "2026-11-03T02:42:39.379Z"
     },
     {
       "title": "Monday.com is the latest tech company to blame AI for layoffs — here are 20 others",
@@ -59,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-02T20:56:06.768Z"
+      "fetched": "2026-11-03T02:42:39.380Z"
     },
     {
       "title": "Lucid Motors’ new CEO cuts 18% of staff to ‘simplify the company’",
@@ -69,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-02T20:56:06.768Z"
+      "fetched": "2026-11-03T02:42:39.380Z"
     },
     {
       "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
@@ -79,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-02T20:56:06.769Z"
+      "fetched": "2026-11-03T02:42:39.380Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -89,7 +89,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-02T20:56:06.769Z"
+      "fetched": "2026-11-03T02:42:39.380Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -99,7 +99,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-02T20:56:06.769Z"
+      "fetched": "2026-11-03T02:42:39.380Z"
     }
   ],
   "funding": [
@@ -111,7 +111,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-11-02T20:56:06.602Z"
+      "fetched": "2026-11-03T02:42:39.135Z"
     },
     {
       "title": "Omen AI adds liquid know-how in $16 million Aquatic Labs acquisition",
@@ -121,7 +121,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-11-02T20:56:06.800Z"
+      "fetched": "2026-11-03T02:42:39.407Z"
     },
     {
       "title": "Agent identity startup Mintive lands Cowboy Ventures, Coatue, angels Jeff Dean, Andrej Karpathy",
@@ -131,7 +131,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-11-02T20:56:06.801Z"
+      "fetched": "2026-11-03T02:42:39.409Z"
     },
     {
       "title": "Upwind raises $400M after walking away from Datadog acquisition offer",
@@ -141,10 +141,20 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-11-02T20:56:06.802Z"
+      "fetched": "2026-11-03T02:42:39.410Z"
     }
   ],
   "layoffs": [
+    {
+      "title": "Web host Squarespace lays off 19% of its employees",
+      "link": "https://techcrunch.com/2026/11/02/web-host-squarespace-lays-off-19-of-its-employees/",
+      "description": "The website builder said that the job losses are part of a broader restructuring of its organization.",
+      "date": "Nov 2",
+      "source": "TechCrunch Layoffs",
+      "category": "layoffs",
+      "relevance": "layoffs",
+      "fetched": "2026-11-03T02:42:39.379Z"
+    },
     {
       "title": "AI was supposed to kill engineering jobs, but new data suggests they’re the most resilient",
       "link": "https://techcrunch.com/2026/06/24/ai-was-supposed-to-kill-engineering-jobs-but-new-data-suggests-theyre-the-most-resilient/",
@@ -153,7 +163,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-02T20:56:06.768Z"
+      "fetched": "2026-11-03T02:42:39.380Z"
     },
     {
       "title": "As OpenAI files for IPO, Sam Altman’s eye-scanning company is doing layoffs, report says",
@@ -163,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-02T20:56:06.769Z"
+      "fetched": "2026-11-03T02:42:39.380Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -173,17 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-02T20:56:06.769Z"
-    },
-    {
-      "title": "Truecaller slashes 70 jobs amid declining ad sales",
-      "link": "https://techcrunch.com/2026/05/08/truecaller-slashes-70-jobs-amid-declining-ad-sales/",
-      "description": "Truecaller's ad revenue declined by 44%, leading to the layoffs.",
-      "date": "May 8",
-      "source": "TechCrunch Layoffs",
-      "category": "layoffs",
-      "relevance": "layoffs",
-      "fetched": "2026-11-02T20:56:06.770Z"
+      "fetched": "2026-11-03T02:42:39.381Z"
     }
   ]
 }
