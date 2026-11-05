@@ -9,7 +9,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-11-05T09:58:00.704Z"
+      "fetched": "2026-11-05T19:08:04.429Z"
     },
     {
       "title": "Replit’s CEO says the future of work is the ‘self-driving company’",
@@ -19,7 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-11-05T09:58:00.705Z"
+      "fetched": "2026-11-05T19:08:04.429Z"
     },
     {
       "title": "SK Hynix bargains for chip equipment exports to its China facility in return for building a factory in US",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-11-05T09:58:00.705Z"
+      "fetched": "2026-11-05T19:08:04.429Z"
     },
     {
       "title": "Automattic begins layoffs following board upheaval and executive departures",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-05T09:58:00.837Z"
+      "fetched": "2026-11-05T19:08:05.305Z"
     },
     {
       "title": "Surveillance company Flock cuts staff as privacy backlash grows",
@@ -49,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-05T09:58:00.837Z"
+      "fetched": "2026-11-05T19:08:05.305Z"
     },
     {
       "title": "Monday.com is the latest tech company to blame AI for layoffs — here are 20 others",
@@ -59,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-05T09:58:00.837Z"
+      "fetched": "2026-11-05T19:08:05.305Z"
     },
     {
       "title": "Lucid Motors’ new CEO cuts 18% of staff to ‘simplify the company’",
@@ -69,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-05T09:58:00.838Z"
+      "fetched": "2026-11-05T19:08:05.305Z"
     },
     {
       "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
@@ -79,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-05T09:58:00.838Z"
+      "fetched": "2026-11-05T19:08:05.305Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -89,7 +89,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-05T09:58:00.838Z"
+      "fetched": "2026-11-05T19:08:05.305Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -99,7 +99,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-05T09:58:00.838Z"
+      "fetched": "2026-11-05T19:08:05.305Z"
     }
   ],
   "funding": [
@@ -111,7 +111,27 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-11-05T09:58:00.703Z"
+      "fetched": "2026-11-05T19:08:04.429Z"
+    },
+    {
+      "title": "Harbinger raises $240M after expanding into defense",
+      "link": "https://techcrunch.com/2026/11/05/harbinger-raises-240m-after-expanding-into-defense/",
+      "description": "The Los Angeles-based startup has now raised more than $650 million, and is working on electric trucks, emergency vehicles, and a driverless platform for the military.",
+      "date": "Nov 5",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-11-05T19:08:05.342Z"
+    },
+    {
+      "title": "Food delivery startup Wonder files for IPO as it explores its next big bite",
+      "link": "https://techcrunch.com/2026/11/05/food-delivery-startup-wonder-files-for-ipo-as-it-explores-its-next-big-bite/",
+      "description": "Following years of fundraising, acquisitions, and expansion, food delivery startup Wonder is moving closer to becoming a publicly traded company.",
+      "date": "Nov 5",
+      "source": "TechCrunch TC",
+      "category": "layoffs",
+      "relevance": "funding",
+      "fetched": "2026-11-05T19:08:05.342Z"
     },
     {
       "title": "Omen AI adds liquid know-how in $16 million Aquatic Labs acquisition",
@@ -121,7 +141,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-11-05T09:58:00.861Z"
+      "fetched": "2026-11-05T19:08:05.342Z"
     }
   ],
   "layoffs": [
@@ -133,7 +153,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-05T09:58:00.836Z"
+      "fetched": "2026-11-05T19:08:05.305Z"
     },
     {
       "title": "AI was supposed to kill engineering jobs, but new data suggests they’re the most resilient",
@@ -143,7 +163,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-05T09:58:00.838Z"
+      "fetched": "2026-11-05T19:08:05.305Z"
     },
     {
       "title": "As OpenAI files for IPO, Sam Altman’s eye-scanning company is doing layoffs, report says",
@@ -153,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-05T09:58:00.838Z"
+      "fetched": "2026-11-05T19:08:05.305Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -163,7 +183,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-05T09:58:00.838Z"
+      "fetched": "2026-11-05T19:08:05.306Z"
     }
   ]
 }
