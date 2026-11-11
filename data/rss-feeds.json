@@ -2,6 +2,16 @@
   "local": [],
   "executive": [
     {
+      "title": "Databricks’ new AI agent tells CEO Ali Ghodsi the unvarnished truth",
+      "link": "https://techcrunch.com/2026/11/11/databricks-new-ai-agent-tells-ceo-ali-ghodsi-the-unvarnished-truth/",
+      "description": "With Databricks at 12,000 employees, AI Ghodsi is the first to admit that he can't know everyone and that they are unlikely to confess the things that go wrong to him. But he doesn't need them to. He ",
+      "date": "Nov 11",
+      "source": "TechCrunch Leadership",
+      "category": "executive",
+      "relevance": "executive",
+      "fetched": "2026-11-11T21:37:12.895Z"
+    },
+    {
       "title": "AWS will be a $1T business, Jassy says — but first, it will spend big",
       "link": "https://techcrunch.com/2026/10/29/aws-will-be-a-1t-business-jassy-says-but-first-it-will-spend-big/",
       "description": "Amazon wants to be the king of AI cloud computing and become the first $1 trillion revenue business. But to do that it will have to continue on its capex spending spree, its CEO said Thursday.",
@@ -9,17 +19,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "executive",
-      "fetched": "2026-11-11T13:03:06.704Z"
-    },
-    {
-      "title": "Replit’s CEO says the future of work is the ‘self-driving company’",
-      "link": "https://techcrunch.com/2026/10/16/replits-ceo-says-the-future-of-work-is-the-self-driving-company/",
-      "description": "Replit CEO Amjad Masad envisions a future of “self-driving companies,” where AI agents handle day-to-day tasks and people focus on higher-level decisions.",
-      "date": "Oct 16",
-      "source": "TechCrunch Leadership",
-      "category": "executive",
-      "relevance": "executive",
-      "fetched": "2026-11-11T13:03:06.705Z"
+      "fetched": "2026-11-11T21:37:12.896Z"
     },
     {
       "title": "Automattic begins layoffs following board upheaval and executive departures",
@@ -29,7 +29,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-11T13:03:07.054Z"
+      "fetched": "2026-11-11T21:37:13.889Z"
     },
     {
       "title": "Surveillance company Flock cuts staff as privacy backlash grows",
@@ -39,7 +39,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-11T13:03:07.054Z"
+      "fetched": "2026-11-11T21:37:13.889Z"
     },
     {
       "title": "Monday.com is the latest tech company to blame AI for layoffs — here are 20 others",
@@ -49,7 +49,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-11T13:03:07.054Z"
+      "fetched": "2026-11-11T21:37:13.890Z"
     },
     {
       "title": "Lucid Motors’ new CEO cuts 18% of staff to ‘simplify the company’",
@@ -59,7 +59,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-11T13:03:07.054Z"
+      "fetched": "2026-11-11T21:37:13.890Z"
     },
     {
       "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
@@ -69,7 +69,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-11T13:03:07.054Z"
+      "fetched": "2026-11-11T21:37:13.890Z"
     },
     {
       "title": "Tech CEOs are apparently suffering from AI psychosis",
@@ -79,7 +79,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-11T13:03:07.055Z"
+      "fetched": "2026-11-11T21:37:13.890Z"
     },
     {
       "title": "Intuit to lay off over 3,000 employees to refocus on AI",
@@ -89,7 +89,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-11T13:03:07.055Z"
+      "fetched": "2026-11-11T21:37:13.890Z"
     },
     {
       "title": "Cisco cuts nearly 4,000 jobs to spend more on AI, reports ‘record quarterly revenue’",
@@ -99,7 +99,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "executive",
-      "fetched": "2026-11-11T13:03:07.055Z"
+      "fetched": "2026-11-11T21:37:13.890Z"
     }
   ],
   "funding": [
@@ -111,7 +111,7 @@
       "source": "TechCrunch Leadership",
       "category": "executive",
       "relevance": "funding",
-      "fetched": "2026-11-11T13:03:06.704Z"
+      "fetched": "2026-11-11T21:37:12.896Z"
     },
     {
       "title": "Harbinger raises $240M after expanding into defense",
@@ -121,7 +121,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-11-11T13:03:07.083Z"
+      "fetched": "2026-11-11T21:37:13.929Z"
     },
     {
       "title": "Food delivery startup Wonder files for IPO as it explores its next big bite",
@@ -131,7 +131,7 @@
       "source": "TechCrunch TC",
       "category": "layoffs",
       "relevance": "funding",
-      "fetched": "2026-11-11T13:03:07.084Z"
+      "fetched": "2026-11-11T21:37:13.929Z"
     }
   ],
   "layoffs": [
@@ -143,7 +143,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-11T13:03:07.054Z"
+      "fetched": "2026-11-11T21:37:13.889Z"
     },
     {
       "title": "AI was supposed to kill engineering jobs, but new data suggests they’re the most resilient",
@@ -153,7 +153,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-11T13:03:07.054Z"
+      "fetched": "2026-11-11T21:37:13.890Z"
     },
     {
       "title": "As OpenAI files for IPO, Sam Altman’s eye-scanning company is doing layoffs, report says",
@@ -163,7 +163,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-11T13:03:07.054Z"
+      "fetched": "2026-11-11T21:37:13.890Z"
     },
     {
       "title": "GM just laid off hundreds of IT workers to hire those with stronger AI skills",
@@ -173,7 +173,7 @@
       "source": "TechCrunch Layoffs",
       "category": "layoffs",
       "relevance": "layoffs",
-      "fetched": "2026-11-11T13:03:07.055Z"
+      "fetched": "2026-11-11T21:37:13.890Z"
     }
   ]
 }
