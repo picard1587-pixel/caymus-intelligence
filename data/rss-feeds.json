@@ -1,6 +1,88 @@
 {
   "local": [],
-  "executive": [],
-  "funding": [],
+  "executive": [
+    {
+      "title": "How Founders Can Reduce Platform Risk Before It Threatens Growth",
+      "link": "https://news.crunchbase.com/ai/startup-founders-reduce-platform-risk-filippenko-intch/",
+      "description": "Founders should treat dependence on app stores as infrastructure risk, since a sudden removal can disrupt customer access, subscriptions and revenue with no reliable path to reinstatement. Sharing his",
+      "date": "Nov 12",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "executive",
+      "fetched": "2026-11-14T19:32:04.275Z"
+    },
+    {
+      "title": "The Crunchbase Unicorn Board Tops 1,900 Companies In October, With 34 Companies Joining — Half Under 4 Years Old",
+      "link": "https://news.crunchbase.com/venture/october-2026-unicorn-board-gains-34-tops-1900-ai-defense/",
+      "description": "A total of 34 companies joined The Crunchbase Unicorn Board in October, adding more than $96 billion in value and $14.8 billion in total funding to the board. The board also reached a new record of 1,",
+      "date": "Nov 10",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "executive",
+      "fetched": "2026-11-14T19:32:04.275Z"
+    },
+    {
+      "title": "Series A In 2026: Capital Is Flowing Faster, But Fewer Startups Are Making The Cut",
+      "link": "https://news.crunchbase.com/venture/series-a-2026-startup-capital-up-deals-steady/",
+      "description": "More money is pouring into Series A rounds, but it isn’t opening the door to more startups. U.S. companies have raised $42 billion at that stage this year through October, up roughly 60% year over yea",
+      "date": "Nov 9",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "executive",
+      "fetched": "2026-11-14T19:32:04.275Z"
+    }
+  ],
+  "funding": [
+    {
+      "title": "Crunchbase Data: Nvidia’s Startup Funding Deals Hit A Record. What’s Next After Huang?",
+      "link": "https://news.crunchbase.com/venture/huang-nvda-ai-startup-funding-record-2026/",
+      "description": "Before it was thrust into crisis this week, Nvidia was steadily continuing its pace as one of the busiest startup investors around, including backing many of the biggest venture deals of 2026. We take",
+      "date": "Nov 13",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "funding",
+      "fetched": "2026-11-14T19:32:04.274Z"
+    },
+    {
+      "title": "The Week’s 10 Biggest Funding Rounds: Agentic AI And Infrastructure Are Still On A Roll",
+      "link": "https://news.crunchbase.com/venture/biggest-startup-funding-rounds-agentic-ai-infrastructure-mirendil-mercor/",
+      "description": "It was another big week for AI-related startup financings. Mirendil, a developer of agentic AI for R&#038;D, led the pack with a $1 billion series A, followed by Mercor, which secured $750 million to ",
+      "date": "Nov 13",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "funding",
+      "fetched": "2026-11-14T19:32:04.274Z"
+    },
+    {
+      "title": "Protein Startups Are Selling Lots Of Snacks And Drinks. Our Sample Tasting Found Most Neither Great Nor Horrible",
+      "link": "https://news.crunchbase.com/agtech-foodtech/protein-startup-snacks-drinks-sample-taste/",
+      "description": "As we chronicled earlier this week, both startups and established food brands are making it simpler than ever to up protein intake. From sodas to snack bars to ice cream, it’s now possible to get a fi",
+      "date": "Nov 13",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "funding",
+      "fetched": "2026-11-14T19:32:04.274Z"
+    },
+    {
+      "title": "VCs Are Still Chasing Protein, Even As Fake Meat Falls Out Of Favor",
+      "link": "https://news.crunchbase.com/venture/protein-startups-raise-funding-medici/",
+      "description": "Recent startup investment has shifted away from meat substitutes and toward stuffing more protein into other packaged foods and drinks. It’s a fad that’s obvious on supermarket shelves, where startups",
+      "date": "Nov 12",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "funding",
+      "fetched": "2026-11-14T19:32:04.275Z"
+    },
+    {
+      "title": "Exclusive: Nubank Alum Raises $14M For Colombia’s Palomma To Tackle Rent Payments, Landlord Financing",
+      "link": "https://news.crunchbase.com/fintech/nubank-alum-colombia-startup-palomma-ai-rental-services/",
+      "description": "Colombia-based startup, Palomma, has raised $10 million in Series A funding led by Mexican venture firm Cometa to expand its financial services business for landlords, tenants and property managers, C",
+      "date": "Nov 11",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "funding",
+      "fetched": "2026-11-14T19:32:04.275Z"
+    }
+  ],
   "layoffs": []
 }
