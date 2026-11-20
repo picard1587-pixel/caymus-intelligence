@@ -1,6 +1,69 @@
 {
   "local": [],
-  "executive": [],
-  "funding": [],
-  "layoffs": []
+  "executive": [
+    {
+      "title": "5 Interesting Startup Deals You May Have Missed: Reflecting Sunlight From Space, Better Breathing And Smarter Garbage Trucks",
+      "link": "https://news.crunchbase.com/venture/interesting-startup-deals-ai-solar-healthcare-space-tech/",
+      "description": "What if solar farms could keep generating electricity after sunset with a little help from mirrors orbiting Earth? Or researchers could send an experiment into space for less than the price of a car? ",
+      "date": "Nov 20",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "executive",
+      "fetched": "2026-11-20T14:28:40.794Z"
+    },
+    {
+      "title": "Sector Snapshot: Investors Turn Up The Volume On Voice AI",
+      "link": "https://news.crunchbase.com/venture/voice-ai-startup-funding-peaks-2026/",
+      "description": "Voice AI is drawing billions of dollars from investors as startups find more ways to put it to work. According to Crunchbase data, companies developing or offering the technology have raised at least ",
+      "date": "Nov 18",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "executive",
+      "fetched": "2026-11-20T14:28:40.795Z"
+    },
+    {
+      "title": "Genesis AI Raises $500M At $3.5B Valuation To Bring Its Robots To Factories And Warehouses",
+      "link": "https://news.crunchbase.com/venture/robot-factory-workers-genesis-ai-fundraise/",
+      "description": "Genesis AI, a startup teaching robots to perform physical tasks by learning from human movements, announced Tuesday it has raised $500 million in Series A funding at a $3.5 billion valuation.",
+      "date": "Nov 17",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "executive",
+      "fetched": "2026-11-20T14:28:40.795Z"
+    }
+  ],
+  "funding": [
+    {
+      "title": "The Blue Economy: The World’s Quietest Economic Engine And Its Smartest Cities",
+      "link": "https://news.crunchbase.com/startups/blue-economy-technology-defense-energy-onetti-mind-the-bridge/",
+      "description": "The $2.6 trillion blue economy is creating startup opportunities in maritime automation, clean energy and logistics, with blue tech funding nearing $10 billion through Q3 2026, driven largely by major",
+      "date": "Nov 19",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "funding",
+      "fetched": "2026-11-20T14:28:40.795Z"
+    },
+    {
+      "title": "What’s Next For Recruiting, Job Hunting And HR? More AI, Of Course",
+      "link": "https://news.crunchbase.com/venture/data-recruiting-job-hunting-hr-ai-startups-mercor/",
+      "description": "So far this year, venture backers have poured close to $4 billion into an assortment of global companies focused on recruiting, finding jobs and streamlining processes associated with HR and payroll m",
+      "date": "Nov 19",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "funding",
+      "fetched": "2026-11-20T14:28:40.795Z"
+    }
+  ],
+  "layoffs": [
+    {
+      "title": "What The Telecom Bust Taught Me About AI’s Debt Boom",
+      "link": "https://news.crunchbase.com/venture/telecom-bust-ai-startup-debt-boom-spreng-runway-growth/",
+      "description": "The AI buildout’s growing reliance on debt echoes the telecom bubble, raising the risk that infrastructure spending will outpace the revenue needed to meet fixed repayment obligations. According to gu",
+      "date": "Nov 20",
+      "source": "Crunchbase News",
+      "category": "funding",
+      "relevance": "layoffs",
+      "fetched": "2026-11-20T14:28:40.795Z"
+    }
+  ]
 }
